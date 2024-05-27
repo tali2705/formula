@@ -11,7 +11,6 @@ const Drivers = () => {
 
             try {
                 const response = await axios.get(url);
-
                 const driverStandings =
                     response.data.MRData.StandingsTable.StandingsLists[0]
                         .DriverStandings;
@@ -32,9 +31,12 @@ const Drivers = () => {
                 <ul>
                     {drivers.map((driver, index) => (
                         <li key={index}>
-                            {driver.Driver.givenName} {driver.Driver.familyName}{' '}
+                            {driver.Driver.givenName} {driver.Driver.familyName}
+                            &nbsp;
                             {driver.Constructors.length > 0 &&
                                 driver.Constructors[0].name}
+                            &nbsp;
+                            {driver.position} &nbsp; {driver.points}
                         </li>
                     ))}
                 </ul>
