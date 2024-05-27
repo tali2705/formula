@@ -6,10 +6,10 @@ import Races from './components/Races/Races';
 function App() {
     return (
         <>
-            {' '}
             <Search />
             <Teams />
             <Drivers />
+            <Races />
         </>
     );
 }
