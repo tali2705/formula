@@ -12,7 +12,8 @@ const Teams = () => {
 
     const getTeams = async () => {
         try {
-            const url = 'http://ergast.com/api/f1/2013/constructorStandings.json';
+            const url =
+                'http://ergast.com/api/f1/2023/constructorStandings.json';
             const response = await axios.get(url);
             const teams = response.data;
             setTeams(teams);
@@ -23,10 +24,9 @@ const Teams = () => {
             console.log(err);
         }
     }
-
     return (
         <table>
-            <caption>Constructors for championship Standings - 2013</caption>
+            <caption>Constructors for championship Standings - 2023</caption>
             <tbody>
                 {constructorStandings.length > 0 ? (
 
@@ -47,4 +47,5 @@ const Teams = () => {
         </table>
     );
 }
+
 export default Teams;

@@ -6,28 +6,22 @@ const Drivers = () => {
     const [drivers, setDrivers] = useState([]);
 
     useEffect(() => {
+        const getDrivers = async () => {
+            const url = 'http://ergast.com/api/f1/2023/driverStandings.json';
+
+            try {
+                const response = await axios.get(url);
+                const driverStandings =
+                    response.data.MRData.StandingsTable.StandingsLists[0]
+                        .DriverStandings;
+                setDrivers(driverStandings);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
         getDrivers();
-
-        console.log('UseEffect getDrivers');
     }, []);
-
-    const getDrivers = async () => {
-        const url = 'http://ergast.com/api/f1/2023/driverStandings.json';
-
-        try {
-            const response = await axios.get(url);
-            console.log(response.data);
-
-            const driverStandings =
-                response.data.MRData.StandingsTable.StandingsLists[0]
-                    .DriverStandings;
-
-            console.log(driverStandings);
-            setDrivers(driverStandings);
-        } catch (error) {
-            console.error(error);
-        }
-    };
 
     return (
         <div>
@@ -36,6 +30,11 @@ const Drivers = () => {
                     {drivers.map((driver, index) => (
                         <li key={index}>
                             {driver.Driver.givenName} {driver.Driver.familyName}
+                            &nbsp;
+                            {driver.Constructors.length > 0 &&
+                                driver.Constructors[0].name}
+                            &nbsp;
+                            {driver.position} &nbsp; {driver.points}
                         </li>
                     ))}
                 </ul>

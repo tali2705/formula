@@ -4,7 +4,7 @@ import Search from "./components/Search/Search";
 
 function App() {
   return (
-    <><Search />
+    <>
       <Teams />
       <Drivers />
     </>
