@@ -1,13 +1,12 @@
 import Teams from "./components/Teams/Teams";
 import Drivers from './components/Drivers/Drivers';
-import Races from "./components/Races/Races";
+import Search from "./components/Search/Search";
 
 function App() {
   return (
-    <>
+    <> <Search />
       <Teams />
       <Drivers />
-      <Races />
     </>
   );
 }
