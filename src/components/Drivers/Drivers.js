@@ -23,8 +23,6 @@ const Drivers = () => {
         getDrivers();
     }, []);
 
-    console.log(drivers);
-
     return (
         <div>
             {drivers.length > 0 ? (
