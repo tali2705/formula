@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
-// import { CircleLoader } from 'react-spinners';
 import './teams.scss';
 import axios from 'axios';
-import Loader from '../../Loader';
 
 const Teams = () => {
     const [teams, setTeams] = useState({});
-    const [isLoading, setIsLoading] = useState(true);
+    const [constructorStandings, setConstructorStandings] = useState([]);
 
     useEffect(() => {
         getTeams();
@@ -19,31 +17,35 @@ const Teams = () => {
             const response = await axios.get(url);
             const teams = response.data;
             setTeams(teams);
-            // console.log(teams);
-            setIsLoading(false);
-            const constructorStandings =
-                response.data.MRData.StandingsTable.StandingsLists[0]
-                    .ConstructorStandings;
-            // console.log(constructorStandings);
-        } catch (err) {
+            const teamsArray = teams.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
+            setConstructorStandings(teamsArray);
+        }
+        catch (err) {
             console.log(err);
         }
-    };
-    if (isLoading) {
-        return (
-            <div>
-                <Loader />
-            </div>
-        );
     }
     return (
         <table>
             <caption>Constructors for championship Standings - 2023</caption>
             <tbody>
-                <tr></tr>
+                {constructorStandings.length > 0 ? (
+
+                    constructorStandings.map((team) => (
+
+                        <tr key={team.position}>
+                            <td>{team.position}</td>
+                            <td>{team.Constructor.name}</td>
+                            <td>{team.points}</td>
+                        </tr>
+
+                    ))
+
+                ) : (
+                    <p>Loading drivers...</p>
+                )}
             </tbody>
         </table>
     );
-};
+}
 
 export default Teams;
