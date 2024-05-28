@@ -29,7 +29,9 @@ const Drivers = () => {
 
     return (
         <table>
-            <caption></caption>
+            <caption>
+
+            </caption>
             <tbody>
                 {drivers.length > 0 ? (
                     drivers.map((driver) => {

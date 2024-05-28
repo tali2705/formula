@@ -22,7 +22,9 @@ const Teams = () => {
             console.log(err);
         }
     };
+    const handleTeamDetails = () => {
 
+    }
     return (
         <table>
             <caption>Constructors for Championship Standings - 2023</caption>
@@ -39,7 +41,7 @@ const Teams = () => {
                     constructorStandings.map((team) => (
                         <tr key={team.position}>
                             <td>{team.position}</td>
-                            <td>{team.Constructor.name}</td>
+                            <td onClick={handleTeamDetails}>{team.Constructor.name}</td>
                             <td>{team.points}</td>
                         </tr>
 
