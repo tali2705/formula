@@ -28,21 +28,16 @@ const Teams = () => {
         <table>
             <caption>Constructors for championship Standings - 2023</caption>
             <tbody>
-                {constructorStandings.length > 0 ? (
+                {constructorStandings.length > 0 &&
 
                     constructorStandings.map((team) => (
-
                         <tr key={team.position}>
                             <td>{team.position}</td>
                             <td>{team.Constructor.name}</td>
                             <td>{team.points}</td>
                         </tr>
-
-                    ))
-
-                ) : (
-                    <p>Loading drivers...</p>
-                )}
+                    )
+                    )}
             </tbody>
         </table>
     );
