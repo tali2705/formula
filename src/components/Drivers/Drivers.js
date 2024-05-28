@@ -28,36 +28,31 @@ const Drivers = () => {
     };
 
     return (
-=======
         <table>
-            <caption>
-
-            </caption>
+            <caption></caption>
             <tbody>
                 {drivers.length > 0 ? (
-
                     drivers.map((driver) => {
-                        const countryCode = nationalityToCountryCode(
->>>>>>> bf55322a5f08f29402edabae3d2e273a26b44ec9
+                        const countryCode = flagHandler(
                             driver.Driver.nationality
                         );
 
                         return (
                             <tr key={driver.position}>
-                                <td>
-                                    {driver.position}
-                                </td>
+                                <td>{driver.position}</td>
                                 <td>
                                     <img
                                         src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-                                        alt={countryCode} />&nbsp;{driver.Driver.givenName}&nbsp;{driver.Driver.familyName}
-                                </td>
-                                <td>{driver.Constructors.length > 0 &&
-                                    driver.Constructors[0].name}
+                                        alt={countryCode}
+                                    />
+                                    &nbsp;{driver.Driver.givenName}&nbsp;
+                                    {driver.Driver.familyName}
                                 </td>
                                 <td>
-                                    {driver.points}
+                                    {driver.Constructors.length > 0 &&
+                                        driver.Constructors[0].name}
                                 </td>
+                                <td>{driver.points}</td>
                             </tr>
                         );
                     })
