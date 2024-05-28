@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './drivers.scss';
 
-import nationalityToCountryCode from '../utils/flagHandler';
+import flagHandler from '../utils/flagHandler';
 
 const Drivers = () => {
     const [drivers, setDrivers] = useState([]);
@@ -28,38 +28,41 @@ const Drivers = () => {
     };
 
     return (
-        <div>
-            {drivers.length > 0 ? (
-                <ul>
-                    {drivers.map((driver, index) => {
-                        const countryCode = nationalityToCountryCode(
+        <table>
+            <caption>
+
+            </caption>
+            <tbody>
+                {drivers.length > 0 ? (
+                    drivers.map((driver) => {
+                        const countryCode = flagHandler(
                             driver.Driver.nationality
                         );
 
                         return (
-                            <li key={index}>
-                                <img
-                                    src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-                                    alt={countryCode}
-                                />
-                                {driver.position}
-                                &nbsp;
-                                {driver.Driver.givenName}
-                                &nbsp;
-                                {driver.Driver.familyName}
-                                &nbsp;
-                                {driver.Constructors.length > 0 &&
-                                    driver.Constructors[0].name}
-                                &nbsp;
-                                {driver.points}
-                            </li>
+                            <tr key={driver.position}>
+                                <td>{driver.position}</td>
+                                <td>
+                                    <img
+                                        src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
+                                        alt={countryCode}
+                                    />
+                                    &nbsp;{driver.Driver.givenName}&nbsp;
+                                    {driver.Driver.familyName}
+                                </td>
+                                <td>
+                                    {driver.Constructors.length > 0 &&
+                                        driver.Constructors[0].name}
+                                </td>
+                                <td>{driver.points}</td>
+                            </tr>
                         );
-                    })}
-                </ul>
-            ) : (
-                <p>Loading drivers...</p>
-            )}
-        </div>
+                    })
+                ) : (
+                    <td colSpan={4}>Loading drivers...</td>
+                )}
+            </tbody>
+        </table>
     );
 };
 
