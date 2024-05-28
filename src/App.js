@@ -11,7 +11,7 @@ function App() {
             {/* <Teams /> */}
             <Drivers />
             {/* <Races /> */}
-            <QualifyingResults />
+            {/* <QualifyingResults /> */}
         </>
     );
 }
