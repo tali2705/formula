@@ -21,10 +21,10 @@ const nationalityMap = {
     NewZealander: 'NZ',
 };
 
-const nationalityToCountryCode = (nationality) => {
+const flagHandler = (nationality) => {
     const formattedNationality = nationality.replace(/\s+/g, '');
 
     return nationalityMap[formattedNationality] || 'UN';
 };
 
-export default nationalityToCountryCode;
+export default flagHandler;
