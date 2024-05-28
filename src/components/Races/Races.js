@@ -21,6 +21,7 @@ const Races = () => {
             }
         };
 
+
         getRaces();
 
         console.log('UseEffect getRaces');
@@ -28,21 +29,47 @@ const Races = () => {
 
     console.log(races);
 
-    return (
-        <div>
-            {races.length > 0 ? (
-                <ul>
-                    {races.map((race, index) => (
-                        <li key={index}>
-                            {race.raceName} - {race.season}
-                        </li>
-                    ))}
-                </ul>
-            ) : (
-                <p>Loading races...</p>
-            )}
-        </div>
-    );
-};
+    const Results = () => {
+        const [results, setResults] = useState([]);
 
-export default Races;
+        useEffect(() => {
+            const getResults = async () => {
+                const url = 'http://ergast.com/api/f1/2023/results/1.json';
+
+                try {
+                    const response = await axios.get(url);
+                    console.log(response.data);
+
+                    const raceResults = response.data.MRData.RaceTable.Races.Results;
+
+                    setResults(raceResults);
+                } catch (error) {
+                    console.error(error);
+                }
+            };
+
+            getResults();
+
+            console.log('UseEffect getResults');
+        }, []);
+
+        console.log(results);
+
+        return (
+            <div>
+                {results.length > 0 ? (
+                    <ul>
+                        {results.map((result, index) => (
+                            <li key={index}>
+                                {result.Driver.driverID} -
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>Loading results...</p>
+                )}
+            </div>
+        );
+    };
+
+    export default Races;
