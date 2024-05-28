@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './drivers.scss';
 
-import nationalityToCountryCode from '../utils/flagHandler';
+import flagHandler from '../utils/flagHandler';
 
 const Drivers = () => {
     const [drivers, setDrivers] = useState([]);
@@ -32,7 +32,7 @@ const Drivers = () => {
             {drivers.length > 0 ? (
                 <ul>
                     {drivers.map((driver, index) => {
-                        const countryCode = nationalityToCountryCode(
+                        const countryCode = flagHandler(
                             driver.Driver.nationality
                         );
 
