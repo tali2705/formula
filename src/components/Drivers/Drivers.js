@@ -28,38 +28,44 @@ const Drivers = () => {
     };
 
     return (
-        <div>
-            {drivers.length > 0 ? (
-                <ul>
-                    {drivers.map((driver, index) => {
-                        const countryCode = flagHandler(
+=======
+        <table>
+            <caption>
+
+            </caption>
+            <tbody>
+                {drivers.length > 0 ? (
+
+                    drivers.map((driver) => {
+                        const countryCode = nationalityToCountryCode(
+>>>>>>> bf55322a5f08f29402edabae3d2e273a26b44ec9
                             driver.Driver.nationality
                         );
 
                         return (
-                            <li key={index}>
-                                <img
-                                    src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-                                    alt={countryCode}
-                                />
-                                {driver.position}
-                                &nbsp;
-                                {driver.Driver.givenName}
-                                &nbsp;
-                                {driver.Driver.familyName}
-                                &nbsp;
-                                {driver.Constructors.length > 0 &&
+                            <tr key={driver.position}>
+                                <td>
+                                    {driver.position}
+                                </td>
+                                <td>
+                                    <img
+                                        src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
+                                        alt={countryCode} />&nbsp;{driver.Driver.givenName}&nbsp;{driver.Driver.familyName}
+                                </td>
+                                <td>{driver.Constructors.length > 0 &&
                                     driver.Constructors[0].name}
-                                &nbsp;
-                                {driver.points}
-                            </li>
+                                </td>
+                                <td>
+                                    {driver.points}
+                                </td>
+                            </tr>
                         );
-                    })}
-                </ul>
-            ) : (
-                <p>Loading drivers...</p>
-            )}
-        </div>
+                    })
+                ) : (
+                    <td colSpan={4}>Loading drivers...</td>
+                )}
+            </tbody>
+        </table>
     );
 };
 
