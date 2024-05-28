@@ -35,13 +35,13 @@ const Drivers = () => {
             <thead>
                 {drivers.length > 0 ? (
 
-                    drivers.map((driver, index) => {
+                    drivers.map((driver) => {
                         const countryCode = nationalityToCountryCode(
                             driver.Driver.nationality
                         );
 
                         return (
-                            <tr key={index}>
+                            <tr key={driver.position}>
                                 <td>
                                     {driver.position}
                                 </td>
@@ -60,7 +60,7 @@ const Drivers = () => {
                         );
                     })
                 ) : (
-                    <td colSpan={3}>Loading drivers...</td>
+                    <td colSpan={4}>Loading drivers...</td>
                 )}
             </thead>
         </table>
