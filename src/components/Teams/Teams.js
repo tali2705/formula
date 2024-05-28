@@ -46,7 +46,7 @@ const Teams = () => {
                     ))
 
                 ) : (
-                    <p>Loading drivers...</p>
+                    <p>Loading teams...</p>
                 )}
             </tbody>
         </table>
