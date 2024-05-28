@@ -32,7 +32,7 @@ const Drivers = () => {
             <caption>
 
             </caption>
-            <thead>
+            <tbody>
                 {drivers.length > 0 ? (
 
                     drivers.map((driver) => {
@@ -62,7 +62,7 @@ const Drivers = () => {
                 ) : (
                     <td colSpan={4}>Loading drivers...</td>
                 )}
-            </thead>
+            </tbody>
         </table>
     );
 };
