@@ -22,9 +22,7 @@ const Teams = () => {
             console.log(err);
         }
     };
-    const handleTeamDetails = () => {
-
-    }
+    const handleTeamDetails = () => {};
     return (
         <table>
             <caption>Constructors for Championship Standings - 2023</caption>
@@ -37,18 +35,19 @@ const Teams = () => {
             </thead>
             <tbody>
                 {constructorStandings.length > 0 ? (
-
                     constructorStandings.map((team) => (
                         <tr key={team.position}>
                             <td>{team.position}</td>
-                            <td onClick={handleTeamDetails}>{team.Constructor.name}</td>
+                            <td onClick={handleTeamDetails}>
+                                {team.Constructor.name}
+                            </td>
                             <td>{team.points}</td>
                         </tr>
-
                     ))
-
                 ) : (
-                    <p>Loading teams...</p>
+                    <tr>
+                        <td>Loading teams...</td>
+                    </tr>
                 )}
             </tbody>
         </table>
