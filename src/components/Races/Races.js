@@ -7,7 +7,7 @@ const Races = () => {
 
     useEffect(() => {
         const getRaces = async () => {
-            const url = 'http://ergast.com/api/f1/2023/results/1.json';
+            const url = 'http://ergast.com/api/f1/2013/results/1.json';
 
             try {
                 const response = await axios.get(url);
@@ -29,19 +29,32 @@ const Races = () => {
     console.log(races);
 
     return (
-        <div>
-            {races.length > 0 ? (
-                <ul>
-                    {races.map((race, index) => (
-                        <li key={index}>
-                            {race.raceName} - {race.season}
-                        </li>
-                    ))}
-                </ul>
-            ) : (
-                <p>Loading races...</p>
-            )}
-        </div>
+        <table>
+            <thead>
+                <th>Round</th>
+                <th>Grand Prix</th>
+                <th>Circuit</th>
+                <th>Date</th>
+                <th>Winner</th>
+            </thead>
+            <tbody>
+                {races.length > 0 ? (
+                    races.map((race, index) => (
+                        <tr>
+                            <td>{race.round}</td>
+                            <td>{race.raceName}</td>
+                            <td>{race.Circuit.circuitName}</td>
+                            <td>{race.date}</td>
+                            <td>{race.Results[0].Driver.familyName}</td>
+                        </tr>
+                    ))
+                ) : (
+                    <tr>
+                        <td colSpan={5}>Loading races...</td>
+                    </tr>
+                )}
+            </tbody>
+        </table>
     );
 };
 
