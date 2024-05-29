@@ -2,8 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const Card = (props) => {
-
-
     return (
         <div>
             <h3>{props.title}</h3>

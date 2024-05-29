@@ -1,17 +1,13 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import axios from 'axios';
-
 import Search from '../Header/Search';
 import flagHandler from '../utils/flagHandler';
 
 const Teams = () => {
     const [constructorStandings, setConstructorStandings] = useState([]);
-
     const [searchField, setSearchField] = useState('');
     const [filteredTeams, setFilteredTeams] = useState([]);
-
     const navigate = useNavigate();
 
     const getTeams = useCallback(async () => {

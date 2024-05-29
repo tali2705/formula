@@ -5,14 +5,11 @@ import Loader from '../../Loader';
 import flagHandler from '../utils/flagHandler';
 import Card from '../Card/Card';
 
-
 const getBestTime = (result) => {
     const times = [result.Q1, result.Q2, result.Q3].filter(Boolean);
 
     return times.sort()[0];
 };
-
-
 
 const RaceDetails = () => {
     const [qualifyingResults, setQualifyingResults] = useState({});

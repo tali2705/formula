@@ -1,25 +1,18 @@
 import { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
-
 import { useNavigate } from 'react-router-dom';
-
 import flagHandler from '../utils/flagHandler';
 import Search from '../Header/Search';
 
 const Races = () => {
     const [races, setRaces] = useState([]);
-
     const [searchField, setSearchField] = useState('');
     const [filteredRaces, setFilteredRaces] = useState([]);
-
     const navigate = useNavigate();
-
     const getRaces = useCallback(async () => {
         try {
             const url = 'http://ergast.com/api/f1/2013/results/1.json';
-
             const response = await axios.get(url);
-
             const raceStandings = response.data.MRData.RaceTable.Races;
 
             setRaces(raceStandings);
@@ -63,7 +56,6 @@ const Races = () => {
                 className='search-box'
                 placeholder='Search races...'
             />
-
             <table>
                 <thead>
                     <tr>
@@ -74,7 +66,6 @@ const Races = () => {
                         <th>Winner</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     {filteredRaces.length > 0 ? (
                         filteredRaces.map((race) => {
