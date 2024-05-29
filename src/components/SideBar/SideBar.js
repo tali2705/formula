@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 import Races from '../Races/Races';
-import RaceDetails from '../RaceDetails/RaceDetails';
+import RaceDetails from '../Races/RaceDetails';
 import Teams from '../Teams/Teams';
 import TeamDetails from '../Teams/TeamDetails';
 import Drivers from '../Drivers/Drivers';
