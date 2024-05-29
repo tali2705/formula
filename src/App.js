@@ -1,5 +1,5 @@
 import SideBar from './components/SideBar/SideBar';
-import Search from './components/Search/Search';
+import Search from './components/Header/Search';
 function App() {
     return (
         <>

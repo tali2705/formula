@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 const Search = () => {
     const [inputValue, setInputValue] = useState('');
 
-    useEffect(() => {}, []);
+    useEffect(() => { }, []);
 
     const handleChange = (e) => {
         setInputValue(e.target.value);
