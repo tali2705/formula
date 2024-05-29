@@ -51,7 +51,7 @@ const RaceDetails = () => {
     ];
     return (
         <>
-            <Breadcrumbs data={breadcrumbs} />
+            {/* <Breadcrumbs data={breadcrumbs} /> */}
             <Card
                 title={raceDetails.raceName}
                 caption1={`Country: `}
@@ -61,6 +61,7 @@ const RaceDetails = () => {
                 text1={raceDetails.Circuit.Location.country}
                 text2={raceDetails.Circuit.Location.locality}
                 text3={raceDetails.date}
+                text4={raceDetails.url}
             />
             <div>
                 <table>

@@ -23,7 +23,6 @@ const Teams = () => {
             const teamsArray =
                 response.data.MRData.StandingsTable.StandingsLists[0]
                     .ConstructorStandings;
-
             setConstructorStandings(teamsArray);
             setFilteredTeams(teamsArray);
             setIsLoading(false);
@@ -68,7 +67,7 @@ const Teams = () => {
     ];
     return (
         <>
-            <Breadcrumbs data={breadcrumbs} />
+            {/* <Breadcrumbs data={breadcrumbs} /> */}
 
             <Search
                 onChangeHandler={onSearchChange}
@@ -85,6 +84,7 @@ const Teams = () => {
                     <tr>
                         <th>Position</th>
                         <th>Constructor</th>
+                        <th>Details</th>
                         <th>Points</th>
                     </tr>
                 </thead>
@@ -116,6 +116,7 @@ const Teams = () => {
                                         />
                                         {team.Constructor.name}
                                     </td>
+                                    <td>Details: ICON</td>
                                     <td>{team.points}</td>
                                 </tr>
                             );

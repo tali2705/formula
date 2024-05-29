@@ -67,7 +67,7 @@ const Drivers = () => {
     ];
     return (
         <>
-            <Breadcrumbs data={breadcrumbs} />
+            {/* <Breadcrumbs data={breadcrumbs} /> */}
             <Search
                 onChangeHandler={onSearchChange}
                 className='search-box'
