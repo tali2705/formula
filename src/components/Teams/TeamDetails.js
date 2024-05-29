@@ -6,10 +6,10 @@ import flagHandler from '../utils/flagHandler';
 const TeamDetails = () => {
     const [teamsDetails, setTeamsDetails] = useState([]);
     const [drivers, setDrivers] = useState([]);
-    const { teamId } = useParams();
+    const param = useParams();
 
     const getTeamsDetails = useCallback(async () => {
-        const url = `http://ergast.com/api/f1/2013/constructors/${teamId}/results.json`;
+        const url = `http://ergast.com/api/f1/2013/constructors/${param.constructorId}/results.json`;
 
         try {
             const response = await axios.get(url);
@@ -26,7 +26,7 @@ const TeamDetails = () => {
         } catch (error) {
             console.error(error);
         }
-    }, [teamId]);
+    }, [param.constructorId]);
 
     useEffect(() => {
         getTeamsDetails();
