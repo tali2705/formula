@@ -9,7 +9,7 @@ const Search = () => {
         setInputValue();
     });
 
-    const handleChange = (e) => {
+    const handleChange = async (e) => {
         console.log(e);
         setInputValue(e);
     }
@@ -22,4 +22,3 @@ const Search = () => {
 }
 
 export default Search;
-
