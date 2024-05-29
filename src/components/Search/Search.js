@@ -1,22 +1,17 @@
 import React from "react";
 import { useState } from "react";
-import { useEffect } from "react";
 
 const Search = () => {
     const [inputValue, setInputValue] = useState("");
 
-    useEffect(() => {
-        setInputValue();
-    });
-
     const handleChange = async (e) => {
-        console.log(e);
-        setInputValue(e);
+        setInputValue(e.target.value);
+        console.log(inputValue);
     }
 
     return (
         <div>
-            <input type="text" placeholder="Search..." value={inputValue} onChange={(e) => handleChange(e.target.value)} />
+            <input type="text" placeholder="Search..." value={inputValue} onChange={handleChange} />
         </div>
     )
 }
