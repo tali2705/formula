@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Search = ({ className, placeholder, onChangeHandler }) => (
     <input
         className={`search-box ${className}`}
@@ -8,5 +6,4 @@ const Search = ({ className, placeholder, onChangeHandler }) => (
         onChange={onChangeHandler}
     />
 );
-
 export default Search;
