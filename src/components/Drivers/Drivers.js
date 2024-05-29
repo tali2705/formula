@@ -1,13 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-<<<<<<< HEAD
-=======
-
 import axios from 'axios';
-
 import Search from '../Header/Search';
-
->>>>>>> bba38fe336bd6cf36ffe7475a3f09b80da9b954f
 import flagHandler from '../utils/flagHandler';
 import './drivers.scss';
 
