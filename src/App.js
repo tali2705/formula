@@ -7,9 +7,9 @@ import './styles.scss';
 function App() {
     return (
         <>
-            {/* <Header /> */}
+            <Header />
             <SideBar />
-            {/* <Footer /> */}
+            <Footer />
         </>
     );
 }
