@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import flagHandler from '../utils/flagHandler';
 import Search from '../Header/Search';
 import Loader from '../../Loader';
+import Breadcrumbs from '../Header/BreadCrumbs';
 
 const Races = () => {
     const [races, setRaces] = useState([]);
@@ -56,6 +57,7 @@ const Races = () => {
     ];
     return (
         <>
+            <Breadcrumbs data={breadcrumbs} />
             <Search
                 onChangeHandler={onSearchChange}
                 className='search-box'

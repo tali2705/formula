@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import flagHandler from '../utils/flagHandler';
 import Loader from '../../Loader';
+import Breadcrumbs from '../Header/BreadCrumbs';
 
 const TeamDetails = () => {
     const [teamsDetails, setTeamsDetails] = useState([]);
@@ -33,62 +34,70 @@ const TeamDetails = () => {
     useEffect(() => {
         getTeamsDetails();
     }, [getTeamsDetails]);
-
     if (isLoading) { return <Loader />; }
+    const crumb = teamsDetails[0].Results[0].Constructor.name;
+    const breadcrumbs = [
+        { label: "F1 - Feeder", route: "/" },
+        { label: "Teams", route: "/" },
+        { label: `${crumb}`, route: "/team/:constructorId" }
+    ];
 
     return (
-        <table>
-            <caption>Teams Details</caption>
-            <thead>
-                <tr>
-                    <th>Round</th>
-                    <th>Flag</th>
-                    <th>Grand Prix</th>
-                    <th>{drivers[0]}</th>
-                    <th>{drivers[1]}</th>
-                    <th>Points</th>
-                </tr>
-            </thead>
-            <tbody>
-                {teamsDetails.length > 0 ? (
-                    teamsDetails.map((result) => {
-                        const raceResult = result.Results;
-                        const countryCode = flagHandler(
-                            result.Circuit.Location.country
-                        );
-                        const firstDriverPoints = raceResult[0]?.points;
-                        const secondDriverPoints = raceResult[1]?.points;
-                        const teamPoints =
-                            (firstDriverPoints ? +firstDriverPoints : 0) +
-                            (secondDriverPoints ? +secondDriverPoints : 0);
-
-                        return (
-                            <tr key={result.round}>
-                                <td>{result.round}</td>
-                                <td>
-                                    <img
-                                        src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-                                        alt={result.Circuit.Location.country}
-                                        style={{
-                                            width: '32px',
-                                            height: '32px',
-                                        }}
-                                    />
-                                </td>
-                                <td>{result.raceName}</td>
-                                <td>{firstDriverPoints || 'N/A'}</td>
-                                <td>{secondDriverPoints || 'N/A'}</td>
-                                <td>{teamPoints || 'N/A'}</td>
-                            </tr>
-                        );
-                    })
-                ) : (
+        <>
+            <Breadcrumbs data={breadcrumbs} />
+            <table>
+                <caption>Teams Details</caption>
+                <thead>
                     <tr>
-                        <td colSpan={6}>Loading team details...</td>
+                        <th>Round</th>
+                        <th>Flag</th>
+                        <th>Grand Prix</th>
+                        <th>{drivers[0]}</th>
+                        <th>{drivers[1]}</th>
+                        <th>Points</th>
                     </tr>
-                )}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {teamsDetails.length > 0 ? (
+                        teamsDetails.map((result) => {
+                            const raceResult = result.Results;
+                            const countryCode = flagHandler(
+                                result.Circuit.Location.country
+                            );
+                            const firstDriverPoints = raceResult[0]?.points;
+                            const secondDriverPoints = raceResult[1]?.points;
+                            const teamPoints =
+                                (firstDriverPoints ? +firstDriverPoints : 0) +
+                                (secondDriverPoints ? +secondDriverPoints : 0);
+
+                            return (
+                                <tr key={result.round}>
+                                    <td>{result.round}</td>
+                                    <td>
+                                        <img
+                                            src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
+                                            alt={result.Circuit.Location.country}
+                                            style={{
+                                                width: '32px',
+                                                height: '32px',
+                                            }}
+                                        />
+                                    </td>
+                                    <td>{result.raceName}</td>
+                                    <td>{firstDriverPoints || 'N/A'}</td>
+                                    <td>{secondDriverPoints || 'N/A'}</td>
+                                    <td>{teamPoints || 'N/A'}</td>
+                                </tr>
+                            );
+                        })
+                    ) : (
+                        <tr>
+                            <td colSpan={6}>Loading team details...</td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
+        </>
     );
 };
 

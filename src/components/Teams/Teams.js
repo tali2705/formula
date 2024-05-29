@@ -4,6 +4,7 @@ import axios from 'axios';
 import Search from '../Header/Search';
 import flagHandler from '../utils/flagHandler';
 import Loader from '../../Loader';
+import Breadcrumbs from '../Header/BreadCrumbs';
 
 const Teams = () => {
     const [constructorStandings, setConstructorStandings] = useState([]);
@@ -61,9 +62,14 @@ const Teams = () => {
     };
 
     if (isLoading) { return <Loader />; }
-
+    const breadcrumbs = [
+        { label: 'F1 - Feeder', route: '/' },
+        { label: 'Teams', route: '/' },
+    ];
     return (
         <>
+            <Breadcrumbs data={breadcrumbs} />
+
             <Search
                 onChangeHandler={onSearchChange}
                 className='search-box'

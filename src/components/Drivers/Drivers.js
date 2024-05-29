@@ -4,6 +4,7 @@ import axios from 'axios';
 import Search from '../Header/Search';
 import flagHandler from '../utils/flagHandler';
 import Loader from '../../Loader';
+import Breadcrumbs from '../Header/BreadCrumbs';
 
 const Drivers = () => {
     const [drivers, setDrivers] = useState([]);
@@ -57,15 +58,16 @@ const Drivers = () => {
     const driverDetailsHandler = (driverId) => {
         navigate(`/${driverId}`);
     };
+
     if (isLoading) { return <Loader />; }
+
     const breadcrumbs = [
         { label: 'F1 - Feeder', route: '/' },
         { label: 'Drivers', route: '/' },
     ];
-    console.log(breadcrumbs);
-    console.log(drivers);
     return (
         <>
+            <Breadcrumbs data={breadcrumbs} />
             <Search
                 onChangeHandler={onSearchChange}
                 className='search-box'
