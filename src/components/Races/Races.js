@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import './races.scss';
 import { useNavigate } from 'react-router-dom';
 import flagHandler from '../utils/flagHandler';
 
@@ -33,11 +32,13 @@ const Races = () => {
     return (
         <table>
             <thead>
-                <th>Round</th>
-                <th>Grand Prix</th>
-                <th>Circuit</th>
-                <th>Date</th>
-                <th>Winner</th>
+                <tr>
+                    <th>Round</th>
+                    <th>Grand Prix</th>
+                    <th>Circuit</th>
+                    <th>Date</th>
+                    <th>Winner</th>
+                </tr>
             </thead>
             <tbody>
                 {races.length > 0 ? (

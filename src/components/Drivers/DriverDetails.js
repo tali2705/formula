@@ -7,10 +7,11 @@ import flagHandler from '../utils/flagHandler';
 
 const DriverDetails = () => {
     const [driverDetails, setDriverDetails] = useState([]);
-    const { driverId } = useParams();
+    const params = useParams();
+
 
     const getDriverDetails = useCallback(async () => {
-        const url = `http://ergast.com/api/f1/2013/drivers/${driverId}/results.json`;
+        const url = `http://ergast.com/api/f1/2013/drivers/${params.driverId}/results.json`;
 
         try {
             const response = await axios.get(url);
@@ -20,7 +21,7 @@ const DriverDetails = () => {
         } catch (error) {
             console.error(error);
         }
-    }, [driverId]);
+    }, [params.driverId]);
 
     useEffect(() => {
         getDriverDetails();

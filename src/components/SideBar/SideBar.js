@@ -3,6 +3,7 @@ import Races from '../Races/Races';
 import RaceDetails from '../RaceDetails/RaceDetails';
 import Teams from '../Teams/Teams';
 import Drivers from '../Drivers/Drivers';
+import DriverDetails from '../Drivers/DriverDetails';
 
 const SideBar = () => {
     return (
@@ -11,7 +12,7 @@ const SideBar = () => {
                 <nav>
                     <ul>
                         <li>
-                            <Link to='/drivers'>Drivers</Link>
+                            <Link to='/'>Drivers</Link>
                         </li>
                         <li>
                             <Link to='/teams'>Teams</Link>
@@ -22,10 +23,10 @@ const SideBar = () => {
                     </ul>
                 </nav>
                 <Routes>
-                    <Route path='/drivers' element={<Drivers />} />
-                    <Route path='/drivers' element={<Drivers />} />
+                    <Route path='/' element={<Drivers />} />
+                    {/* <Route path='/driverDetails/:driverId' element={<DriverDetails />} /> */}
                     <Route path='/teams' element={<Teams />} />
-                    {/* <Route path="/teams" element={<Teams />} /> */}
+                    {/* <Route path="/teamsDetails/:constructorId" element={<TeamDetails />} /> */}
                     <Route path='/races' element={<Races />} />
                     <Route
                         path='/raceDetails/:round'

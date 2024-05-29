@@ -58,84 +58,84 @@ const RaceDetails = () => {
                 text2={raceDetails.Circuit.Location.locality}
                 text3={raceDetails.date}
             />
+            <div>
+                <table>
+                    <caption>
+                        Qualifying Results
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th>Pos</th>
+                            <th>Driver</th>
+                            <th>Team</th>
+                            <th>Best Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {qualifyingResults.length > 0 ? (
+                            qualifyingResults.map((qualifyRes) => {
+                                const countryCode = flagHandler(
+                                    qualifyRes.Driver.nationality
+                                );
+                                const bestTime = getBestTime(qualifyRes);
 
-            <table>
-                <caption>
-                    Qualifying Results
-                </caption>
-                <thead>
-                    <tr>
-                        <th>Pos</th>
-                        <th>Driver</th>
-                        <th>Team</th>
-                        <th>Best Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {qualifyingResults.length > 0 ? (
-                        qualifyingResults.map((qualifyRes) => {
-                            const countryCode = flagHandler(
-                                qualifyRes.Driver.nationality
-                            );
-                            const bestTime = getBestTime(qualifyRes);
+                                return (
+                                    <tr key={qualifyRes.position}>
+                                        <td>{qualifyRes.position}</td>
+                                        <td><img
+                                            src={`https://flagsapi.com/${countryCode.toUpperCase()}/shiny/64.png`}
+                                            alt={countryCode} />{qualifyRes.Driver.familyName}</td>
+                                        <td>{qualifyRes.Constructor.name}</td>
+                                        <td>{bestTime}</td>
+                                    </tr>
+                                );
+                            })
+                        ) : (
+                            <td colSpan={4}>Loading drivers...</td>
+                        )}
+                    </tbody>
+                </table>
 
-                            return (
-                                <tr key={qualifyRes.position}>
-                                    <td>{qualifyRes.position}</td>
-                                    <td><img
-                                        src={`https://flagsapi.com/${countryCode.toUpperCase()}/shiny/64.png`}
-                                        alt={countryCode} />{qualifyRes.Driver.familyName}</td>
-                                    <td>{qualifyRes.Constructor.name}</td>
-                                    <td>{bestTime}</td>
-                                </tr>
-                            );
-                        })
-                    ) : (
-                        <td colSpan={4}>Loading drivers...</td>
-                    )}
-                </tbody>
-            </table>
+                <table>
+                    <caption>
+                        Race Results
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th>Pos</th>
+                            <th>Driver</th>
+                            <th>Team</th>
+                            <th>Result</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {raceResult.length > 0 ? (
+                            raceResult.map((result) => {
+                                const countryCode = flagHandler(
+                                    result.Driver.nationality
+                                );
 
-            <table>
-                <caption>
-                    Race Results
-                </caption>
-                <thead>
-                    <tr>
-                        <th>Pos</th>
-                        <th>Driver</th>
-                        <th>Team</th>
-                        <th>Result</th>
-                        <th>Points</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {raceResult.length > 0 ? (
-                        raceResult.map((result) => {
-                            const countryCode = flagHandler(
-                                result.Driver.nationality
-                            );
-
-                            return (
-                                <tr key={result.position}>
-                                    <td>{result.position}</td>
-                                    <td><img
-                                        src={`https://flagsapi.com/${countryCode.toUpperCase()}/shiny/64.png`}
-                                        alt={countryCode} />{result.Driver.familyName}</td>
-                                    <td>{result.Constructor.name}</td>
-                                    <td>{result.Time
-                                        ? result.Time.time
-                                        : 'No time available'}{' '}</td>
-                                    <td>{result.points}</td>
-                                </tr>
-                            );
-                        })
-                    ) : (
-                        <td colSpan={4}>Loading drivers...</td>
-                    )}
-                </tbody>
-            </table>
-
+                                return (
+                                    <tr key={result.position}>
+                                        <td>{result.position}</td>
+                                        <td><img
+                                            src={`https://flagsapi.com/${countryCode.toUpperCase()}/shiny/64.png`}
+                                            alt={countryCode} />{result.Driver.familyName}</td>
+                                        <td>{result.Constructor.name}</td>
+                                        <td>{result.Time
+                                            ? result.Time.time
+                                            : 'No time available'}{' '}</td>
+                                        <td>{result.points}</td>
+                                    </tr>
+                                );
+                            })
+                        ) : (
+                            <td colSpan={4}>Loading drivers...</td>
+                        )}
+                    </tbody>
+                </table>
+            </div>
 
 
         </>
