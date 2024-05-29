@@ -92,7 +92,7 @@ const Races = () => {
                                     >
                                         <img
                                             src={`https://flagsapi.com/${countryCodeRace}/shiny/64.png`}
-                                            alt={raceCountry}
+                                            alt={countryCodeRace}
                                             style={{
                                                 width: '32px',
                                                 height: '32px',
