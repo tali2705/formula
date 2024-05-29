@@ -1,30 +1,58 @@
-const nationalityMap = {
+const countryMap = {
+    American: 'US',
+    Australia: 'AU',
+    Australian: 'AU',
+    Austrian: 'AT',
+    Austria: 'AT',
+    Azerbaijan: 'AZ',
+    Bahrain: 'BH',
+    Belgian: 'BE',
+    Belgium: 'BE',
+    Brazil: 'BR',
+    Brazilian: 'BR',
     British: 'GB',
+    Canadian: 'CA',
+    Canada: 'CA',
+    Chinese: 'CN',
+    China: 'CN',
+    Danish: 'DK',
+    Dutch: 'NL',
+    Finnish: 'FI',
     French: 'FR',
     German: 'DE',
+    Germany: 'DE',
+    Hungary: 'HU',
+    India: 'IN',
     Italian: 'IT',
-    Belgian: 'BE',
-    Austrian: 'AT',
-    Dutch: 'NL',
-    Mexican: 'MX',
-    Spanish: 'ES',
-    Monegasque: 'MC',
-    Australian: 'AU',
-    Canadian: 'CA',
-    Thai: 'TH',
+    Italy: 'IT',
     Japanese: 'JP',
-    Finnish: 'FI',
-    Swiss: 'CH',
-    American: 'US',
-    Chinese: 'CN',
-    Danish: 'DK',
+    Japan: 'JP',
+    Korea: 'KR',
+    Malaysia: 'MY',
+    Mexican: 'MX',
+    Mexico: 'MX',
+    Monaco: 'MC',
+    Monegasque: 'MC',
+    Netherlands: 'NL',
     NewZealander: 'NZ',
+    Qatar: 'QA',
+    SaudiArabia: 'SA',
+    Singapore: 'SG',
+    Spain: 'ES',
+    Spanish: 'ES',
+    Swiss: 'CH',
+    Thai: 'TH',
+    UAE: 'AE',
+    UK: 'GB',
+    UnitedStates: 'US',
+    USA: 'US',
+    Venezuelan: 'VE',
 };
 
-const flagHandler = (nationality) => {
-    const formattedNationality = nationality.replace(/\s+/g, '');
+const flagHandler = (country) => {
+    const formattedCountry = country.replace(/\s+/g, '');
 
-    return nationalityMap[formattedNationality] || 'UN';
+    return countryMap[formattedCountry] || 'UN';
 };
 
 export default flagHandler;
