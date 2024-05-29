@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 import Races from '../Races/Races';
 import RaceDetails from '../RaceDetails/RaceDetails';
 import Teams from '../Teams/Teams';
@@ -13,13 +13,19 @@ const SideBar = () => {
                 <nav>
                     <ul>
                         <li>
-                            <Link to='/'>Drivers</Link>
+                            <NavLink to='/' className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "active" : ""
+                            }>Drivers</NavLink>
                         </li>
                         <li>
-                            <Link to='/teams'>Teams</Link>
+                            <NavLink to='/teams' className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "active" : ""
+                            }>Teams</NavLink>
                         </li>
                         <li>
-                            <Link to='/races'>Races</Link>
+                            <NavLink to='/races' className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "active" : ""
+                            }>Races</NavLink>
                         </li>
                     </ul>
                 </nav>
