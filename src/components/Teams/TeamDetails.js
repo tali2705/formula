@@ -2,10 +2,12 @@ import { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import flagHandler from '../utils/flagHandler';
+import Loader from '../../Loader';
 
 const TeamDetails = () => {
     const [teamsDetails, setTeamsDetails] = useState([]);
     const [drivers, setDrivers] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const param = useParams();
     const getTeamsDetails = useCallback(async () => {
         const url = `http://ergast.com/api/f1/2013/constructors/${param.constructorId}/results.json`;
@@ -22,6 +24,7 @@ const TeamDetails = () => {
                     firstRaceResults[1]?.Driver.familyName || 'Driver 2',
                 ]);
             }
+            setIsLoading(false);
         } catch (error) {
             console.error(error);
         }
@@ -31,7 +34,7 @@ const TeamDetails = () => {
         getTeamsDetails();
     }, [getTeamsDetails]);
 
-   
+    if (isLoading) { return <Loader />; }
 
     return (
         <table>

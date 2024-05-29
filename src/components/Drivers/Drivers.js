@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Search from '../Header/Search';
 import flagHandler from '../utils/flagHandler';
+import Loader from '../../Loader';
 
 const Drivers = () => {
     const [drivers, setDrivers] = useState([]);
 
     const [searchField, setSearchField] = useState('');
     const [filteredDrivers, setFilteredDrivers] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     const navigate = useNavigate();
 
@@ -24,6 +26,7 @@ const Drivers = () => {
 
             setDrivers(driverStandings);
             setFilteredDrivers(driverStandings);
+            setIsLoading(false);
         } catch (error) {
             console.error(error);
         }
@@ -54,6 +57,7 @@ const Drivers = () => {
     const driverDetailsHandler = (driverId) => {
         navigate(`/${driverId}`);
     };
+    if (isLoading) { return <Loader />; }
     const breadcrumbs = [
         { label: 'F1 - Feeder', route: '/' },
         { label: 'Drivers', route: '/' },

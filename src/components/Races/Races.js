@@ -3,11 +3,13 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import flagHandler from '../utils/flagHandler';
 import Search from '../Header/Search';
+import Loader from '../../Loader';
 
 const Races = () => {
     const [races, setRaces] = useState([]);
     const [searchField, setSearchField] = useState('');
     const [filteredRaces, setFilteredRaces] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
     const getRaces = useCallback(async () => {
         try {
@@ -17,6 +19,7 @@ const Races = () => {
 
             setRaces(raceStandings);
             setFilteredRaces(raceStandings);
+            setIsLoading(false);
         } catch (error) {
             console.error(error);
         }
@@ -45,6 +48,8 @@ const Races = () => {
 
         navigate(link);
     };
+    if (isLoading) { return <Loader />; }
+
     const breadcrumbs = [
         { label: "F1 - Feeder", route: "/" },
         { label: "Races", route: "/races" },

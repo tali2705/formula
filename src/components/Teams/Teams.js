@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Search from '../Header/Search';
 import flagHandler from '../utils/flagHandler';
+import Loader from '../../Loader';
 
 const Teams = () => {
     const [constructorStandings, setConstructorStandings] = useState([]);
     const [searchField, setSearchField] = useState('');
     const [filteredTeams, setFilteredTeams] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
 
     const getTeams = useCallback(async () => {
@@ -23,6 +25,7 @@ const Teams = () => {
 
             setConstructorStandings(teamsArray);
             setFilteredTeams(teamsArray);
+            setIsLoading(false);
         } catch (err) {
             console.log(err);
         }
@@ -56,6 +59,8 @@ const Teams = () => {
 
         navigate(link);
     };
+
+    if (isLoading) { return <Loader />; }
 
     return (
         <>

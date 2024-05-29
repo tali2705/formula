@@ -37,7 +37,7 @@ const DriverDetails = () => {
         { label: "Drivers", route: "/" },
         { label: `${crumb.givenName} ${crumb.familyName}`, route: "/driver/:driverId" }
     ];
-    
+
     return (
         <table>
             <caption>Driver Details</caption>
