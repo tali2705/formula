@@ -17,8 +17,7 @@ const Races = () => {
             console.log(response.data);
             const raceStandings = response.data.MRData.RaceTable.Races;
             setRaces(raceStandings);
-        }
-        catch (error) {
+        } catch (error) {
             console.error(error);
         }
     };
@@ -26,7 +25,7 @@ const Races = () => {
         // console.log(round);
         const link = `/raceDetails/${round}`;
         navigate(link);
-    }
+    };
     return (
         <table>
             <thead>
@@ -49,26 +48,36 @@ const Races = () => {
                         return (
                             <tr key={race.round}>
                                 <td>{race.round}</td>
-                                <td onClick={() => handleRaceDetails(race.round)}><img
-                                    src={`https://flagsapi.com/${countryCodeRace}/shiny/64.png`}
-                                    alt={raceCountry}
-                                    style={{
-                                        width: '32px',
-                                        height: '32px',
-                                    }}
-                                />{race.raceName}</td>
+                                <td
+                                    onClick={() =>
+                                        handleRaceDetails(race.round)
+                                    }
+                                >
+                                    <img
+                                        src={`https://flagsapi.com/${countryCodeRace}/shiny/64.png`}
+                                        alt={raceCountry}
+                                        style={{
+                                            width: '32px',
+                                            height: '32px',
+                                        }}
+                                    />
+                                    {race.raceName}
+                                </td>
                                 <td>{race.Circuit.circuitName}</td>
                                 <td>{race.date}</td>
-                                <td><img
-                                    src={`https://flagsapi.com/${countryCodeWinner}/shiny/64.png`}
-                                    alt={countryCodeWinner}
-                                    style={{
-                                        width: '32px',
-                                        height: '32px',
-                                    }}
-                                />{winner.familyName}  </td>
+                                <td>
+                                    <img
+                                        src={`https://flagsapi.com/${countryCodeWinner}/shiny/64.png`}
+                                        alt={countryCodeWinner}
+                                        style={{
+                                            width: '32px',
+                                            height: '32px',
+                                        }}
+                                    />
+                                    {winner.familyName}{' '}
+                                </td>
                             </tr>
-                        )
+                        );
                     })
                 ) : (
                     <tr>

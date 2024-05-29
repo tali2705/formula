@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
+import './drivers.scss';
 import flagHandler from '../utils/flagHandler';
 
 const Drivers = () => {
     const [drivers, setDrivers] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         getDrivers();
@@ -15,27 +17,28 @@ const Drivers = () => {
 
         try {
             const response = await axios.get(url);
-
             const driverStandings =
                 response.data.MRData.StandingsTable.StandingsLists[0]
                     .DriverStandings;
-
             setDrivers(driverStandings);
         } catch (error) {
             console.error(error);
         }
     };
 
+    const driverDetailsHandler = (driverId) => {
+        navigate(`/driver/${driverId}`);
+    };
+
     return (
         <table>
-            <caption></caption>
+            <caption>Drivers</caption>
             <tbody>
                 {drivers.length > 0 ? (
                     drivers.map((driver) => {
                         const countryCode = flagHandler(
                             driver.Driver.nationality
                         );
-
                         return (
                             <tr key={driver.position}>
                                 <td>{driver.position}</td>
@@ -44,6 +47,15 @@ const Drivers = () => {
                                         src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
                                         alt={countryCode}
                                     />
+                                </td>
+                                <td
+                                    className='driver'
+                                    onClick={() =>
+                                        driverDetailsHandler(
+                                            driver.Driver.driverId
+                                        )
+                                    }
+                                >
                                     &nbsp;{driver.Driver.givenName}&nbsp;
                                     {driver.Driver.familyName}
                                 </td>

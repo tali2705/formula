@@ -1,25 +1,24 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 const Search = () => {
-    const [inputValue, setInputValue] = useState("");
+    const [inputValue, setInputValue] = useState('');
 
-    useEffect(() => {
-        setInputValue();
-    });
+    useEffect(() => {}, []);
 
     const handleChange = (e) => {
-        console.log(e);
-        setInputValue(e);
-    }
+        setInputValue(e.target.value);
+    };
 
     return (
         <div>
-            <input type="text" placeholder="Search..." value={inputValue} onChange={(e) => handleChange(e.target.value)} />
+            <input
+                type='text'
+                placeholder='Search...'
+                value={inputValue}
+                onChange={handleChange}
+            />
         </div>
-    )
-}
+    );
+};
 
 export default Search;
-
