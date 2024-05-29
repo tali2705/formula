@@ -3,6 +3,7 @@ import Races from '../Races/Races';
 import RaceDetails from '../RaceDetails/RaceDetails';
 import Teams from '../Teams/Teams';
 import Drivers from '../Drivers/Drivers';
+import DriverDetails from '../Drivers/DriverDetails';
 
 const SideBar = () => {
     return (
@@ -23,7 +24,7 @@ const SideBar = () => {
                 </nav>
                 <Routes>
                     <Route path='/drivers' element={<Drivers />} />
-                    {/* <Route path='/driverDetails/:driverId' element={<DriverDetails />} /> */}
+                    <Route path='/driverDetails/:driverId' element={<DriverDetails />} />
                     <Route path='/teams' element={<Teams />} />
                     {/* <Route path="/teamsDetails/:constructorId" element={<TeamDetails />} /> */}
                     <Route path='/races' element={<Races />} />
