@@ -1,10 +1,10 @@
 import SideBar from './components/SideBar/SideBar';
 function App() {
-    return (
-        <>
-            <SideBar />
-        </>
-    );
+  return (
+    <>
+      <SideBar />
+    </>
+  );
 }
 
 export default App;
