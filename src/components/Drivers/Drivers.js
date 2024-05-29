@@ -58,7 +58,12 @@ const Drivers = () => {
     const driverDetailsHandler = (driverId) => {
         navigate(`/${driverId}`);
     };
-
+    const breadcrumbs = [
+        { label: "F1 - Feeder", route: "/" },
+        { label: "Drivers", route: "/" },
+    ];
+    console.log(breadcrumbs);
+    console.log(drivers);
     return (
         <>
             <Search

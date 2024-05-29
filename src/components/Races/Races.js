@@ -52,7 +52,10 @@ const Races = () => {
 
         navigate(link);
     };
-
+    const breadcrumbs = [
+        { label: "F1 - Feeder", route: "/" },
+        { label: "Races", route: "/races" },
+    ];
     return (
         <>
             <Search

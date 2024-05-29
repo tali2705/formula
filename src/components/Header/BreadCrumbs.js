@@ -1,11 +1,9 @@
-const BreadCrumb = (props) => {
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+const Breadcrumbs = (props) => {
     return (
-        <ul class="breadcrumb">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li>Italy</li>
-        </ul>
+        <></>
     );
 }
-export default BreadCrumb;
+export default Breadcrumbs;
