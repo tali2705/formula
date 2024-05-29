@@ -1,7 +1,10 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
+
 import Search from '../Header/Search';
+
 import flagHandler from '../utils/flagHandler';
 import './drivers.scss';
 
@@ -14,15 +17,17 @@ const Drivers = () => {
     const navigate = useNavigate();
 
     const getDrivers = useCallback(async () => {
-        const url = 'http://ergast.com/api/f1/2013/driverStandings.json';
-
         try {
+            const url = 'http://ergast.com/api/f1/2013/driverStandings.json';
+
             const response = await axios.get(url);
+
             const driverStandings =
                 response.data.MRData.StandingsTable.StandingsLists[0]
                     .DriverStandings;
+
             setDrivers(driverStandings);
-            setFilteredDrivers(driverStandings); // Initially show all drivers
+            setFilteredDrivers(driverStandings);
         } catch (error) {
             console.error(error);
         }
@@ -33,16 +38,20 @@ const Drivers = () => {
     }, [getDrivers]);
 
     useEffect(() => {
+        const trimmedSearchField = searchField.trim();
+
         const newFilteredDrivers = drivers.filter((driver) =>
             `${driver.Driver.givenName} ${driver.Driver.familyName}`
                 .toLowerCase()
-                .includes(searchField)
+                .includes(trimmedSearchField)
         );
+
         setFilteredDrivers(newFilteredDrivers);
     }, [drivers, searchField]);
 
     const onSearchChange = (event) => {
         const searchFieldString = event.target.value.toLowerCase();
+
         setSearchField(searchFieldString);
     };
 
@@ -60,6 +69,7 @@ const Drivers = () => {
 
             <table>
                 <caption>Drivers</caption>
+
                 <tbody>
                     {filteredDrivers.length > 0 ? (
                         filteredDrivers.map((driver) => {

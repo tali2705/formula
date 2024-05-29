@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
+
 import Search from '../Header/Search';
 import flagHandler from '../utils/flagHandler';
 
@@ -16,10 +18,13 @@ const Teams = () => {
         try {
             const url =
                 'http://ergast.com/api/f1/2013/constructorStandings.json';
+
             const response = await axios.get(url);
+
             const teamsArray =
                 response.data.MRData.StandingsTable.StandingsLists[0]
                     .ConstructorStandings;
+
             setConstructorStandings(teamsArray);
             setFilteredTeams(teamsArray);
         } catch (err) {
@@ -32,22 +37,27 @@ const Teams = () => {
     }, [getTeams]);
 
     useEffect(() => {
+        const trimmedSearchField = searchField.trim();
+
         const newFilteredTeams = constructorStandings.filter(
             (constructorStanding) =>
                 constructorStanding.Constructor.name
                     .toLowerCase()
-                    .includes(searchField)
+                    .includes(trimmedSearchField)
         );
+
         setFilteredTeams(newFilteredTeams);
     }, [constructorStandings, searchField]);
 
     const onSearchChange = (event) => {
         const searchFieldString = event.target.value.toLowerCase();
+
         setSearchField(searchFieldString);
     };
 
     const handleTeamDetails = (constructorId) => {
         const link = `/teams/${constructorId}`;
+
         navigate(link);
     };
 
@@ -58,10 +68,12 @@ const Teams = () => {
                 className='search-box'
                 placeholder='Search...'
             />
+
             <table>
                 <caption>
                     Constructors for Championship Standings - 2023
                 </caption>
+
                 <thead>
                     <tr>
                         <th>Position</th>
@@ -69,6 +81,7 @@ const Teams = () => {
                         <th>Points</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     {filteredTeams.length > 0 ? (
                         filteredTeams.map((team) => {
