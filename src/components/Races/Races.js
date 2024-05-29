@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import './races.scss';
 import { useNavigate } from 'react-router-dom';
 import flagHandler from '../utils/flagHandler';
 const Races = () => {

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import './teams.scss';
 import axios from 'axios';
 import flagHandler from '../utils/flagHandler';
 
@@ -26,7 +25,7 @@ const Teams = () => {
         }
     };
 
-    const handleTeamDetails = () => {};
+    const handleTeamDetails = () => { };
 
     return (
         <table>

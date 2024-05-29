@@ -1,3 +1,4 @@
+import './styles.scss';
 import SideBar from './components/SideBar/SideBar';
 function App() {
   return (
