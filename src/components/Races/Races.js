@@ -28,7 +28,10 @@ const Races = () => {
         const link = `/races/${round}`;
         navigate(link);
     };
-
+    const breadcrumbs = [
+        { label: "F1 - Feeder", route: "/" },
+        { label: "Races", route: "/races" },
+    ];
     return (
         <table>
             <thead>

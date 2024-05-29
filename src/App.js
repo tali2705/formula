@@ -1,9 +1,10 @@
 import SideBar from './components/SideBar/SideBar';
-import Search from './components/Header/Search';
+import Header from './components/Header/Header';
 function App() {
+
     return (
         <>
-            <Search />
+            <Header />
             <SideBar />
         </>
     );

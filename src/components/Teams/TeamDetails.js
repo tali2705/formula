@@ -7,7 +7,6 @@ const TeamDetails = () => {
     const [teamsDetails, setTeamsDetails] = useState([]);
     const [drivers, setDrivers] = useState([]);
     const param = useParams();
-
     const getTeamsDetails = useCallback(async () => {
         const url = `http://ergast.com/api/f1/2013/constructors/${param.constructorId}/results.json`;
 
@@ -31,6 +30,8 @@ const TeamDetails = () => {
     useEffect(() => {
         getTeamsDetails();
     }, [getTeamsDetails]);
+
+   
 
     return (
         <table>

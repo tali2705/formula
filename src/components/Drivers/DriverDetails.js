@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
+import Loader from '../../Loader';
 
 import axios from 'axios';
 
@@ -7,6 +8,7 @@ import flagHandler from '../utils/flagHandler';
 
 const DriverDetails = () => {
     const [driverDetails, setDriverDetails] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const params = useParams();
 
 
@@ -16,8 +18,8 @@ const DriverDetails = () => {
         try {
             const response = await axios.get(url);
             const driverResults = response.data.MRData.RaceTable.Races;
-
             setDriverDetails(driverResults);
+            setIsLoading(false);
         } catch (error) {
             console.error(error);
         }
@@ -26,7 +28,16 @@ const DriverDetails = () => {
     useEffect(() => {
         getDriverDetails();
     }, [getDriverDetails]);
+    if (isLoading) { return <Loader />; }
 
+    const crumb = driverDetails[0].Results[0].Driver;
+
+    const breadcrumbs = [
+        { label: "F1 - Feeder", route: "/" },
+        { label: "Drivers", route: "/" },
+        { label: `${crumb.givenName} ${crumb.familyName}`, route: "/driver/:driverId" }
+    ];
+    
     return (
         <table>
             <caption>Driver Details</caption>
