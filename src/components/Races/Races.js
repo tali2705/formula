@@ -23,7 +23,7 @@ const Races = () => {
     };
     const handleRaceDetails = (round) => {
         // console.log(round);
-        const link = `/raceDetails/${round}`;
+        const link = `/races/${round}`;
         navigate(link);
     };
     return (

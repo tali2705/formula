@@ -27,7 +27,7 @@ const Drivers = () => {
     };
 
     const driverDetailsHandler = (driverId) => {
-        navigate(`/driverDetails/${driverId}`);
+        navigate(`/${driverId}`);
     };
     console.log(drivers);
     return (

@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import flagHandler from '../utils/flagHandler';
+import { useNavigate } from 'react-router-dom';
 
 const Teams = () => {
     const [constructorStandings, setConstructorStandings] = useState([]);
-
+    const navigate = useNavigate();
     useEffect(() => {
         getTeams();
     }, []);
@@ -25,7 +26,10 @@ const Teams = () => {
         }
     };
 
-    const handleTeamDetails = () => { };
+    const handleTeamDetails = (constructorId) => {
+        const link = `/teams/${constructorId}`;
+        navigate(link);
+    };
 
     return (
         <table>
@@ -47,7 +51,7 @@ const Teams = () => {
                         return (
                             <tr key={team.position}>
                                 <td>{team.position}</td>
-                                <td onClick={handleTeamDetails}>
+                                <td onClick={() => handleTeamDetails(team.Constructor.constructorId)}>
                                     <img
                                         src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
                                         alt={team.Constructor.nationality}

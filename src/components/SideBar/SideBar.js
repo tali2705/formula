@@ -24,12 +24,12 @@ const SideBar = () => {
                 </nav>
                 <Routes>
                     <Route path='/' element={<Drivers />} />
-                    {/* <Route path='/driverDetails/:driverId' element={<DriverDetails />} /> */}
+                    <Route path='/:driverId' element={<DriverDetails />} />
                     <Route path='/teams' element={<Teams />} />
-                    {/* <Route path="/teamsDetails/:constructorId" element={<TeamDetails />} /> */}
+                    {/* <Route path="/teams/:constructorId" element={<TeamDetails />} /> */}
                     <Route path='/races' element={<Races />} />
                     <Route
-                        path='/raceDetails/:round'
+                        path='/races/:round'
                         element={<RaceDetails />}
                     />
                 </Routes>
