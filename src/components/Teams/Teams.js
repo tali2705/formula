@@ -101,7 +101,7 @@ const Teams = () => {
                                     >
                                         <img
                                             src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-                                            alt={team.Constructor.nationality}
+                                            alt={countryCode}
                                             style={{
                                                 width: '32px',
                                                 height: '32px',
