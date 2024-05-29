@@ -1,15 +1,11 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-<<<<<<< HEAD
-=======
 
 import axios from 'axios';
 
 import Search from '../Header/Search';
 
->>>>>>> bba38fe336bd6cf36ffe7475a3f09b80da9b954f
 import flagHandler from '../utils/flagHandler';
-import './drivers.scss';
 
 const Drivers = () => {
     const [drivers, setDrivers] = useState([]);
@@ -62,8 +58,8 @@ const Drivers = () => {
         navigate(`/${driverId}`);
     };
     const breadcrumbs = [
-        { label: "F1 - Feeder", route: "/" },
-        { label: "Drivers", route: "/" },
+        { label: 'F1 - Feeder', route: '/' },
+        { label: 'Drivers', route: '/' },
     ];
     console.log(breadcrumbs);
     console.log(drivers);
