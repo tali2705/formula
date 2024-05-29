@@ -12,7 +12,7 @@ const Drivers = () => {
     }, []);
 
     const getDrivers = async () => {
-        const url = 'http://ergast.com/api/f1/2023/driverStandings.json';
+        const url = 'http://ergast.com/api/f1/2013/driverStandings.json';
 
         try {
             const response = await axios.get(url);
