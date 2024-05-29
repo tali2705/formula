@@ -29,11 +29,13 @@ const Races = () => {
     return (
         <table>
             <thead>
-                <th>Round</th>
-                <th>Grand Prix</th>
-                <th>Circuit</th>
-                <th>Date</th>
-                <th>Winner</th>
+                <tr>
+                    <th>Round</th>
+                    <th>Grand Prix</th>
+                    <th>Circuit</th>
+                    <th>Date</th>
+                    <th>Winner</th>
+                </tr>
             </thead>
             <tbody>
                 {races.length > 0 ? (

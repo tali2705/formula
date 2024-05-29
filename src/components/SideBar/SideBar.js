@@ -12,7 +12,7 @@ const SideBar = () => {
                 <nav>
                     <ul>
                         <li>
-                            <Link to='/drivers'>Drivers</Link>
+                            <Link to='/'>Drivers</Link>
                         </li>
                         <li>
                             <Link to='/teams'>Teams</Link>
@@ -23,8 +23,8 @@ const SideBar = () => {
                     </ul>
                 </nav>
                 <Routes>
-                    <Route path='/drivers' element={<Drivers />} />
-                    <Route path='/driverDetails/:driverId' element={<DriverDetails />} />
+                    <Route path='/' element={<Drivers />} />
+                    {/* <Route path='/driverDetails/:driverId' element={<DriverDetails />} /> */}
                     <Route path='/teams' element={<Teams />} />
                     {/* <Route path="/teamsDetails/:constructorId" element={<TeamDetails />} /> */}
                     <Route path='/races' element={<Races />} />
