@@ -6,9 +6,11 @@ import flagHandler from '../utils/flagHandler';
 import './drivers.scss';
 
 const Drivers = () => {
-    const [searchField, setSearchField] = useState('');
     const [drivers, setDrivers] = useState([]);
+
+    const [searchField, setSearchField] = useState('');
     const [filteredDrivers, setFilteredDrivers] = useState([]);
+
     const navigate = useNavigate();
 
     const getDrivers = useCallback(async () => {
