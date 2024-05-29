@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import flagHandler from '../utils/flagHandler';
+
 const Races = () => {
     const [races, setRaces] = useState([]);
     const navigate = useNavigate();
@@ -21,11 +22,13 @@ const Races = () => {
             console.error(error);
         }
     };
+
     const handleRaceDetails = (round) => {
         // console.log(round);
         const link = `/races/${round}`;
         navigate(link);
     };
+
     return (
         <table>
             <thead>
