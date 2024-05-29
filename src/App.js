@@ -1,4 +1,3 @@
-
 import SideBar from './components/SideBar/SideBar';
 import './styles.scss';
 
