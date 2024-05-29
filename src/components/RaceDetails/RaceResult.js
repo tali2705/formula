@@ -1,30 +1,23 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import './QualifyingResults.scss';
+import './RaceResult.scss';
 import flagHandler from '../utils/flagHandler';
 
-const getBestTime = (result) => {
-    const times = [result.Q1, result.Q2, result.Q3].filter(Boolean);
-
-    return times.sort()[0];
-};
-
-const QualifyingResults = () => {
-    const [qualifyingResults, setQualifyingResults] = useState([]);
+const RaceResult = () => {
+    const [raceResults, setRaceResults] = useState([]);
 
     useEffect(() => {
-        getQualifyingResults();
+        getRaceResults();
     }, []);
 
-    const getQualifyingResults = async () => {
-        const url = 'http://ergast.com/api/f1/2023/qualifying.json';
+    const getRaceResults = async () => {
+        const url = 'https://ergast.com/api/f1/2013/results.json';
 
         try {
             const response = await axios.get(url);
+            const results = response.data.MRData.RaceTable.Races[0].Results;
 
-            const results =
-                response.data.MRData.RaceTable.Races[0].QualifyingResults;
-            setQualifyingResults(results);
+            setRaceResults(results);
         } catch (error) {
             console.error(error);
         }
@@ -32,13 +25,13 @@ const QualifyingResults = () => {
 
     return (
         <div>
-            {qualifyingResults.length > 0 ? (
+            <h2>Race results    </h2>
+            {raceResults.length > 0 ? (
                 <ul>
-                    {qualifyingResults.map((result) => {
+                    {raceResults.map((result) => {
                         const countryCode = flagHandler(
                             result.Driver.nationality
                         );
-                        const bestTime = getBestTime(result);
 
                         return (
                             <li key={result.Driver.driverId}>
@@ -49,17 +42,21 @@ const QualifyingResults = () => {
                                 />
                                 {result.Driver.givenName} &nbsp;
                                 {result.Driver.familyName} &nbsp;
-                                {result.Constructor.name} &nbsp; Best Time:
-                                &nbsp; {bestTime}
+                                {result.Constructor.name} &nbsp;
+                                {result.Time
+                                    ? result.Time.time
+                                    : 'No time available'}{' '}
+                                &nbsp;
+                                {result.points} &nbsp;
                             </li>
                         );
                     })}
                 </ul>
             ) : (
-                <p>Loading qualifying results...</p>
+                <p>Loading race results...</p>
             )}
         </div>
     );
 };
 
-export default QualifyingResults;
+export default RaceResult;

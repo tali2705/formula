@@ -1,12 +1,16 @@
-const Card = () => {
-    
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+const Card = (props) => {
+
+
     return (
         <div>
-            <h3> </h3>
-            <p>Country: </p>
-            <p>Position: </p>
-            <p>Points: </p>
-            <p>History: </p>
+            <h3>{props.title}</h3>
+            <p>{props.caption1} {props.text1}</p>
+            <p>{props.caption2} {props.text2}</p>
+            <p>{props.caption3} {props.text3}</p>
+            <p>{props.caption4} {props.text4}</p>
         </div>
     )
 }
