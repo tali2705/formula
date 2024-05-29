@@ -48,7 +48,7 @@ const DriverDetails = () => {
     // console.log(driverDetails);
     return (
         <>
-            {/* <Breadcrumbs data={breadcrumbs} /> */}
+            <Breadcrumbs data={breadcrumbs} />
 
             <Card
                 title={`${driverDetails.Driver.givenName} ${driverDetails.Driver.familyName}`}
