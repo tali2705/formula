@@ -2,12 +2,12 @@ const CardTeam = (props) => {
     return (
         <div className='card-wrapper'>
             <div>
-                {/* <div className='card-img'>
+                <div className='card-img'>
                     <img
-                        src={require(`../../assets/drivers/${props.familyName}.png`)}
-                        alt={props.familyName}
+                        src={require(`../../assets/teams/${props.teamId}.png`)}
+                        alt={props.title}
                     />
-                </div> */}
+                </div>
                 <div className='card-title'>
                     <img
                         src={`https://flagsapi.com/${props.teamCountryCode}/shiny/64.png`}

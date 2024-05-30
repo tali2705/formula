@@ -74,6 +74,7 @@ const TeamDetails = () => {
                         text3={teamDetails.points}
                         text4={teamDetails.Constructor?.url}
                         teamCountryCode={teamCountryCode}
+                        teamId={teamDetails.Constructor.constructorId}
                     />
                     <table>
                         <caption>Team Details</caption>
