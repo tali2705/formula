@@ -1,6 +1,6 @@
 const Card = (props) => {
     return (
-        <div>
+        <div className='card'>
             <h3>{props.title}</h3>
             <p>
                 {props.caption1} {props.text1}
@@ -17,4 +17,5 @@ const Card = (props) => {
         </div>
     );
 };
+
 export default Card;

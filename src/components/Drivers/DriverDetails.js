@@ -52,9 +52,7 @@ const DriverDetails = () => {
 
     return (
         <>
-            {isLoading ? (
-                <Loader />
-            ) : (
+            {!isLoading ? (
                 <>
                     <Breadcrumbs data={breadcrumbs} />
                     <Card
@@ -116,6 +114,8 @@ const DriverDetails = () => {
                         </tbody>
                     </table>
                 </>
+            ) : (
+                <Loader />
             )}
         </>
     );

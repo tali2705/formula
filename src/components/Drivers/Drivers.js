@@ -60,9 +60,7 @@ const Drivers = () => {
 
     return (
         <>
-            {isLoading ? (
-                <Loader />
-            ) : (
+            {!isLoading ? (
                 <>
                     <Breadcrumbs data={breadcrumbs} />
                     <Search
@@ -93,6 +91,8 @@ const Drivers = () => {
                         </tbody>
                     </table>
                 </>
+            ) : (
+                <Loader />
             )}
         </>
     );
