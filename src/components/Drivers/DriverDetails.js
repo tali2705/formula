@@ -124,64 +124,6 @@ const DriverDetails = () => {
             ) : (
                 <Loader />
             )}
-
-            <Header data={breadcrumbs} />
-            <div className='wrapper-details'>
-                <Card
-                    title={`${driverDetails.Driver.givenName} ${driverDetails.Driver.familyName}`}
-                    caption1='Country: '
-                    caption2='Team: '
-                    caption3='Birth: '
-                    caption4='Biography: '
-                    text1={driverDetails.Driver.nationality}
-                    text2={driverDetails.Constructors[0].name}
-                    text3={driverDetails.Driver.dateOfBirth}
-                    text4={driverDetails.Driver.url}
-                />
-                <table>
-                    <caption>Driver Details</caption>
-                    <thead>
-                        <tr>
-                            <th>Round</th>
-                            <th>Flag</th>
-                            <th>Race Name</th>
-                            <th>Constructor</th>
-                            <th>Grid</th>
-                            <th>Position</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {driverResult.length > 0 ? (
-                            driverResult.map((result) => {
-                                const raceResult = result.Results[0];
-                                const countryCode = flagHandler(
-                                    result.Circuit.Location.country
-                                );
-
-                                return (
-                                    <tr key={result.round}>
-                                        <td>{result.round}</td>
-                                        <td>
-                                            <img
-                                                src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-                                                alt={countryCode}
-                                            />
-                                        </td>
-                                        <td>{result.raceName}</td>
-                                        <td>{raceResult.Constructor.name}</td>
-                                        <td>{raceResult.grid}</td>
-                                        <td>{raceResult.position}</td>
-                                    </tr>
-                                );
-                            })
-                        ) : (
-                            <tr>
-                                <td colSpan={6}>Loading driver details...</td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-            </div>
         </>
     );
 };
