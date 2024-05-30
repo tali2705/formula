@@ -1,54 +1,64 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState, useCallback } from 'react';
+import { useParams } from 'react-router-dom';
+
 import Loader from '../../Loader';
-import flagHandler from '../utils/flagHandler';
 import Card from '../Card/Card';
-import Breadcrumbs from "../Header/BreadCrumbs";
+import Breadcrumbs from '../Header/BreadCrumbs';
+
+import flagHandler from '../utils/flagHandler';
+import { fetchData } from '../utils/fetchData';
 
 const getBestTime = (result) => {
     const times = [result.Q1, result.Q2, result.Q3].filter(Boolean);
-
     return times.sort()[0];
 };
 
 const RaceDetails = () => {
-    const [qualifyingResults, setQualifyingResults] = useState({});
+    const [qualifyingResults, setQualifyingResults] = useState([]);
     const [raceDetails, setRaceDetails] = useState({});
-    const [raceResult, setRaceResult] = useState({});
+    const [raceResult, setRaceResult] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const params = useParams();
 
-
-    useEffect(() => {
-        getRaceDetails();
-    }, []);
-
-    const getRaceDetails = async () => {
+    const getRaceDetails = useCallback(async () => {
         try {
             const url1 = `http://ergast.com/api/f1/2013/${params.round}/qualifying.json`;
             const url2 = `http://ergast.com/api/f1/2013/${params.round}/results.json`;
-            const response1 = await axios.get(url1);
-            const response2 = await axios.get(url2);
-            const qResults = response1.data.MRData.RaceTable.Races[0].QualifyingResults;
-            const aboutRace = response1.data.MRData.RaceTable.Races[0];
-            const rResults = response2.data.MRData.RaceTable.Races[0].Results;
+
+            const [response1, response2] = await Promise.all([
+                fetchData(url1),
+                fetchData(url2),
+            ]);
+
+            const qResults =
+                response1.MRData.RaceTable.Races[0].QualifyingResults;
+            const aboutRace = response1.MRData.RaceTable.Races[0];
+            const rResults = response2.MRData.RaceTable.Races[0].Results;
+
             setQualifyingResults(qResults);
             setRaceDetails(aboutRace);
             setRaceResult(rResults);
             setIsLoading(false);
+        } catch (error) {
+            console.error(error);
         }
-        catch (err) {
-            console.log(err);
-        }
+    }, [params.round]);
+
+    useEffect(() => {
+        getRaceDetails();
+    }, [getRaceDetails]);
+
+    if (isLoading) {
+        return <Loader />;
     }
-    if (isLoading) { return <Loader />; }
+
     const crumb = raceDetails.raceName;
     const breadcrumbs = [
-        { label: "F1 - Feeder", route: "/" },
-        { label: "Teams", route: "/" },
-        { label: `${crumb}`, route: "/driver/:round" }
+        { label: 'F1 - Feeder', route: '/' },
+        { label: 'Teams', route: '/' },
+        { label: `${crumb}`, route: '/driver/:round' },
     ];
+
     return (
         <>
             <Breadcrumbs data={breadcrumbs} />
@@ -65,9 +75,7 @@ const RaceDetails = () => {
             />
             <div>
                 <table>
-                    <caption>
-                        Qualifying Results
-                    </caption>
+                    <caption>Qualifying Results</caption>
                     <thead>
                         <tr>
                             <th>Pos</th>
@@ -87,9 +95,17 @@ const RaceDetails = () => {
                                 return (
                                     <tr key={qualifyRes.position}>
                                         <td>{qualifyRes.position}</td>
-                                        <td><img
-                                            src={`https://flagsapi.com/${countryCode.toUpperCase()}/shiny/64.png`}
-                                            alt={countryCode} />{qualifyRes.Driver.familyName}</td>
+                                        <td>
+                                            <img
+                                                src={`https://flagsapi.com/${countryCode.toUpperCase()}/shiny/64.png`}
+                                                alt={countryCode}
+                                                style={{
+                                                    width: '32px',
+                                                    height: '32px',
+                                                }}
+                                            />
+                                            {qualifyRes.Driver.familyName}
+                                        </td>
                                         <td>{qualifyRes.Constructor.name}</td>
                                         <td>{bestTime}</td>
                                     </tr>
@@ -102,36 +118,38 @@ const RaceDetails = () => {
                 </table>
 
                 <table>
-                    <caption>
-                        Race Results
-                    </caption>
+                    <caption>Race Results</caption>
                     <thead>
                         <tr>
                             <th>Pos</th>
                             <th>Driver</th>
                             <th>Team</th>
                             <th>Result</th>
-                            <th>Points</th>
                         </tr>
                     </thead>
                     <tbody>
                         {raceResult.length > 0 ? (
-                            raceResult.map((result) => {
+                            raceResult.map((raceRes) => {
                                 const countryCode = flagHandler(
-                                    result.Driver.nationality
+                                    raceRes.Driver.nationality
                                 );
 
                                 return (
-                                    <tr key={result.position}>
-                                        <td>{result.position}</td>
-                                        <td><img
-                                            src={`https://flagsapi.com/${countryCode.toUpperCase()}/shiny/64.png`}
-                                            alt={countryCode} />{result.Driver.familyName}</td>
-                                        <td>{result.Constructor.name}</td>
-                                        <td>{result.Time
-                                            ? result.Time.time
-                                            : 'No time available'}{' '}</td>
-                                        <td>{result.points}</td>
+                                    <tr key={raceRes.position}>
+                                        <td>{raceRes.position}</td>
+                                        <td>
+                                            <img
+                                                src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
+                                                alt={countryCode}
+                                                style={{
+                                                    width: '32px',
+                                                    height: '32px',
+                                                }}
+                                            />
+                                            {raceRes.Driver.familyName}
+                                        </td>
+                                        <td>{raceRes.Constructor.name}</td>
+                                        <td>{raceRes.status}</td>
                                     </tr>
                                 );
                             })
@@ -141,9 +159,8 @@ const RaceDetails = () => {
                     </tbody>
                 </table>
             </div>
-
-
         </>
     );
-}
+};
+
 export default RaceDetails;

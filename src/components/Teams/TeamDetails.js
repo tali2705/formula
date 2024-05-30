@@ -1,30 +1,38 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import flagHandler from '../utils/flagHandler';
-import Loader from '../../Loader';
+
 import Breadcrumbs from '../Header/BreadCrumbs';
+import Loader from '../../Loader';
 import Card from '../Card/Card';
 
+import { fetchData } from '../utils/fetchData';
+import flagHandler from '../utils/flagHandler';
+
 const TeamDetails = () => {
-    const [teamDetails, setTeamsDetails] = useState([]);
-    const [teamResults, setTeamsResult] = useState([]);
+    const [teamDetails, setTeamDetails] = useState({});
+    const [teamResults, setTeamResults] = useState([]);
     const [drivers, setDrivers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const param = useParams();
-    const getTeamsDetails = useCallback(async () => {
-        const url1 = `http://ergast.com/api/f1/2013/constructors/${param.constructorId}/results.json`;
-        const url2 = `https://ergast.com/api/f1/2013/constructors/${param.constructorId}/constructorStandings.json`;
 
+    const params = useParams();
+
+    const getTeamDetails = useCallback(async () => {
         try {
-            const response1 = await axios.get(url1);
-            // console.log(response1.data);
-            const response2 = await axios.get(url2);
-            // console.log(response2.data);
-            const result = response1.data.MRData.RaceTable.Races;
-            const details = response2.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0];
-            setTeamsResult(result);
-            setTeamsDetails(details);
+            const url1 = `http://ergast.com/api/f1/2013/constructors/${params.constructorId}/results.json`;
+            const url2 = `http://ergast.com/api/f1/2013/constructors/${params.constructorId}/constructorStandings.json`;
+
+            const [response1, response2] = await Promise.all([
+                fetchData(url1),
+                fetchData(url2),
+            ]);
+
+            const result = response1.MRData.RaceTable.Races;
+            const details =
+                response2.MRData.StandingsTable.StandingsLists[0]
+                    .ConstructorStandings[0];
+
+            setTeamResults(result);
+            setTeamDetails(details);
 
             if (result.length > 0) {
                 const firstRaceResults = result[0].Results;
@@ -37,36 +45,39 @@ const TeamDetails = () => {
         } catch (error) {
             console.error(error);
         }
-    }, [param.constructorId]);
+    }, [params.constructorId]);
 
     useEffect(() => {
-        getTeamsDetails();
-    }, [getTeamsDetails]);
-    if (isLoading) { return <Loader />; }
-    const crumb = teamResults[0].Results[0].Constructor.name;
+        getTeamDetails();
+    }, [getTeamDetails]);
+
+    if (isLoading) {
+        return <Loader />;
+    }
+
+    const crumb = teamDetails.Constructor?.name || 'Team Details';
     const breadcrumbs = [
-        { label: "F1 - Feeder", route: "/" },
-        { label: "Teams", route: "/" },
-        { label: `${crumb}`, route: "/team/:constructorId" }
+        { label: 'F1 - Feeder', route: '/' },
+        { label: 'Teams', route: '/teams' },
+        { label: crumb, route: `/teams/${params.constructorId}` },
     ];
-    console.log(teamDetails);
+
     return (
         <>
             <Breadcrumbs data={breadcrumbs} />
-
             <Card
-                title={teamDetails.Constructor.name}
-                caption1={`Country: `}
-                caption2={`Position: `}
-                caption3={`Points: `}
-                caption4={`History: `}
-                text1={teamDetails.Constructor.nationality}
+                title={teamDetails.Constructor?.name}
+                caption1='Country: '
+                caption2='Position: '
+                caption3='Points: '
+                caption4='History: '
+                text1={teamDetails.Constructor?.nationality}
                 text2={teamDetails.position}
                 text3={teamDetails.points}
-                text4={teamDetails.Constructor.url}//OVDE TREBA STAVITI IKONICU, KAO I U TEAMS TABELU NA DETAILS
+                text4={teamDetails.Constructor?.url}
             />
             <table>
-                <caption>Teams Details</caption>
+                <caption>Team Details</caption>
                 <thead>
                     <tr>
                         <th>Round</th>
@@ -96,7 +107,9 @@ const TeamDetails = () => {
                                     <td>
                                         <img
                                             src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-                                            alt={result.Circuit.Location.country}
+                                            alt={
+                                                result.Circuit.Location.country
+                                            }
                                             style={{
                                                 width: '32px',
                                                 height: '32px',

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Breadcrumbs = (props) => {
@@ -6,15 +6,17 @@ const Breadcrumbs = (props) => {
         <ul>
             {props.data?.map((crumb, k) => {
                 return (
-                    <li key={k}>{k < props.data.length - 1 ? (
-                        <Link to={crumb.route}>{crumb.label}</Link>
-                    ) : (
-                        <span> {crumb.label} </span>
-                    )}</li>
+                    <li key={k}>
+                        {k < props.data.length - 1 ? (
+                            <Link to={crumb.route}>{crumb.label}</Link>
+                        ) : (
+                            <span> {crumb.label} </span>
+                        )}
+                    </li>
                 );
-            }
-            )}
+            })}
         </ul>
     );
-}
+};
+
 export default Breadcrumbs;

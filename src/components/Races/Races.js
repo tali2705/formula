@@ -1,23 +1,27 @@
 import { useEffect, useState, useCallback } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import flagHandler from '../utils/flagHandler';
-import Search from '../Header/Search';
+
 import Loader from '../../Loader';
+import Search from '../Header/Search';
 import Breadcrumbs from '../Header/BreadCrumbs';
+
+import { fetchData } from '../utils/fetchData';
+import flagHandler from '../utils/flagHandler';
 
 const Races = () => {
     const [races, setRaces] = useState([]);
     const [searchField, setSearchField] = useState('');
     const [filteredRaces, setFilteredRaces] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+
     const navigate = useNavigate();
+
     const getRaces = useCallback(async () => {
         try {
             const url = 'http://ergast.com/api/f1/2013/results/1.json';
-            const response = await axios.get(url);
-            const raceStandings = response.data.MRData.RaceTable.Races;
+            const data = await fetchData(url);
 
+            const raceStandings = data.MRData.RaceTable.Races;
             setRaces(raceStandings);
             setFilteredRaces(raceStandings);
             setIsLoading(false);
@@ -39,22 +43,24 @@ const Races = () => {
     }, [races, searchField]);
 
     const onSearchChange = (event) => {
-        const searchFieldString = event.target.value.toLowerCase().trim();
-
+        const searchFieldString = event.target.value;
         setSearchField(searchFieldString);
     };
 
     const handleRaceDetails = (round) => {
         const link = `/races/${round}`;
-
         navigate(link);
     };
-    if (isLoading) { return <Loader />; }
+
+    if (isLoading) {
+        return <Loader />;
+    }
 
     const breadcrumbs = [
-        { label: "F1 - Feeder", route: "/" },
-        { label: "Races", route: "/races" },
+        { label: 'F1 - Feeder', route: '/' },
+        { label: 'Races', route: '/races' },
     ];
+
     return (
         <>
             <Breadcrumbs data={breadcrumbs} />
@@ -83,6 +89,7 @@ const Races = () => {
 
                             const raceCountry = race.Circuit.Location.country;
                             const countryCodeRace = flagHandler(raceCountry);
+
                             return (
                                 <tr key={race.round}>
                                     <td>{race.round}</td>
@@ -119,7 +126,7 @@ const Races = () => {
                         })
                     ) : (
                         <tr>
-                            <td colSpan={5}>Loading races...</td>
+                            <td colSpan={5}>No races found.</td>
                         </tr>
                     )}
                 </tbody>

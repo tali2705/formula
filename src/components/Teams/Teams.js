@@ -1,33 +1,35 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import Search from '../Header/Search';
-import flagHandler from '../utils/flagHandler';
+
 import Loader from '../../Loader';
+import Search from '../Header/Search';
 import Breadcrumbs from '../Header/BreadCrumbs';
+
+import { fetchData } from '../utils/fetchData';
+import flagHandler from '../utils/flagHandler';
 
 const Teams = () => {
     const [constructorStandings, setConstructorStandings] = useState([]);
     const [searchField, setSearchField] = useState('');
     const [filteredTeams, setFilteredTeams] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+
     const navigate = useNavigate();
 
     const getTeams = useCallback(async () => {
         try {
             const url =
                 'http://ergast.com/api/f1/2013/constructorStandings.json';
-
-            const response = await axios.get(url);
+            const data = await fetchData(url);
 
             const teamsArray =
-                response.data.MRData.StandingsTable.StandingsLists[0]
+                data.MRData.StandingsTable.StandingsLists[0]
                     .ConstructorStandings;
             setConstructorStandings(teamsArray);
             setFilteredTeams(teamsArray);
             setIsLoading(false);
-        } catch (err) {
-            console.log(err);
+        } catch (error) {
+            console.error(error);
         }
     }, []);
 
@@ -60,15 +62,18 @@ const Teams = () => {
         navigate(link);
     };
 
-    if (isLoading) { return <Loader />; }
+    if (isLoading) {
+        return <Loader />;
+    }
+
     const breadcrumbs = [
         { label: 'F1 - Feeder', route: '/' },
         { label: 'Teams', route: '/' },
     ];
+
     return (
         <>
-            {/* <Breadcrumbs data={breadcrumbs} /> */}
-
+            <Breadcrumbs data={breadcrumbs} />
             <Search
                 onChangeHandler={onSearchChange}
                 className='search-box'
