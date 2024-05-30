@@ -59,7 +59,7 @@ const RaceDetails = () => {
   ];
 
   return (
-    <>
+    <div className="wrapper">
       <Header data={breadcrumbs} />
       <Card
         title={raceDetails.raceName}
@@ -154,7 +154,7 @@ const RaceDetails = () => {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 };
 

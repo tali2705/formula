@@ -67,26 +67,29 @@ const Drivers = () => {
             className="search-box"
             placeholder="Search..."
           />
-
-          <h2 className="title">Drivers Championship</h2>
-          <table className="main-table">
-            <caption className="table-caption">Drivers</caption>
-            <tbody>
-              {filteredDrivers.length > 0 ? (
-                filteredDrivers.map((driver) => (
-                  <DriverRow
-                    key={driver.position}
-                    driver={driver}
-                    onClick={() => driverDetailsHandler(driver.Driver.driverId)}
-                  />
-                ))
-              ) : (
-                <tr>
-                  <td colSpan={5}>Loading drivers...</td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+          <div className="wrapper-content">
+            <h2 className="title">Drivers Championship</h2>
+            <table className="main-table">
+              <caption className="table-caption">Drivers</caption>
+              <tbody>
+                {filteredDrivers.length > 0 ? (
+                  filteredDrivers.map((driver) => (
+                    <DriverRow
+                      key={driver.position}
+                      driver={driver}
+                      onClick={() =>
+                        driverDetailsHandler(driver.Driver.driverId)
+                      }
+                    />
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={5}>Loading drivers...</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         </>
       ) : (
         <Loader />

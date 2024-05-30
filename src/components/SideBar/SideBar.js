@@ -17,55 +17,57 @@ import DriverDetails from "../Drivers/DriverDetails";
 
 const SideBar = () => {
   return (
-    <div className="sidebar-wrapper">
-      <div className="logo">
-        <img src={logo} style={{ width: "20%" }} alt="logo" />
-      </div>
+    <div className="wrapper">
       <Router>
-        <nav className="side-nav">
-          <ul className="side-nav-items">
-            <li className="side-nav-item">
-              <NavLink
-                to="/"
-                className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "active" : ""
-                }
-              >
-                Drivers
-              </NavLink>
-            </li>
+        <div className="sidebar-wrapper">
+          <img className="logo" src={logo} alt="logo" />
+          <nav className="side-nav">
+            <ul className="side-nav-items">
+              <li className="side-nav-item">
+                <NavLink
+                  to="/"
+                  className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "active" : ""
+                  }
+                >
+                  Drivers
+                </NavLink>
+              </li>
 
-            <li className="side-nav-item">
-              <NavLink
-                to="/teams"
-                className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "active" : ""
-                }
-              >
-                Teams
-              </NavLink>
-            </li>
+              <li className="side-nav-item">
+                <NavLink
+                  to="/teams"
+                  className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "active" : ""
+                  }
+                >
+                  Teams
+                </NavLink>
+              </li>
 
-            <li className="side-nav-item">
-              <NavLink
-                to="/races"
-                className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "active" : ""
-                }
-              >
-                Races
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
-        <Routes>
-          <Route path="/" element={<Drivers />} />
-          <Route path="/:driverId" element={<DriverDetails />} />
-          <Route path="/teams" element={<Teams />} />
-          <Route path="/teams/:constructorId" element={<TeamDetails />} />
-          <Route path="/races" element={<Races />} />
-          <Route path="/races/:round" element={<RaceDetails />} />
-        </Routes>
+              <li className="side-nav-item">
+                <NavLink
+                  to="/races"
+                  className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "active" : ""
+                  }
+                >
+                  Races
+                </NavLink>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div className="main-wrapper">
+          <Routes>
+            <Route path="/" element={<Drivers />} />
+            <Route path="/:driverId" element={<DriverDetails />} />
+            <Route path="/teams" element={<Teams />} />
+            <Route path="/teams/:constructorId" element={<TeamDetails />} />
+            <Route path="/races" element={<Races />} />
+            <Route path="/races/:round" element={<RaceDetails />} />
+          </Routes>
+        </div>
       </Router>
     </div>
   );
