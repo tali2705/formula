@@ -1,17 +1,17 @@
-const Card = (props) => {
+const CardRace = (props) => {
     return (
         <div className='card-wrapper'>
             <div>
-                <div className='card-img'>
+                {/* <div className='card-img'>
                     <img
                         src={require(`../../assets/drivers/${props.familyName}.png`)}
                         alt={props.familyName}
                     />
-                </div>
+                </div> */}
                 <div className='card-title'>
                     <img
-                        src={`https://flagsapi.com/${props.driverCountryCode}/shiny/64.png`}
-                        alt={props.driverCountryCode}
+                        src={`https://flagsapi.com/${props.raceCountryCode}/shiny/64.png`}
+                        alt={props.raceCountryCode}
                     />
                     <h3>{props.title}</h3>
                 </div>
@@ -34,4 +34,4 @@ const Card = (props) => {
     );
 };
 
-export default Card;
+export default CardRace;
