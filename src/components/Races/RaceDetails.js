@@ -1,166 +1,161 @@
-import { useEffect, useState, useCallback } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState, useCallback } from "react";
+import { useParams } from "react-router-dom";
 
-import Loader from '../../Loader';
-import Card from '../Card/Card';
-import Breadcrumbs from '../Header/BreadCrumbs';
+import Loader from "../../Loader";
+import Card from "../Card/Card";
+import Header from "../Header/Header";
 
-import flagHandler from '../utils/flagHandler';
-import { fetchData } from '../utils/fetchData';
+import flagHandler from "../utils/flagHandler";
+import { fetchData } from "../utils/fetchData";
 
 const getBestTime = (result) => {
-    const times = [result.Q1, result.Q2, result.Q3].filter(Boolean);
-    return times.sort()[0];
+  const times = [result.Q1, result.Q2, result.Q3].filter(Boolean);
+  return times.sort()[0];
 };
 
 const RaceDetails = () => {
-    const [qualifyingResults, setQualifyingResults] = useState([]);
-    const [raceDetails, setRaceDetails] = useState({});
-    const [raceResult, setRaceResult] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const params = useParams();
+  const [qualifyingResults, setQualifyingResults] = useState([]);
+  const [raceDetails, setRaceDetails] = useState({});
+  const [raceResult, setRaceResult] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const params = useParams();
 
-    const getRaceDetails = useCallback(async () => {
-        try {
-            const url1 = `http://ergast.com/api/f1/2013/${params.round}/qualifying.json`;
-            const url2 = `http://ergast.com/api/f1/2013/${params.round}/results.json`;
+  const getRaceDetails = useCallback(async () => {
+    try {
+      const url1 = `http://ergast.com/api/f1/2023/${params.round}/qualifying.json`;
+      const url2 = `http://ergast.com/api/f1/2023/${params.round}/results.json`;
 
-            const [response1, response2] = await Promise.all([
-                fetchData(url1),
-                fetchData(url2),
-            ]);
+      const [response1, response2] = await Promise.all([
+        fetchData(url1),
+        fetchData(url2),
+      ]);
 
-            const qResults =
-                response1.MRData.RaceTable.Races[0].QualifyingResults;
-            const aboutRace = response1.MRData.RaceTable.Races[0];
-            const rResults = response2.MRData.RaceTable.Races[0].Results;
+      const qResults = response1.MRData.RaceTable.Races[0].QualifyingResults;
+      const aboutRace = response1.MRData.RaceTable.Races[0];
+      const rResults = response2.MRData.RaceTable.Races[0].Results;
 
-            setQualifyingResults(qResults);
-            setRaceDetails(aboutRace);
-            setRaceResult(rResults);
-            setIsLoading(false);
-        } catch (error) {
-            console.error(error);
-        }
-    }, [params.round]);
-
-    useEffect(() => {
-        getRaceDetails();
-    }, [getRaceDetails]);
-
-    if (isLoading) {
-        return <Loader />;
+      setQualifyingResults(qResults);
+      setRaceDetails(aboutRace);
+      setRaceResult(rResults);
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
     }
+  }, [params.round]);
 
-    const crumb = raceDetails.raceName;
-    const breadcrumbs = [
-        { label: 'F1 - Feeder', route: '/' },
-        { label: 'Teams', route: '/' },
-        { label: `${crumb}`, route: '/driver/:round' },
-    ];
+  useEffect(() => {
+    getRaceDetails();
+  }, [getRaceDetails]);
 
-    return (
-        <>
-            <Breadcrumbs data={breadcrumbs} />
-            <Card
-                title={raceDetails.raceName}
-                caption1={`Country: `}
-                caption2={`Location: `}
-                caption3={`Date: `}
-                caption4={`Full report: `}
-                text1={raceDetails.Circuit.Location.country}
-                text2={raceDetails.Circuit.Location.locality}
-                text3={raceDetails.date}
-                text4={raceDetails.url}
-            />
-            <div>
-                <table>
-                    <caption>Qualifying Results</caption>
-                    <thead>
-                        <tr>
-                            <th>Pos</th>
-                            <th>Driver</th>
-                            <th>Team</th>
-                            <th>Best Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {qualifyingResults.length > 0 ? (
-                            qualifyingResults.map((qualifyRes) => {
-                                const countryCode = flagHandler(
-                                    qualifyRes.Driver.nationality
-                                );
-                                const bestTime = getBestTime(qualifyRes);
+  if (isLoading) {
+    return <Loader />;
+  }
 
-                                return (
-                                    <tr key={qualifyRes.position}>
-                                        <td>{qualifyRes.position}</td>
-                                        <td>
-                                            <img
-                                                src={`https://flagsapi.com/${countryCode.toUpperCase()}/shiny/64.png`}
-                                                alt={countryCode}
-                                                style={{
-                                                    width: '32px',
-                                                    height: '32px',
-                                                }}
-                                            />
-                                            {qualifyRes.Driver.familyName}
-                                        </td>
-                                        <td>{qualifyRes.Constructor.name}</td>
-                                        <td>{bestTime}</td>
-                                    </tr>
-                                );
-                            })
-                        ) : (
-                            <td colSpan={4}>Loading drivers...</td>
-                        )}
-                    </tbody>
-                </table>
+  const crumb = raceDetails.raceName;
+  const breadcrumbs = [
+    { label: "F1 - Feeder", route: "/" },
+    { label: "Teams", route: "/" },
+    { label: `${crumb}`, route: "/driver/:round" },
+  ];
 
-                <table>
-                    <caption>Race Results</caption>
-                    <thead>
-                        <tr>
-                            <th>Pos</th>
-                            <th>Driver</th>
-                            <th>Team</th>
-                            <th>Result</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {raceResult.length > 0 ? (
-                            raceResult.map((raceRes) => {
-                                const countryCode = flagHandler(
-                                    raceRes.Driver.nationality
-                                );
+  return (
+    <>
+      <Header data={breadcrumbs} />
+      <Card
+        title={raceDetails.raceName}
+        caption1={`Country: `}
+        caption2={`Location: `}
+        caption3={`Date: `}
+        caption4={`Full report: `}
+        text1={raceDetails.Circuit.Location.country}
+        text2={raceDetails.Circuit.Location.locality}
+        text3={raceDetails.date}
+        text4={raceDetails.url}
+      />
+      <div>
+        <table>
+          <caption>Qualifying Results</caption>
+          <thead>
+            <tr>
+              <th>Pos</th>
+              <th>Driver</th>
+              <th>Team</th>
+              <th>Best Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            {qualifyingResults.length > 0 ? (
+              qualifyingResults.map((qualifyRes) => {
+                const countryCode = flagHandler(qualifyRes.Driver.nationality);
+                const bestTime = getBestTime(qualifyRes);
 
-                                return (
-                                    <tr key={raceRes.position}>
-                                        <td>{raceRes.position}</td>
-                                        <td>
-                                            <img
-                                                src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-                                                alt={countryCode}
-                                                style={{
-                                                    width: '32px',
-                                                    height: '32px',
-                                                }}
-                                            />
-                                            {raceRes.Driver.familyName}
-                                        </td>
-                                        <td>{raceRes.Constructor.name}</td>
-                                        <td>{raceRes.status}</td>
-                                    </tr>
-                                );
-                            })
-                        ) : (
-                            <td colSpan={4}>Loading drivers...</td>
-                        )}
-                    </tbody>
-                </table>
-            </div>
-        </>
-    );
+                return (
+                  <tr key={qualifyRes.position}>
+                    <td>{qualifyRes.position}</td>
+                    <td>
+                      <img
+                        src={`https://flagsapi.com/${countryCode.toUpperCase()}/shiny/64.png`}
+                        alt={countryCode}
+                        style={{
+                          width: "32px",
+                          height: "32px",
+                        }}
+                      />
+                      {qualifyRes.Driver.familyName}
+                    </td>
+                    <td>{qualifyRes.Constructor.name}</td>
+                    <td>{bestTime}</td>
+                  </tr>
+                );
+              })
+            ) : (
+              <td colSpan={4}>Loading drivers...</td>
+            )}
+          </tbody>
+        </table>
+
+        <table>
+          <caption>Race Results</caption>
+          <thead>
+            <tr>
+              <th>Pos</th>
+              <th>Driver</th>
+              <th>Team</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            {raceResult.length > 0 ? (
+              raceResult.map((raceRes) => {
+                const countryCode = flagHandler(raceRes.Driver.nationality);
+
+                return (
+                  <tr key={raceRes.position}>
+                    <td>{raceRes.position}</td>
+                    <td>
+                      <img
+                        src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
+                        alt={countryCode}
+                        style={{
+                          width: "32px",
+                          height: "32px",
+                        }}
+                      />
+                      {raceRes.Driver.familyName}
+                    </td>
+                    <td>{raceRes.Constructor.name}</td>
+                    <td>{raceRes.status}</td>
+                  </tr>
+                );
+              })
+            ) : (
+              <td colSpan={4}>Loading drivers...</td>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
 };
 
 export default RaceDetails;
