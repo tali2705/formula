@@ -68,70 +68,71 @@ const Races = () => {
                 className='search-box'
                 placeholder='Search races...'
             />
-
-            <h2 className='title'>Race Calendar</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Round</th>
-                        <th>Grand Prix</th>
-                        <th>Circuit</th>
-                        <th>Date</th>
-                        <th>Winner</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {filteredRaces.length > 0 ? (
-                        filteredRaces.map((race) => {
-                            const winner = race.Results[0].Driver;
-                            const countryCodeWinner = flagHandler(
-                                winner.nationality
-                            );
-
-                            const raceCountry = race.Circuit.Location.country;
-                            const countryCodeRace = flagHandler(raceCountry);
-
-                            return (
-                                <tr key={race.round}>
-                                    <td>{race.round}</td>
-                                    <td
-                                        onClick={() =>
-                                            handleRaceDetails(race.round)
-                                        }
-                                    >
-                                        <img
-                                            src={`https://flagsapi.com/${countryCodeRace}/shiny/64.png`}
-                                            alt={countryCodeRace}
-                                            style={{
-                                                width: '32px',
-                                                height: '32px',
-                                            }}
-                                        />
-                                        {race.raceName}
-                                    </td>
-                                    <td>{race.Circuit.circuitName}</td>
-                                    <td>{race.date}</td>
-                                    <td>
-                                        <img
-                                            src={`https://flagsapi.com/${countryCodeWinner}/shiny/64.png`}
-                                            alt={countryCodeWinner}
-                                            style={{
-                                                width: '32px',
-                                                height: '32px',
-                                            }}
-                                        />
-                                        {winner.familyName}
-                                    </td>
-                                </tr>
-                            );
-                        })
-                    ) : (
+            <div className='wrapper-content'>
+                <h2 className='title'>Race Calendar</h2>
+                <table className='main-table'>
+                    <thead>
                         <tr>
-                            <td colSpan={5}>No races found.</td>
+                            <th>Round</th>
+                            <th>Grand Prix</th>
+                            <th>Circuit</th>
+                            <th>Date</th>
+                            <th>Winner</th>
                         </tr>
-                    )}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {filteredRaces.length > 0 ? (
+                            filteredRaces.map((race) => {
+                                const winner = race.Results[0].Driver;
+                                const countryCodeWinner = flagHandler(
+                                    winner.nationality
+                                );
+
+                                const raceCountry = race.Circuit.Location.country;
+                                const countryCodeRace = flagHandler(raceCountry);
+
+                                return (
+                                    <tr key={race.round}>
+                                        <td>{race.round}</td>
+                                        <td
+                                            onClick={() =>
+                                                handleRaceDetails(race.round)
+                                            }
+                                        >
+                                            <img
+                                                src={`https://flagsapi.com/${countryCodeRace}/shiny/64.png`}
+                                                alt={countryCodeRace}
+                                                style={{
+                                                    width: '32px',
+                                                    height: '32px',
+                                                }}
+                                            />
+                                            {race.raceName}
+                                        </td>
+                                        <td>{race.Circuit.circuitName}</td>
+                                        <td>{race.date}</td>
+                                        <td>
+                                            <img
+                                                src={`https://flagsapi.com/${countryCodeWinner}/shiny/64.png`}
+                                                alt={countryCodeWinner}
+                                                style={{
+                                                    width: '32px',
+                                                    height: '32px',
+                                                }}
+                                            />
+                                            {winner.familyName}
+                                        </td>
+                                    </tr>
+                                );
+                            })
+                        ) : (
+                            <tr>
+                                <td colSpan={5}>No races found.</td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
         </>
     );
 };

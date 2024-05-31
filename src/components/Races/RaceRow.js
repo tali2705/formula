@@ -25,7 +25,7 @@ const RaceRow = ({ race }) => {
                 />
                 {race.raceName}
             </td>
-            <td>{race.Circuit.circuitName}</td>
+            <td className="race">{race.Circuit.circuitName}</td>
             <td>{race.date}</td>
             <td>
                 <img

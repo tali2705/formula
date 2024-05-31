@@ -64,7 +64,7 @@ const RaceDetails = () => {
     return (
         <>
             {!isLoading ? (
-                <div className='wrapper'>
+                <div className='wrapper-details'>
                     <Header data={breadcrumbs} />
                     <Card
                         title={raceDetails.raceName}

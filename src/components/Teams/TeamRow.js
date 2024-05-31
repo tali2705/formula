@@ -26,7 +26,7 @@ const TeamRow = ({ team }) => {
                 />
                 {team.Constructor.name}
             </td>
-            <td>Details: ICON</td>
+            <td className='team'>Details: ICON</td>
             <td>{team.points}</td>
         </tr>
     );

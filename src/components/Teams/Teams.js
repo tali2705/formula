@@ -75,61 +75,62 @@ const Teams = () => {
                 className='search-box'
                 placeholder='Search...'
             />
+            <div className='wrapper-content'>
+                <h2 className='title'>Constructors Championship</h2>
+                <table className='main-table'>
+                    <caption className='table-caption'>
+                        Constructors for Championship Standings - 2023
+                    </caption>
 
-            <h2 className='title'>Constructors Championship</h2>
-            <table>
-                <caption>
-                    Constructors for Championship Standings - 2023
-                </caption>
-
-                <thead>
-                    <tr>
-                        <th>Position</th>
-                        <th>Constructor</th>
-                        <th>Details</th>
-                        <th>Points</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {filteredTeams.length > 0 ? (
-                        filteredTeams.map((team) => {
-                            const countryCode = flagHandler(
-                                team.Constructor.nationality
-                            );
-
-                            return (
-                                <tr key={team.position}>
-                                    <td>{team.position}</td>
-                                    <td
-                                        onClick={() =>
-                                            handleTeamDetails(
-                                                team.Constructor.constructorId
-                                            )
-                                        }
-                                    >
-                                        <img
-                                            src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-                                            alt={countryCode}
-                                            style={{
-                                                width: '32px',
-                                                height: '32px',
-                                            }}
-                                        />
-                                        {team.Constructor.name}
-                                    </td>
-                                    <td>Details: ICON</td>
-                                    <td>{team.points}</td>
-                                </tr>
-                            );
-                        })
-                    ) : (
+                    <thead>
                         <tr>
-                            <td colSpan='3'>Loading teams...</td>
+                            <th>Position</th>
+                            <th>Constructor</th>
+                            <th>Details</th>
+                            <th>Points</th>
                         </tr>
-                    )}
-                </tbody>
-            </table>
+                    </thead>
+
+                    <tbody>
+                        {filteredTeams.length > 0 ? (
+                            filteredTeams.map((team) => {
+                                const countryCode = flagHandler(
+                                    team.Constructor.nationality
+                                );
+
+                                return (
+                                    <tr key={team.position}>
+                                        <td>{team.position}</td>
+                                        <td
+                                            onClick={() =>
+                                                handleTeamDetails(
+                                                    team.Constructor.constructorId
+                                                )
+                                            }
+                                        >
+                                            <img
+                                                src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
+                                                alt={countryCode}
+                                                style={{
+                                                    width: '32px',
+                                                    height: '32px',
+                                                }}
+                                            />
+                                            {team.Constructor.name}
+                                        </td>
+                                        <td>Details: ICON</td>
+                                        <td>{team.points}</td>
+                                    </tr>
+                                );
+                            })
+                        ) : (
+                            <tr>
+                                <td colSpan='3'>Loading teams...</td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
         </>
     );
 };
