@@ -1,12 +1,12 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 
-import Loader from '../../Loader';
-import Card from '../Card/Card';
-import Header from '../Header/Header';
-
-import flagHandler from '../utils/flagHandler';
 import { fetchData } from '../utils/fetchData';
+import flagHandler from '../utils/flagHandler';
+
+import Loader from '../../Loader';
+import Header from '../Header/Header';
+import Card from '../Card/Card';
 
 const DriverDetails = () => {
     const [driverResult, setDriverResult] = useState([]);

@@ -5,8 +5,8 @@ import Loader from '../../Loader';
 import Card from '../Card/Card';
 import Header from '../Header/Header';
 
-import flagHandler from '../utils/flagHandler';
 import { fetchData } from '../utils/fetchData';
+import flagHandler from '../utils/flagHandler';
 
 const getBestTime = (result) => {
     const times = [result.Q1, result.Q2, result.Q3].filter(Boolean);

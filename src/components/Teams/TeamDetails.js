@@ -116,7 +116,8 @@ const TeamDetails = () => {
                                                     <img
                                                         src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
                                                         alt={
-                                                            result.Circuit.Location
+                                                            result.Circuit
+                                                                .Location
                                                                 .country
                                                         }
                                                         style={{
@@ -130,7 +131,8 @@ const TeamDetails = () => {
                                                     {firstDriverPoints || 'N/A'}
                                                 </td>
                                                 <td>
-                                                    {secondDriverPoints || 'N/A'}
+                                                    {secondDriverPoints ||
+                                                        'N/A'}
                                                 </td>
                                                 <td>{teamPoints || 'N/A'}</td>
                                             </tr>
@@ -138,7 +140,9 @@ const TeamDetails = () => {
                                     })
                                 ) : (
                                     <tr>
-                                        <td colSpan={6}>Loading team details...</td>
+                                        <td colSpan={6}>
+                                            Loading team details...
+                                        </td>
                                     </tr>
                                 )}
                             </tbody>
