@@ -11,8 +11,42 @@
     width: 15%;
     display: flex;
     flex-direction: column;
-    // position: fixed;
-    // height: 100%;
+
+
+
+    .side-nav-items {
+
+
+      .side-nav-item {
+        text-align: center;
+        margin: 0px 0px 5px 0px;
+      }
+
+      a:link {
+        color: #fff;
+
+        text-decoration: none;
+        font-size: 20px;
+        //padding-inline-end: 100%;
+        width: 100%;
+      }
+
+      a:hover {
+        background-color: #9b3232;
+        color: #211c1c;
+      }
+
+      a:visited {
+        color: #fff;
+      }
+
+      .active {
+        color: red;
+      }
+
+      //text-align: center;
+    }
+
   }
 
   .main-wrapper {
@@ -57,11 +91,41 @@
     width: 100%;
   }
 
-  /*.side-nav-items {}
-*/
+
+
 
   .footer {
     background-color: aquamarine;
     width: 100%;
     text-align: center;
   }
+}
+
+.icon {
+  width: 15px;
+}
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  top: 40vh;
+  margin: 0 auto;
+  width: 200px;
+
+  .loader {
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

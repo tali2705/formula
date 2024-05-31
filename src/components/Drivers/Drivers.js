@@ -62,12 +62,14 @@ const Drivers = () => {
         <>
             {!isLoading ? (
                 <>
-                    <Header data={breadcrumbs} />
-                    <Search
-                        onChangeHandler={onSearchChange}
-                        className='search-box'
-                        placeholder='Search...'
-                    />
+                    <div className='header'>
+                        <Header data={breadcrumbs} />
+                        <Search
+                            onChangeHandler={onSearchChange}
+                            className='search-box'
+                            placeholder='Search...'
+                        />
+                    </div>
                     <div className='wrapper-content'>
                         <h2 className='title'>Drivers Championship</h2>
                         <table className='main-table'>
