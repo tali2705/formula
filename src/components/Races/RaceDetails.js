@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Loader from '../../Loader';
-import CardRace from '../Cards/CardRace';
+import Card from '../Card/Card';
 import Header from '../Header/Header';
 
 import flagHandler from '../utils/flagHandler';
@@ -66,7 +66,7 @@ const RaceDetails = () => {
             {!isLoading ? (
                 <>
                     <Header data={breadcrumbs} />
-                    <CardRace
+                    <Card
                         title={raceDetails.raceName}
                         caption1={`Country: `}
                         caption2={`Location: `}
@@ -76,7 +76,9 @@ const RaceDetails = () => {
                         text2={raceDetails.Circuit.Location.locality}
                         text3={raceDetails.date}
                         text4={raceDetails.url}
-                        raceCountryCode={raceCountryCode}
+                        round={raceDetails.round}
+                        cardCountryCode={raceCountryCode}
+                        raceDetails={raceDetails}
                     />
                     <div>
                         <table>

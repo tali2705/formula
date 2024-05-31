@@ -6,7 +6,7 @@ import flagHandler from '../utils/flagHandler';
 
 import Loader from '../../Loader';
 import Header from '../Header/Header';
-import CardDriver from '../Cards/CardDriver';
+import Card from '../Card/Card';
 
 const DriverDetails = () => {
     const [driverResult, setDriverResult] = useState([]);
@@ -60,7 +60,7 @@ const DriverDetails = () => {
             {!isLoading ? (
                 <>
                     <Header data={breadcrumbs} />
-                    <CardDriver
+                    <Card
                         title={`${driverDetails.Driver.givenName} ${driverDetails.Driver.familyName}`}
                         caption1='Country: '
                         caption2='Team: '
@@ -71,7 +71,8 @@ const DriverDetails = () => {
                         text3={driverDetails.Driver.dateOfBirth}
                         text4={driverDetails.Driver.url}
                         familyName={driverDetails.Driver.familyName}
-                        driverCountryCode={driverCountryCode}
+                        cardCountryCode={driverCountryCode}
+                        driverDetails={driverDetails}
                     />
                     <table>
                         <caption>Driver Details</caption>

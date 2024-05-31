@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import Header from '../Header/Header';
 import Loader from '../../Loader';
-import CardTeam from '../Cards/CardTeam';
+import Card from '../Card/Card';
 
 import { fetchData } from '../utils/fetchData';
 import flagHandler from '../utils/flagHandler';
@@ -63,7 +63,7 @@ const TeamDetails = () => {
             {!isLoading ? (
                 <>
                     <Header data={breadcrumbs} />
-                    <CardTeam
+                    <Card
                         title={teamDetails.Constructor?.name}
                         caption1='Country: '
                         caption2='Position: '
@@ -73,8 +73,9 @@ const TeamDetails = () => {
                         text2={teamDetails.position}
                         text3={teamDetails.points}
                         text4={teamDetails.Constructor?.url}
-                        teamCountryCode={teamCountryCode}
+                        cardCountryCode={teamCountryCode}
                         teamId={teamDetails.Constructor.constructorId}
+                        teamDetails={teamDetails}
                     />
                     <table>
                         <caption>Team Details</caption>
