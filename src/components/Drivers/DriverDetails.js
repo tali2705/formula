@@ -1,12 +1,12 @@
 import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 
-import { fetchData } from "../utils/fetchData";
-import flagHandler from "../utils/flagHandler";
-
 import Loader from "../../Loader";
 import Header from "../Header/Header";
 import Card from "../Card/Card";
+
+import { fetchData } from "../utils/fetchData";
+import flagHandler from "../utils/flagHandler";
 
 const DriverDetails = () => {
   const [driverResult, setDriverResult] = useState([]);
@@ -22,14 +22,13 @@ const DriverDetails = () => {
     const data1 = await fetchData(url1);
     const data2 = await fetchData(url2);
 
-    if (data1 && data2) {
-      const result = data1.MRData.RaceTable.Races;
-      const details =
-        data2.MRData.StandingsTable.StandingsLists[0].DriverStandings[0];
+    const result = data1.MRData.RaceTable.Races;
+    const details =
+      data2.MRData.StandingsTable.StandingsLists[0].DriverStandings[0];
 
-      setDriverResult(result);
-      setDriverDetails(details);
-    }
+    setDriverResult(result);
+    setDriverDetails(details);
+
     setIsLoading(false);
   }, [driverId]);
 
@@ -58,7 +57,10 @@ const DriverDetails = () => {
     <>
       {!isLoading ? (
         <>
-          <Header data={breadcrumbs} />
+          <div className="header">
+            <Header data={breadcrumbs} />
+          </div>
+
           <div className="wrapper-details">
             <Card
               title={`${driverDetails.Driver.givenName} ${driverDetails.Driver.familyName}`}
@@ -99,6 +101,7 @@ const DriverDetails = () => {
                         <td>{result.round}</td>
                         <td>
                           <img
+                            className="table-flag"
                             src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
                             alt={countryCode}
                           />

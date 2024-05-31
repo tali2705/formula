@@ -5,6 +5,7 @@ import flagHandler from '../utils/flagHandler';
 
 const RaceRow = ({ race }) => {
     const navigate = useNavigate();
+
     const winner = race.Results[0].Driver;
     const countryCodeWinner = flagHandler(winner.nationality);
     const raceCountry = race.Circuit.Location.country;
@@ -25,7 +26,7 @@ const RaceRow = ({ race }) => {
                 />
                 {race.raceName}
             </td>
-            <td className="race">{race.Circuit.circuitName}</td>
+            <td>{race.Circuit.circuitName}</td>
             <td>{race.date}</td>
             <td>
                 <img

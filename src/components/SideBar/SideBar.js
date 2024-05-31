@@ -20,14 +20,14 @@ const SideBar = () => {
     <div className="wrapper">
       <Router>
         <div className="sidebar-wrapper">
-        <div>
-          <img
-            className="logo"
-            src={logo}
-            style={{ width: "100%" }}
-            alt="logo"
-          />
-        </div>
+          <div>
+            <img
+              className="logo"
+              src={logo}
+              style={{ width: "100%" }}
+              alt="logo"
+            />
+          </div>
           <nav className="side-nav">
             <ul className="side-nav-items">
               <li className="side-nav-item">

@@ -4,3 +4,7 @@ export const filterItems = (items, searchTerm, getKey) => {
         getKey(item).toLowerCase().includes(trimmedSearchTerm)
     );
 };
+
+export const onSearchChange = (setSearchField) => (event) => {
+    setSearchField(event.target.value.toLowerCase());
+};

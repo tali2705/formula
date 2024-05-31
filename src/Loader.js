@@ -1,11 +1,10 @@
-import { CircleLoader } from "react-spinners";
+import loader from "./assets/Kaciga.png";
 const Loader = () => {
-    return (
-
-        <div className="loader-container">
-            <CircleLoader color="red" size={100} />
-        </div>
-
-    );
-}
+  return (
+    <div className="loader-container">
+      <img src={loader} alt="Loading..." className="loader" />
+      <p>Loading...</p>
+    </div>
+  );
+};
 export default Loader;
