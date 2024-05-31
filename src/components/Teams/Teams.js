@@ -104,7 +104,8 @@ const Teams = () => {
                                         <td
                                             onClick={() =>
                                                 handleTeamDetails(
-                                                    team.Constructor.constructorId
+                                                    team.Constructor
+                                                        .constructorId
                                                 )
                                             }
                                         >

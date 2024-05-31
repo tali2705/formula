@@ -88,8 +88,10 @@ const Races = () => {
                                     winner.nationality
                                 );
 
-                                const raceCountry = race.Circuit.Location.country;
-                                const countryCodeRace = flagHandler(raceCountry);
+                                const raceCountry =
+                                    race.Circuit.Location.country;
+                                const countryCodeRace =
+                                    flagHandler(raceCountry);
 
                                 return (
                                     <tr key={race.round}>
