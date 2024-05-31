@@ -20,12 +20,12 @@ const RaceDetails = () => {
     const [raceResult, setRaceResult] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    const params = useParams();
+    const { round } = useParams();
 
     const getRaceDetails = useCallback(async () => {
         try {
-            const url1 = `http://ergast.com/api/f1/2023/${params.round}/qualifying.json`;
-            const url2 = `http://ergast.com/api/f1/2023/${params.round}/results.json`;
+            const url1 = `http://ergast.com/api/f1/2023/${round}/qualifying.json`;
+            const url2 = `http://ergast.com/api/f1/2023/${round}/results.json`;
 
             const [response1, response2] = await Promise.all([
                 fetchData(url1),
@@ -44,7 +44,7 @@ const RaceDetails = () => {
         } catch (error) {
             console.error(error);
         }
-    }, [params.round]);
+    }, [round]);
 
     useEffect(() => {
         getRaceDetails();
