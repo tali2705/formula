@@ -1,15 +1,15 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 import flagHandler from '../utils/flagHandler';
 import { IDriverRow } from '../Interfaces/GlobalInterface';
 
 const DriverRow: React.FC<{ driver: IDriverRow }> = ({ driver }) => {
-    const navigate = useNavigate();
+    const navigate: NavigateFunction = useNavigate();
 
-    const countryCode = flagHandler(driver.Driver.nationality);
+    const countryCode: string = flagHandler(driver.Driver.nationality);
 
-    const handleDriverDetails = () => {
+    const handleDriverDetails = (): void => {
         navigate(`/${driver.Driver.driverId}`);
     };
 

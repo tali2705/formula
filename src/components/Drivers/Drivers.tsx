@@ -21,12 +21,13 @@ const Drivers: React.FC = () => {
     );
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    const getDrivers = useCallback(async () => {
-        const url = 'http://ergast.com/api/f1/2023/driverStandings.json';
+    const getDrivers = useCallback(async (): Promise<void> => {
+        const url: string =
+            'http://ergast.com/api/f1/2023/driverStandings.json';
         const data: IApiResponseStandings =
             await fetchData<IApiResponseStandings>(url);
 
-        const driverStandings =
+        const driverStandings: IDriverStanding[] =
             data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
 
         setDrivers(driverStandings);
@@ -43,13 +44,16 @@ const Drivers: React.FC = () => {
             filterItems(
                 drivers,
                 searchField,
-                (driver) =>
+                (driver: IDriverStanding) =>
                     `${driver.Driver.givenName} ${driver.Driver.familyName}`
             )
         );
     }, [drivers, searchField]);
 
-    const breadcrumbs = [
+    const breadcrumbs: {
+        label: string;
+        route: string;
+    }[] = [
         { label: 'F1 - Feeder', route: '/' },
         { label: 'Drivers', route: '/' },
     ];
