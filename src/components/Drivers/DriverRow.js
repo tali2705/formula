@@ -20,8 +20,8 @@ const DriverRow = ({ driver }) => {
           className="table-flag"
           src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
           alt={countryCode}
-        />
-        &nbsp;{driver.Driver.givenName}&nbsp;{driver.Driver.familyName}
+        />{" "}
+        {driver.Driver.givenName} {driver.Driver.familyName}
       </td>
       <td>{driver.Constructors.length > 0 && driver.Constructors[0].name}</td>
       <td>{driver.points}</td>

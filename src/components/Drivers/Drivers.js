@@ -55,7 +55,6 @@ const Drivers = () => {
         <Search
           onChangeHandler={onSearchChange(setSearchField)}
           className="search-box"
-          placeholder="Search..."
         />
       </div>
       <div className="wrapper-content">
@@ -65,9 +64,15 @@ const Drivers = () => {
             Drivers Championship Standings - 2023
           </caption>
           <tbody>
-            {filteredDrivers.map((driver) => (
-              <DriverRow key={driver.position} driver={driver} />
-            ))}
+            {filteredDrivers.length > 0 ? (
+              filteredDrivers.map((driver) => (
+                <DriverRow key={driver.position} driver={driver} />
+              ))
+            ) : (
+              <tr>
+                <td colSpan={5}>No results found.</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

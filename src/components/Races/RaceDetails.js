@@ -23,17 +23,18 @@ const RaceDetails = () => {
   };
 
   const getRaceDetails = useCallback(async () => {
-    const url1 = `http://ergast.com/api/f1/2023/${round}/qualifying.json`;
-    const url2 = `http://ergast.com/api/f1/2023/${round}/results.json`;
+    const qualifyingResultsURL = `http://ergast.com/api/f1/2023/${round}/qualifying.json`;
+    const raceResultsURL = `http://ergast.com/api/f1/2023/${round}/results.json`;
 
-    const [response1, response2] = await Promise.all([
-      fetchData(url1),
-      fetchData(url2),
+    const [qualifyingResultsResponse, raceResultsResponse] = await Promise.all([
+      fetchData(qualifyingResultsURL),
+      fetchData(raceResultsURL),
     ]);
 
-    const qResults = response1.MRData.RaceTable.Races[0].QualifyingResults;
-    const aboutRace = response1.MRData.RaceTable.Races[0];
-    const rResults = response2.MRData.RaceTable.Races[0].Results;
+    const qResults =
+      qualifyingResultsResponse.MRData.RaceTable.Races[0].QualifyingResults;
+    const aboutRace = qualifyingResultsResponse.MRData.RaceTable.Races[0];
+    const rResults = raceResultsResponse.MRData.RaceTable.Races[0].Results;
 
     setQualifyingResults(qResults);
     setRaceDetails(aboutRace);

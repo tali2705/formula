@@ -56,7 +56,6 @@ const Teams = () => {
         <Search
           onChangeHandler={onSearchChange(setSearchField)}
           className="search-box"
-          placeholder="Search..."
         />
       </div>
       <div className="wrapper-content">
@@ -76,9 +75,15 @@ const Teams = () => {
           </thead>
 
           <tbody>
-            {filteredTeams.map((team) => (
-              <TeamRow key={team.position} team={team} />
-            ))}
+            {filteredTeams.length > 0 ? (
+              filteredTeams.map((team) => (
+                <TeamRow key={team.position} team={team} />
+              ))
+            ) : (
+              <tr>
+                <td colSpan={4}>No results found.</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

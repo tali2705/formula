@@ -48,7 +48,6 @@ const Races = () => {
         <Search
           onChangeHandler={onSearchChange(setSearchField)}
           className="search-box"
-          placeholder="Search races..."
         />
       </div>
       <div className="wrapper-content">
@@ -65,9 +64,15 @@ const Races = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredRaces.map((race) => (
-              <RaceRow key={race.round} race={race} />
-            ))}
+            {filteredRaces.length > 0 ? (
+              filteredRaces.map((race) => (
+                <RaceRow key={race.round} race={race} />
+              ))
+            ) : (
+              <tr>
+                <td colSpan={5}>No results found.</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

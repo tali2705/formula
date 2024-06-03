@@ -16,15 +16,18 @@ const DriverDetails = () => {
   const { driverId } = useParams();
 
   const getDriverDetails = useCallback(async () => {
-    const url1 = `http://ergast.com/api/f1/2023/drivers/${driverId}/results.json`;
-    const url2 = `http://ergast.com/api/f1/2023/drivers/${driverId}/driverStandings.json`;
+    const driverResultURL = `http://ergast.com/api/f1/2023/drivers/${driverId}/results.json`;
+    const driverDetailsURL = `http://ergast.com/api/f1/2023/drivers/${driverId}/driverStandings.json`;
 
-    const data1 = await fetchData(url1);
-    const data2 = await fetchData(url2);
+    const [driverResultsResponse, driverDetailsResponse] = await Promise.all([
+      fetchData(driverResultURL),
+      fetchData(driverDetailsURL),
+    ]);
 
-    const result = data1.MRData.RaceTable.Races;
+    const result = driverResultsResponse.MRData.RaceTable.Races;
     const details =
-      data2.MRData.StandingsTable.StandingsLists[0].DriverStandings[0];
+      driverDetailsResponse.MRData.StandingsTable.StandingsLists[0]
+        .DriverStandings[0];
 
     setDriverResult(result);
     setDriverDetails(details);
@@ -63,7 +66,7 @@ const DriverDetails = () => {
       <div className="wrapper-details">
         <Card
           title={`${driverDetails.Driver.givenName} ${driverDetails.Driver.familyName}`}
-          caption1="Country: "
+          caption1="Nationality: "
           caption2="Team: "
           caption3="Birth: "
           caption4="Biography: "

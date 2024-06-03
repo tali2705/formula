@@ -17,17 +17,18 @@ const TeamDetails = () => {
   const { constructorId } = useParams();
 
   const getTeamDetails = useCallback(async () => {
-    const url1 = `http://ergast.com/api/f1/2023/constructors/${constructorId}/results.json`;
-    const url2 = `http://ergast.com/api/f1/2023/constructors/${constructorId}/constructorStandings.json`;
+    const teamResultURL = `http://ergast.com/api/f1/2023/constructors/${constructorId}/results.json`;
+    const teamDetailsURL = `http://ergast.com/api/f1/2023/constructors/${constructorId}/constructorStandings.json`;
 
-    const [response1, response2] = await Promise.all([
-      fetchData(url1),
-      fetchData(url2),
+    const [teamResultResponse, teamDetailsResponse] = await Promise.all([
+      fetchData(teamResultURL),
+      fetchData(teamDetailsURL),
     ]);
 
-    const result = response1.MRData.RaceTable.Races;
+    const result = teamResultResponse.MRData.RaceTable.Races;
     const details =
-      response2.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0];
+      teamDetailsResponse.MRData.StandingsTable.StandingsLists[0]
+        .ConstructorStandings[0];
 
     setTeamResults(result);
     setTeamDetails(details);
