@@ -72,6 +72,10 @@ export interface IRace {
     Results: IRaceResult[];
 }
 
+export interface IRaceRowProps {
+    race: IRace;
+}
+
 export interface IMRData {
     RaceTable: {
         Races: IRace[];

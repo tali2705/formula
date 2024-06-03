@@ -1,13 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import flagHandler from '../utils/flagHandler';
-import { IRace } from '../Interfaces/GlobalInterface';
+import { IRaceRowProps } from '../Interfaces/GlobalInterface';
 
-interface RaceRowProps {
-    race: IRace;
-}
-
-const RaceRow: React.FC<RaceRowProps> = ({ race }) => {
+const RaceRow: React.FC<IRaceRowProps> = ({ race }) => {
     const navigate = useNavigate();
 
     const winner = race.Results[0].Driver;
