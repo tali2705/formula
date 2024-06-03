@@ -165,3 +165,51 @@ export interface ITeam {
 export interface ITeamRow {
     team: ITeam;
 }
+
+export interface ITeamRaceResult {
+    position: string;
+    Driver: {
+        familyName: string;
+    };
+    points: string;
+}
+
+export interface ITeamRace {
+    round: number;
+    raceName: string;
+    Circuit: {
+        Location: {
+            country: string;
+        };
+    };
+    Results: ITeamRaceResult[];
+}
+
+export interface IApiResponseTeamResults {
+    MRData: {
+        RaceTable: {
+            Races: ITeamRace[];
+        };
+    };
+}
+
+export interface IApiResponseTeamStandings {
+    MRData: {
+        StandingsTable: {
+            StandingsLists: {
+                ConstructorStandings: ITeamStanding[];
+            }[];
+        };
+    };
+}
+
+export interface ITeamStanding {
+    position: string;
+    Constructor: {
+        constructorId: string;
+        name: string;
+        nationality: string;
+        url: string;
+    };
+    points: string;
+}

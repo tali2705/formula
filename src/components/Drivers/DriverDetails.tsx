@@ -25,9 +25,11 @@ const DriverDetails: React.FC = () => {
     );
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    const { driverId } = useParams<Record<string, string | undefined>>();
+    const { driverId } = useParams<{
+        driverId: string | undefined;
+    }>();
 
-    const getDriverDetails = useCallback(async () => {
+    const getDriverDetails = useCallback(async (): Promise<void> => {
         const url1: string = `http://ergast.com/api/f1/2023/drivers/${driverId}/results.json`;
         const url2: string = `http://ergast.com/api/f1/2023/drivers/${driverId}/driverStandings.json`;
 
