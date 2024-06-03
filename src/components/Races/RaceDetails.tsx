@@ -110,10 +110,10 @@ const RaceDetails: React.FC = () => {
                             <tbody>
                                 {qualifyingResults.length > 0 ? (
                                     qualifyingResults.map((qualifyRes) => {
-                                        const countryCode = flagHandler(
+                                        const countryCode: string = flagHandler(
                                             qualifyRes.Driver.nationality
                                         );
-                                        const bestTime =
+                                        const bestTime: string | undefined =
                                             getBestTime(qualifyRes);
 
                                         return (
@@ -164,7 +164,7 @@ const RaceDetails: React.FC = () => {
                             <tbody>
                                 {raceResult.length > 0 ? (
                                     raceResult.map((raceRes) => {
-                                        const countryCode = flagHandler(
+                                        const countryCode: string = flagHandler(
                                             raceRes.Driver.nationality
                                         );
 
