@@ -8,12 +8,6 @@ import Card from '../Card/Card';
 import { fetchData } from '../utils/fetchData';
 import flagHandler from '../utils/flagHandler';
 
-const getBestTime = (result) => {
-    const times = [result.Q1, result.Q2, result.Q3].filter(Boolean);
-
-    return times.sort()[0];
-};
-
 const RaceDetails = () => {
     const [qualifyingResults, setQualifyingResults] = useState([]);
     const [raceDetails, setRaceDetails] = useState({});
@@ -21,6 +15,12 @@ const RaceDetails = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     const { round } = useParams();
+
+    const getBestTime = (result) => {
+        const times = [result.Q1, result.Q2, result.Q3].filter(Boolean);
+
+        return times.sort()[0];
+    };
 
     const getRaceDetails = useCallback(async () => {
         const url1 = `http://ergast.com/api/f1/2023/${round}/qualifying.json`;
