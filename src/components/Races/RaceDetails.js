@@ -52,7 +52,7 @@ const RaceDetails = () => {
   const crumb = raceDetails.raceName;
   const breadcrumbs = [
     { label: "F1 - Feeder", route: "/" },
-    { label: "Races", route: "/" },
+    { label: "Races", route: "/races" },
     { label: `${crumb}`, route: `/driver/${round}` },
   ];
 
