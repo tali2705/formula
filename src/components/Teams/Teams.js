@@ -40,6 +40,10 @@ const Teams = () => {
     );
   }, [constructorStandings, searchField]);
 
+  if (isLoading) {
+    return <Loader />;
+  }
+
   const breadcrumbs = [
     { label: "F1 - Feeder", route: "/" },
     { label: "Teams", route: "/" },
@@ -47,49 +51,42 @@ const Teams = () => {
 
   return (
     <>
-      {!isLoading ? (
-        <>
-          <div className="header">
-            <Header data={breadcrumbs} />
-            <Search
-              onChangeHandler={onSearchChange(setSearchField)}
-              className="search-box"
-              placeholder="Search..."
-            />
-          </div>
-          <div className="wrapper-content">
-            <h2 className="title">Constructors Championship</h2>
-            <table className="main-table">
-              <caption className="table-caption">
-                Constructors for Championship Standings - 2023
-              </caption>
+      <div className="header">
+        <Header data={breadcrumbs} />
+        <Search
+          onChangeHandler={onSearchChange(setSearchField)}
+          className="search-box"
+        />
+      </div>
+      <div className="wrapper-content">
+        <h2 className="title">Constructors Championship</h2>
+        <table className="main-table">
+          <caption className="table-caption">
+            Constructors for Championship Standings - 2023
+          </caption>
 
-              <thead>
-                <tr>
-                  <th>Position</th>
-                  <th>Constructor</th>
-                  <th>Details</th>
-                  <th>Points</th>
-                </tr>
-              </thead>
+          <thead>
+            <tr>
+              <th>Position</th>
+              <th>Constructor</th>
+              <th>Details</th>
+              <th>Points</th>
+            </tr>
+          </thead>
 
-              <tbody>
-                {filteredTeams.length > 0 ? (
-                  filteredTeams.map((team) => (
-                    <TeamRow key={team.position} team={team} />
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan="3">Loading teams...</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        </>
-      ) : (
-        <Loader />
-      )}
+          <tbody>
+            {filteredTeams.length > 0 ? (
+              filteredTeams.map((team) => (
+                <TeamRow key={team.position} team={team} />
+              ))
+            ) : (
+              <tr>
+                <td colSpan={4}>No results found.</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };

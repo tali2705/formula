@@ -13,7 +13,7 @@ const TeamRow = ({ team }) => {
   };
 
   return (
-    <tr key={team.position}>
+    <tr>
       <td>{team.position}</td>
       <td onClick={handleTeamDetails}>
         <img
@@ -25,7 +25,7 @@ const TeamRow = ({ team }) => {
       </td>
       <td>
         <div className="flex">
-          Details:&nbsp;
+          Details:
           <Link to={team.Constructor.url} target="_blank">
             <div className="icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">

@@ -13,17 +13,15 @@ const DriverRow = ({ driver }) => {
   };
 
   return (
-    <tr key={driver.position}>
+    <tr>
       <td>{driver.position}</td>
-      <td>
+      <td className="driver" onClick={handleDriverDetails}>
         <img
           className="table-flag"
           src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
           alt={countryCode}
-        />
-      </td>
-      <td className="driver" onClick={handleDriverDetails}>
-        &nbsp;{driver.Driver.givenName}&nbsp;{driver.Driver.familyName}
+        />{" "}
+        {driver.Driver.givenName} {driver.Driver.familyName}
       </td>
       <td>{driver.Constructors.length > 0 && driver.Constructors[0].name}</td>
       <td>{driver.points}</td>

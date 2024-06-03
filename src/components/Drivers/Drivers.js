@@ -39,6 +39,9 @@ const Drivers = () => {
       )
     );
   }, [drivers, searchField]);
+  if (isLoading) {
+    return <Loader />;
+  }
 
   const breadcrumbs = [
     { label: "F1 - Feeder", route: "/" },
@@ -47,39 +50,32 @@ const Drivers = () => {
 
   return (
     <>
-      {!isLoading ? (
-        <>
-          <div className="header">
-            <Header data={breadcrumbs} />
-            <Search
-              onChangeHandler={onSearchChange(setSearchField)}
-              className="search-box"
-              placeholder="Search..."
-            />
-          </div>
-          <div className="wrapper-content">
-            <h2 className="title">Drivers Championship</h2>
-            <table className="main-table">
-              <caption className="table-caption">
-                Drivers Championship Standings - 2023
-              </caption>
-              <tbody>
-                {filteredDrivers.length > 0 ? (
-                  filteredDrivers.map((driver) => (
-                    <DriverRow key={driver.position} driver={driver} />
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan={5}>Loading drivers...</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        </>
-      ) : (
-        <Loader />
-      )}
+      <div className="header">
+        <Header data={breadcrumbs} />
+        <Search
+          onChangeHandler={onSearchChange(setSearchField)}
+          className="search-box"
+        />
+      </div>
+      <div className="wrapper-content">
+        <h2 className="title">Drivers Championship</h2>
+        <table className="main-table">
+          <caption className="table-caption">
+            Drivers Championship Standings - 2023
+          </caption>
+          <tbody>
+            {filteredDrivers.length > 0 ? (
+              filteredDrivers.map((driver) => (
+                <DriverRow key={driver.position} driver={driver} />
+              ))
+            ) : (
+              <tr>
+                <td colSpan={5}>No results found.</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };

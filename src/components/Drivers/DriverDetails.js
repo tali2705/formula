@@ -16,15 +16,18 @@ const DriverDetails = () => {
   const { driverId } = useParams();
 
   const getDriverDetails = useCallback(async () => {
-    const url1 = `http://ergast.com/api/f1/2023/drivers/${driverId}/results.json`;
-    const url2 = `http://ergast.com/api/f1/2023/drivers/${driverId}/driverStandings.json`;
+    const driverResultURL = `http://ergast.com/api/f1/2023/drivers/${driverId}/results.json`;
+    const driverDetailsURL = `http://ergast.com/api/f1/2023/drivers/${driverId}/driverStandings.json`;
 
-    const data1 = await fetchData(url1);
-    const data2 = await fetchData(url2);
+    const [driverResultsResponse, driverDetailsResponse] = await Promise.all([
+      fetchData(driverResultURL),
+      fetchData(driverDetailsURL),
+    ]);
 
-    const result = data1.MRData.RaceTable.Races;
+    const result = driverResultsResponse.MRData.RaceTable.Races;
     const details =
-      data2.MRData.StandingsTable.StandingsLists[0].DriverStandings[0];
+      driverDetailsResponse.MRData.StandingsTable.StandingsLists[0]
+        .DriverStandings[0];
 
     setDriverResult(result);
     setDriverDetails(details);
@@ -36,17 +39,18 @@ const DriverDetails = () => {
     getDriverDetails();
   }, [getDriverDetails]);
 
-  const breadcrumbs =
-    driverResult.length > 0
-      ? [
-          { label: "F1 - Feeder", route: "/" },
-          { label: "Drivers", route: "/" },
-          {
-            label: `${driverResult[0].Results[0].Driver.givenName} ${driverResult[0].Results[0].Driver.familyName}`,
-            route: `/driver/${driverId}`,
-          },
-        ]
-      : [];
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  const breadcrumbs = [
+    { label: "F1 - Feeder", route: "/" },
+    { label: "Drivers", route: "/" },
+    {
+      label: `${driverResult[0].Results[0].Driver.givenName} ${driverResult[0].Results[0].Driver.familyName}`,
+      route: `/driver/${driverId}`,
+    },
+  ];
 
   const driverCountryCode =
     driverResult.length > 0
@@ -55,76 +59,62 @@ const DriverDetails = () => {
 
   return (
     <>
-      {!isLoading ? (
-        <>
-          <div className="header">
-            <Header data={breadcrumbs} />
-          </div>
+      <div className="header">
+        <Header data={breadcrumbs} />
+      </div>
 
-          <div className="wrapper-details">
-            <Card
-              title={`${driverDetails.Driver.givenName} ${driverDetails.Driver.familyName}`}
-              caption1="Country: "
-              caption2="Team: "
-              caption3="Birth: "
-              caption4="Biography: "
-              text1={driverDetails.Driver.nationality}
-              text2={driverDetails.Constructors[0].name}
-              text3={driverDetails.Driver.dateOfBirth}
-              text4={driverDetails.Driver.url}
-              familyName={driverDetails.Driver.familyName}
-              cardCountryCode={driverCountryCode}
-              driverDetails={driverDetails}
-            />
-            <table>
-              <caption>Driver Details</caption>
-              <thead>
-                <tr>
-                  <th>Round</th>
-                  <th>Flag</th>
-                  <th>Race Name</th>
-                  <th>Constructor</th>
-                  <th>Grid</th>
-                  <th>Position</th>
+      <div className="wrapper-details">
+        <Card
+          title={`${driverDetails.Driver.givenName} ${driverDetails.Driver.familyName}`}
+          caption1="Nationality: "
+          caption2="Team: "
+          caption3="Birth: "
+          caption4="Biography: "
+          text1={driverDetails.Driver.nationality}
+          text2={driverDetails.Constructors[0].name}
+          text3={driverDetails.Driver.dateOfBirth}
+          text4={driverDetails.Driver.url}
+          familyName={driverDetails.Driver.familyName}
+          cardCountryCode={driverCountryCode}
+          driverDetails={true}
+        />
+        <table>
+          <caption>Driver Details</caption>
+          <thead>
+            <tr>
+              <th>Round</th>
+              <th>Flag</th>
+              <th>Race Name</th>
+              <th>Constructor</th>
+              <th>Grid</th>
+              <th>Position</th>
+            </tr>
+          </thead>
+          <tbody>
+            {driverResult.map((result) => {
+              const raceResult = result.Results[0];
+              const countryCode = flagHandler(result.Circuit.Location.country);
+
+              return (
+                <tr key={result.round}>
+                  <td>{result.round}</td>
+                  <td>
+                    <img
+                      className="table-flag"
+                      src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
+                      alt={countryCode}
+                    />
+                    {result.raceName}
+                  </td>
+                  <td>{raceResult.Constructor.name}</td>
+                  <td>{raceResult.grid}</td>
+                  <td>{raceResult.position}</td>
                 </tr>
-              </thead>
-              <tbody>
-                {driverResult.length > 0 ? (
-                  driverResult.map((result) => {
-                    const raceResult = result.Results[0];
-                    const countryCode = flagHandler(
-                      result.Circuit.Location.country
-                    );
-
-                    return (
-                      <tr key={result.round}>
-                        <td>{result.round}</td>
-                        <td>
-                          <img
-                            className="table-flag"
-                            src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-                            alt={countryCode}
-                          />
-                        </td>
-                        <td>{result.raceName}</td>
-                        <td>{raceResult.Constructor.name}</td>
-                        <td>{raceResult.grid}</td>
-                        <td>{raceResult.position}</td>
-                      </tr>
-                    );
-                  })
-                ) : (
-                  <tr>
-                    <td colSpan={6}>Loading driver details...</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        </>
-      ) : (
-        <Loader />
-      )}
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };
