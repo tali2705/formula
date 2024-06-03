@@ -5,6 +5,7 @@ $secondary-color: #333;
 
 .flex {
   display: flex;
+  align-items: end;
 }
 
 .wrapper {
@@ -127,8 +128,12 @@ $secondary-color: #333;
       padding: 15px;
       font-size: 18px;
       text-align: left;
+      span {
+        margin-left: 10px;
+      }
       .table-flag {
-        width: 25px;
+        width: 34px;
+        height: 34px;
       }
     }
     th {
@@ -138,9 +143,6 @@ $secondary-color: #333;
       padding: 15px;
       text-align: left;
     }
-    // tr:nth-child(even) {
-    //   background-color: $big-font-color;
-    // }
   }
   .wrapper-content {
     display: flex;
@@ -181,6 +183,7 @@ $secondary-color: #333;
         .card-info {
           margin-top: 15px;
           p {
+            display: flex;
             margin-top: 10px;
           }
           span {
