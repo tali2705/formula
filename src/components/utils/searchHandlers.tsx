@@ -14,6 +14,6 @@ export const filterItems = <T,>(
 
 export const onSearchChange =
     (setSearchField: React.Dispatch<React.SetStateAction<string>>) =>
-    (event: ChangeEvent<HTMLInputElement>) => {
+    (event: ChangeEvent<HTMLInputElement>): void => {
         setSearchField(event.target.value.toLowerCase());
     };
