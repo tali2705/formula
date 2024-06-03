@@ -39,7 +39,7 @@ const Card = (props) => {
           <span>{props.caption3}</span> {props.text3}
         </p>
         <p style={{ display: "flex" }}>
-          <span>{props.caption4}</span>&nbsp;
+          <span>{props.caption4}</span>
           <span className="icon" style={{ width: "15px" }}>
             <Link to={props.text4} target="_blank">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
