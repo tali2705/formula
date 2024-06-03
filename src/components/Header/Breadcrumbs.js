@@ -3,19 +3,21 @@ import { Link } from "react-router-dom";
 
 const Breadcrumbs = (props) => {
   return (
-    <ul className="breadcrumb">
+    <div className="crumbs">
       {props.data?.map((crumb, k) => {
         return (
-          <li className="crumb" key={k}>
+          <div className="crumb">
             {k < props.data.length - 1 ? (
-              <Link to={crumb.route}>{crumb.label}</Link>
+              <Link className="crumb" to={crumb.route}>
+                {crumb.label}
+              </Link>
             ) : (
               <span className="active-crumb"> {crumb.label} </span>
             )}
-          </li>
+          </div>
         );
       })}
-    </ul>
+    </div>
   );
 };
 export default Breadcrumbs;

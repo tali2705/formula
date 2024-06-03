@@ -58,7 +58,7 @@ const Drivers = () => {
         />
       </div>
       <div className="wrapper-content">
-        <h2 className="title">Drivers Championship</h2>
+        <h2 className="title">DRIVERS CHAMIPONSHIP</h2>
         <table className="main-table">
           <caption className="table-caption">
             Drivers Championship Standings - 2023
