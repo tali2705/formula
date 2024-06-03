@@ -213,3 +213,8 @@ export interface ITeamStanding {
     };
     points: string;
 }
+
+export interface IBreadCrumby {
+    label: string;
+    route: string;
+}

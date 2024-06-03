@@ -16,6 +16,7 @@ import {
     IDriverStanding,
     IDriver,
     IConstructorName,
+    IBreadCrumby,
 } from '../Interfaces/GlobalInterface';
 
 const DriverDetails: React.FC = () => {
@@ -53,16 +54,15 @@ const DriverDetails: React.FC = () => {
         getDriverDetails();
     }, [getDriverDetails]);
 
-    const breadcrumbs: {
-        label: string;
-        route: string;
-    }[] =
+    const crumb = driverResult[0].Results[0].Driver;
+
+    const breadcrumbs: IBreadCrumby[] =
         driverResult.length > 0
             ? [
                   { label: 'F1 - Feeder', route: '/' },
                   { label: 'Drivers', route: '/' },
                   {
-                      label: `${driverResult[0].Results[0].Driver.givenName} ${driverResult[0].Results[0].Driver.familyName}`,
+                      label: `${crumb.givenName} ${crumb.familyName}`,
                       route: `/driver/${driverId}`,
                   },
               ]
@@ -73,93 +73,82 @@ const DriverDetails: React.FC = () => {
             ? flagHandler(driverResult[0].Results[0].Driver.nationality)
             : '';
 
+    isLoading && <Loader />;
+
     return (
         <>
-            {!isLoading ? (
-                <>
-                    <div className='header'>
-                        <Header data={breadcrumbs} />
-                    </div>
+            <div className='header'>
+                <Header data={breadcrumbs} />
+            </div>
 
-                    <div className='wrapper-details'>
-                        {driverDetails && (
-                            <Card
-                                title={`${driverDetails.Driver.givenName} ${driverDetails.Driver.familyName}`}
-                                caption1='Nationality: '
-                                caption2='Team: '
-                                caption3='Birth: '
-                                caption4='Biography: '
-                                text1={driverDetails.Driver.nationality}
-                                text2={driverDetails.Constructors[0].name}
-                                text3={driverDetails.Driver.dateOfBirth}
-                                text4={driverDetails.Driver.url}
-                                familyName={driverDetails.Driver.familyName}
-                                cardCountryCode={driverCountryCode}
-                                driverDetails={true}
-                            />
-                        )}
-                        <table>
-                            <caption>Driver Details</caption>
-                            <thead>
-                                <tr>
-                                    <th>Round</th>
-                                    <th>Flag</th>
-                                    <th>Race Name</th>
-                                    <th>Constructor</th>
-                                    <th>Grid</th>
-                                    <th>Position</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {driverResult.length > 0 ? (
-                                    driverResult.map((result) => {
-                                        const raceResult: {
-                                            Driver: IDriver;
-                                            Constructor: IConstructorName;
-                                            grid: number;
-                                            position: string;
-                                        } = result.Results[0];
+            <div className='wrapper-details'>
+                {driverDetails && (
+                    <Card
+                        title={`${driverDetails.Driver.givenName} ${driverDetails.Driver.familyName}`}
+                        caption1='Nationality: '
+                        caption2='Team: '
+                        caption3='Birth: '
+                        caption4='Biography: '
+                        text1={driverDetails.Driver.nationality}
+                        text2={driverDetails.Constructors[0].name}
+                        text3={driverDetails.Driver.dateOfBirth}
+                        text4={driverDetails.Driver.url}
+                        familyName={driverDetails.Driver.familyName}
+                        cardCountryCode={driverCountryCode}
+                        driverDetails={true}
+                    />
+                )}
+                <table>
+                    <caption>Driver Details</caption>
+                    <thead>
+                        <tr>
+                            <th>Round</th>
+                            <th>Flag</th>
+                            <th>Race Name</th>
+                            <th>Constructor</th>
+                            <th>Grid</th>
+                            <th>Position</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {driverResult.length > 0 ? (
+                            driverResult.map((result) => {
+                                const raceResult: {
+                                    Driver: IDriver;
+                                    Constructor: IConstructorName;
+                                    grid: number;
+                                    position: string;
+                                } = result.Results[0];
 
-                                        const countryCode: string = flagHandler(
-                                            result.Circuit.Location.country
-                                        );
+                                const countryCode: string = flagHandler(
+                                    result.Circuit.Location.country
+                                );
 
-                                        return (
-                                            <tr key={result.round}>
-                                                <td>{result.round}</td>
-                                                <td>
-                                                    <img
-                                                        className='table-flag'
-                                                        src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-                                                        alt={countryCode}
-                                                    />
-                                                </td>
-                                                <td>{result.raceName}</td>
-                                                <td>
-                                                    {
-                                                        raceResult.Constructor
-                                                            .name
-                                                    }
-                                                </td>
-                                                <td>{raceResult.grid}</td>
-                                                <td>{raceResult.position}</td>
-                                            </tr>
-                                        );
-                                    })
-                                ) : (
-                                    <tr>
-                                        <td colSpan={6}>
-                                            Loading driver details...
+                                return (
+                                    <tr key={result.round}>
+                                        <td>{result.round}</td>
+                                        <td>
+                                            <img
+                                                className='table-flag'
+                                                src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
+                                                alt={countryCode}
+                                            />
                                         </td>
+                                        <td>{result.raceName}</td>
+                                        <td>{raceResult.Constructor.name}</td>
+                                        <td>{raceResult.grid}</td>
+                                        <td>{raceResult.position}</td>
                                     </tr>
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
-                </>
-            ) : (
-                <Loader />
-            )}
+                                );
+                            })
+                        ) : (
+                            <tr>
+                                <td colSpan={6}>Loading driver details...</td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
         </>
     );
 };

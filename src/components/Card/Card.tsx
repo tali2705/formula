@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { CardProps } from '../Interfaces/GlobalInterface';
 
 const Card: React.FC<CardProps> = (props) => {
-    let srcChunk = '';
-    let propsChunk = '';
+    let srcChunk: string = '';
+    let propsChunk: string = '';
 
     props.driverDetails &&
         (srcChunk = 'drivers') &&

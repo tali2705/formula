@@ -14,6 +14,7 @@ import {
     IApiResponseTeamStandings,
     ITeamStanding,
     ITeamRaceResult,
+    IBreadCrumby,
 } from '../Interfaces/GlobalInterface';
 
 const TeamDetails = () => {
@@ -35,19 +36,20 @@ const TeamDetails = () => {
             fetchData<IApiResponseTeamStandings>(url2),
         ]);
 
-        const result = response1.MRData.RaceTable.Races;
-        const details =
+        const result: ITeamRace[] = response1.MRData.RaceTable.Races;
+        const details: ITeamStanding =
             response2.MRData.StandingsTable.StandingsLists[0]
                 .ConstructorStandings[0];
 
+        const driversRaceResults: ITeamRaceResult[] = result[0].Results;
+
+        setDrivers([
+            driversRaceResults[0]?.Driver.familyName || 'Driver 1',
+            driversRaceResults[1]?.Driver.familyName || 'Driver 2',
+        ]);
+
         setTeamResults(result);
         setTeamDetails(details);
-
-        const firstRaceResults = result[0].Results;
-        setDrivers([
-            firstRaceResults[0]?.Driver.familyName || 'Driver 1',
-            firstRaceResults[1]?.Driver.familyName || 'Driver 2',
-        ]);
         setIsLoading(false);
     }, [constructorId]);
 
@@ -55,11 +57,10 @@ const TeamDetails = () => {
         getTeamDetails();
     }, [getTeamDetails]);
 
-    const crumb: string = teamDetails?.Constructor?.name || 'Team Details';
-    const breadcrumbs: {
-        label: string;
-        route: string;
-    }[] = [
+    const crumb: string | undefined =
+        teamDetails?.Constructor?.name || 'Team Details';
+
+    const breadcrumbs: IBreadCrumby[] = [
         { label: 'F1 - Feeder', route: '/' },
         { label: 'Teams', route: '/teams' },
         { label: crumb, route: `/teams/${constructorId}` },
@@ -69,88 +70,80 @@ const TeamDetails = () => {
         ? flagHandler(teamDetails.Constructor.nationality)
         : '';
 
+    isLoading && <Loader />;
+
     return (
         <>
-            {!isLoading ? (
-                <>
-                    <div className='header'>
-                        <Header data={breadcrumbs} />
-                    </div>
-                    <div className='wrapper-details'>
-                        <Card
-                            title={teamDetails?.Constructor?.name || ''}
-                            caption1='Country: '
-                            caption2='Position: '
-                            caption3='Points: '
-                            caption4='History: '
-                            text1={teamDetails?.Constructor?.nationality || ''}
-                            text2={teamDetails?.position || ''}
-                            text3={teamDetails?.points || ''}
-                            text4={teamDetails?.Constructor?.url || ''}
-                            cardCountryCode={teamCountryCode}
-                            teamId={
-                                teamDetails?.Constructor?.constructorId || ''
-                            }
-                            teamDetails={true}
-                        />
+            <div className='header'>
+                <Header data={breadcrumbs} />
+            </div>
+            <div className='wrapper-details'>
+                <Card
+                    title={teamDetails?.Constructor?.name || ''}
+                    caption1='Country: '
+                    caption2='Position: '
+                    caption3='Points: '
+                    caption4='History: '
+                    text1={teamDetails?.Constructor?.nationality || ''}
+                    text2={teamDetails?.position || ''}
+                    text3={teamDetails?.points || ''}
+                    text4={teamDetails?.Constructor?.url || ''}
+                    cardCountryCode={teamCountryCode}
+                    teamId={teamDetails?.Constructor?.constructorId || ''}
+                    teamDetails={true}
+                />
 
-                        <table>
-                            <caption>Team Details</caption>
-                            <thead>
-                                <tr>
-                                    <th>Round</th>
-                                    <th>Flag</th>
-                                    <th>Grand Prix</th>
-                                    <th>{drivers[0]}</th>
-                                    <th>{drivers[1]}</th>
-                                    <th>Points</th>
+                <table>
+                    <caption>Team Details</caption>
+                    <thead>
+                        <tr>
+                            <th>Round</th>
+                            <th>Flag</th>
+                            <th>Grand Prix</th>
+                            <th>{drivers[0]}</th>
+                            <th>{drivers[1]}</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {teamResults.map((result) => {
+                            const raceResult: ITeamRaceResult[] =
+                                result.Results;
+                            const countryCode: string = flagHandler(
+                                result.Circuit.Location.country
+                            );
+
+                            const firstDriverPoints: string =
+                                raceResult[0]?.points || '0';
+                            const secondDriverPoints: string =
+                                raceResult[1]?.points || '0';
+                            const teamPoints: number =
+                                +firstDriverPoints + +secondDriverPoints;
+                            return (
+                                <tr key={result.round}>
+                                    <td>{result.round}</td>
+                                    <td>
+                                        <img
+                                            src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
+                                            alt={
+                                                result.Circuit.Location.country
+                                            }
+                                            style={{
+                                                width: '32px',
+                                                height: '32px',
+                                            }}
+                                        />
+                                    </td>
+                                    <td>{result.raceName}</td>
+                                    <td>{firstDriverPoints}</td>
+                                    <td>{secondDriverPoints}</td>
+                                    <td>{teamPoints}</td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {teamResults.map((result) => {
-                                    const raceResult: ITeamRaceResult[] =
-                                        result.Results;
-                                    const countryCode: string = flagHandler(
-                                        result.Circuit.Location.country
-                                    );
-
-                                    const firstDriverPoints: string =
-                                        raceResult[0]?.points || '0';
-                                    const secondDriverPoints: string =
-                                        raceResult[1]?.points || '0';
-                                    const teamPoints: number =
-                                        +firstDriverPoints +
-                                        +secondDriverPoints;
-                                    return (
-                                        <tr key={result.round}>
-                                            <td>{result.round}</td>
-                                            <td>
-                                                <img
-                                                    src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-                                                    alt={
-                                                        result.Circuit.Location
-                                                            .country
-                                                    }
-                                                    style={{
-                                                        width: '32px',
-                                                        height: '32px',
-                                                    }}
-                                                />
-                                            </td>
-                                            <td>{result.raceName}</td>
-                                            <td>{firstDriverPoints}</td>
-                                            <td>{secondDriverPoints}</td>
-                                            <td>{teamPoints}</td>
-                                        </tr>
-                                    );
-                                })}
-                            </tbody>
-                        </table>
-                    </div>
-                </>
-            ) : (
-                <Loader />
-            )}
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
         </>
     );
 };

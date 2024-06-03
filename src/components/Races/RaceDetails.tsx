@@ -13,6 +13,7 @@ import {
     IRace,
     IQualifyingResult,
     IRaceResult,
+    IBreadCrumby,
 } from '../Interfaces/GlobalInterface';
 
 const RaceDetails: React.FC = () => {
@@ -59,11 +60,9 @@ const RaceDetails: React.FC = () => {
         getRaceDetails();
     }, [getRaceDetails]);
 
-    const crumb: string | undefined = raceDetails?.raceName;
-    const breadcrumbs: {
-        label: string;
-        route: string;
-    }[] = [
+    const crumb: string | undefined = raceDetails?.raceName || 'Race Details';
+
+    const breadcrumbs: IBreadCrumby[] = [
         { label: 'F1 - Feeder', route: '/' },
         { label: 'Teams', route: '/' },
         { label: `${crumb}`, route: `/driver/${round}` },
