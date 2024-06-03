@@ -87,7 +87,6 @@ const TeamDetails = () => {
           <thead>
             <tr>
               <th>Round</th>
-              <th>Flag</th>
               <th>Grand Prix</th>
               <th>{drivers[0]}</th>
               <th>{drivers[1]}</th>

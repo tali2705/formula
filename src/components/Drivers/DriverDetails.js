@@ -83,7 +83,6 @@ const DriverDetails = () => {
           <thead>
             <tr>
               <th>Round</th>
-              <th>Flag</th>
               <th>Race Name</th>
               <th>Constructor</th>
               <th>Grid</th>
