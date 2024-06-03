@@ -36,7 +36,10 @@ export interface IApiResponseStandings {
 }
 
 export interface IConstructor {
+    constructorId: string;
     name: string;
+    nationality: string;
+    url: string;
 }
 
 export interface IQualifyingResult {
@@ -130,5 +133,35 @@ export interface IDriverResult {
 
 export interface IDriverDetails {
     Driver: IDriver;
-    Constructors: IConstructor[];
+    Constructors: IConstructorName[];
+}
+
+export interface IConstructorName {
+    name: string;
+}
+
+export interface ITeamStanding {
+    position: string;
+    Constructor: IConstructor;
+    points: string;
+}
+
+export interface IApiResponseTeamStanding {
+    MRData: {
+        StandingsTable: {
+            StandingsLists: {
+                ConstructorStandings: ITeamStanding[];
+            }[];
+        };
+    };
+}
+
+export interface ITeam {
+    position: string;
+    Constructor: IConstructor;
+    points: string;
+}
+
+export interface ITeamRow {
+    team: ITeam;
 }

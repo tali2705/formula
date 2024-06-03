@@ -15,7 +15,7 @@ import {
     IDriverDetails,
     IDriverStanding,
     IDriver,
-    IConstructor,
+    IConstructorName,
 } from '../Interfaces/GlobalInterface';
 
 const DriverDetails: React.FC = () => {
@@ -43,7 +43,7 @@ const DriverDetails: React.FC = () => {
                 .DriverStandings[0];
 
         setDriverResult(result);
-        setDriverDetails(details as IDriverDetails);
+        setDriverDetails(details);
         setIsLoading(false);
     }, [driverId]);
 
@@ -113,7 +113,7 @@ const DriverDetails: React.FC = () => {
                                     driverResult.map((result) => {
                                         const raceResult: {
                                             Driver: IDriver;
-                                            Constructor: IConstructor;
+                                            Constructor: IConstructorName;
                                             grid: number;
                                             position: string;
                                         } = result.Results[0];

@@ -1,8 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { ITeamRow } from '../Interfaces/GlobalInterface';
 
 import flagHandler from '../utils/flagHandler';
 
-const TeamRow = ({ team }) => {
+const TeamRow: React.FC<ITeamRow> = ({ team }) => {
     const navigate = useNavigate();
 
     const countryCode = flagHandler(team.Constructor.nationality);
