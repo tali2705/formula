@@ -14,10 +14,6 @@ export interface IDriverRow {
     points: string;
 }
 
-export interface IResult {
-    Driver: IDriver;
-}
-
 export interface IDriverStanding {
     position: string;
     Driver: IDriver;
@@ -56,6 +52,7 @@ export interface IRaceResult {
     position: string;
     Driver: IDriver;
     Constructor: IConstructor;
+    grid: number;
     Time?: {
         time: string;
     };
@@ -113,4 +110,25 @@ export interface CardProps {
     familyName?: string;
     round?: string;
     teamId?: string;
+}
+
+export interface IDriverResult {
+    Results: {
+        Driver: IDriver;
+        Constructor: IConstructor;
+        grid: number;
+        position: string;
+    }[];
+    Circuit: {
+        Location: {
+            country: string;
+        };
+    };
+    round: number;
+    raceName: string;
+}
+
+export interface IDriverDetails {
+    Driver: IDriver;
+    Constructors: IConstructor[];
 }

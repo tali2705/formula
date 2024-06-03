@@ -8,29 +8,42 @@ import Card from '../Card/Card';
 import { fetchData } from '../utils/fetchData';
 import flagHandler from '../utils/flagHandler';
 
-const DriverDetails = () => {
-    const [driverResult, setDriverResult] = useState([]);
-    const [driverDetails, setDriverDetails] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+import {
+    IApiResponse,
+    IApiResponseStandings,
+    IDriverResult,
+    IDriverDetails,
+    IDriverStanding,
+    IDriver,
+    IConstructor,
+} from '../Interfaces/GlobalInterface';
 
-    const { driverId } = useParams();
+const DriverDetails: React.FC = () => {
+    const [driverResult, setDriverResult] = useState<IDriverResult[]>([]);
+    const [driverDetails, setDriverDetails] = useState<IDriverDetails | null>(
+        null
+    );
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+
+    const { driverId } = useParams<Record<string, string | undefined>>();
 
     const getDriverDetails = useCallback(async () => {
-        const url1 = `http://ergast.com/api/f1/2023/drivers/${driverId}/results.json`;
-        const url2 = `http://ergast.com/api/f1/2023/drivers/${driverId}/driverStandings.json`;
+        const url1: string = `http://ergast.com/api/f1/2023/drivers/${driverId}/results.json`;
+        const url2: string = `http://ergast.com/api/f1/2023/drivers/${driverId}/driverStandings.json`;
 
-        const [response1, response2] = await Promise.all([
-            fetchData(url1),
-            fetchData(url2),
-        ]);
+        const [response1, response2]: [IApiResponse, IApiResponseStandings] =
+            await Promise.all([
+                fetchData<IApiResponse>(url1),
+                fetchData<IApiResponseStandings>(url2),
+            ]);
 
-        const result = response1.MRData.RaceTable.Races;
-        const details =
+        const result: IDriverResult[] = response1.MRData.RaceTable.Races;
+        const details: IDriverStanding =
             response2.MRData.StandingsTable.StandingsLists[0]
                 .DriverStandings[0];
 
         setDriverResult(result);
-        setDriverDetails(details);
+        setDriverDetails(details as IDriverDetails);
         setIsLoading(false);
     }, [driverId]);
 
@@ -38,7 +51,10 @@ const DriverDetails = () => {
         getDriverDetails();
     }, [getDriverDetails]);
 
-    const breadcrumbs =
+    const breadcrumbs: {
+        label: string;
+        route: string;
+    }[] =
         driverResult.length > 0
             ? [
                   { label: 'F1 - Feeder', route: '/' },
@@ -50,7 +66,7 @@ const DriverDetails = () => {
               ]
             : [];
 
-    const driverCountryCode =
+    const driverCountryCode: string =
         driverResult.length > 0
             ? flagHandler(driverResult[0].Results[0].Driver.nationality)
             : '';
@@ -64,20 +80,22 @@ const DriverDetails = () => {
                     </div>
 
                     <div className='wrapper-details'>
-                        <Card
-                            title={`${driverDetails.Driver.givenName} ${driverDetails.Driver.familyName}`}
-                            caption1='Nationality: '
-                            caption2='Team: '
-                            caption3='Birth: '
-                            caption4='Biography: '
-                            text1={driverDetails.Driver.nationality}
-                            text2={driverDetails.Constructors[0].name}
-                            text3={driverDetails.Driver.dateOfBirth}
-                            text4={driverDetails.Driver.url}
-                            familyName={driverDetails.Driver.familyName}
-                            cardCountryCode={driverCountryCode}
-                            driverDetails={true}
-                        />
+                        {driverDetails && (
+                            <Card
+                                title={`${driverDetails.Driver.givenName} ${driverDetails.Driver.familyName}`}
+                                caption1='Nationality: '
+                                caption2='Team: '
+                                caption3='Birth: '
+                                caption4='Biography: '
+                                text1={driverDetails.Driver.nationality}
+                                text2={driverDetails.Constructors[0].name}
+                                text3={driverDetails.Driver.dateOfBirth}
+                                text4={driverDetails.Driver.url}
+                                familyName={driverDetails.Driver.familyName}
+                                cardCountryCode={driverCountryCode}
+                                driverDetails={true}
+                            />
+                        )}
                         <table>
                             <caption>Driver Details</caption>
                             <thead>
@@ -93,8 +111,14 @@ const DriverDetails = () => {
                             <tbody>
                                 {driverResult.length > 0 ? (
                                     driverResult.map((result) => {
-                                        const raceResult = result.Results[0];
-                                        const countryCode = flagHandler(
+                                        const raceResult: {
+                                            Driver: IDriver;
+                                            Constructor: IConstructor;
+                                            grid: number;
+                                            position: string;
+                                        } = result.Results[0];
+
+                                        const countryCode: string = flagHandler(
                                             result.Circuit.Location.country
                                         );
 
