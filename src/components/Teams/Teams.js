@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 
 import Loader from "../../Loader";
 import Search from "../Header/Search";
-import Header from "../Header/Header";
+import Breadcrumbs from "../Header/Breadcrumbs";
 import TeamRow from "./TeamRow";
 
 import { fetchData } from "../utils/fetchData";
@@ -52,7 +52,7 @@ const Teams = () => {
   return (
     <>
       <div className="header">
-        <Header data={breadcrumbs} />
+        <Breadcrumbs data={breadcrumbs} />
         <Search
           onChangeHandler={onSearchChange(setSearchField)}
           className="search-box"

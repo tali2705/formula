@@ -2,8 +2,8 @@ import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 
 import Loader from "../../Loader";
-import Header from "../Header/Header";
 import Card from "../Card/Card";
+import Breadcrumbs from "../Header/Breadcrumbs";
 
 import { fetchData } from "../utils/fetchData";
 import flagHandler from "../utils/flagHandler";
@@ -63,7 +63,7 @@ const RaceDetails = () => {
   return (
     <>
       <div className="header">
-        <Header data={breadcrumbs} />
+        <Breadcrumbs data={breadcrumbs} />
       </div>
       <div className="wrapper-details flex">
         <Card

@@ -2,8 +2,8 @@ import { useEffect, useState, useCallback } from "react";
 
 import Loader from "../../Loader";
 import Search from "../Header/Search";
-import Header from "../Header/Header";
 import RaceRow from "./RaceRow";
+import Breadcrumbs from "../Header/Breadcrumbs";
 
 import { fetchData } from "../utils/fetchData";
 import { filterItems, onSearchChange } from "../utils/searchHandlers";
@@ -44,7 +44,7 @@ const Races = () => {
   return (
     <>
       <div className="header">
-        <Header data={breadcrumbs} />
+        <Breadcrumbs data={breadcrumbs} />
         <Search
           onChangeHandler={onSearchChange(setSearchField)}
           className="search-box"

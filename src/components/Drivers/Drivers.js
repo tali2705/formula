@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 
 import Loader from "../../Loader";
 import Search from "../Header/Search";
-import Header from "../Header/Header";
+import Breadcrumbs from "../Header/Breadcrumbs";
 import DriverRow from "./DriverRow";
 
 import { fetchData } from "../utils/fetchData";
@@ -51,7 +51,7 @@ const Drivers = () => {
   return (
     <>
       <div className="header">
-        <Header data={breadcrumbs} />
+        <Breadcrumbs data={breadcrumbs} />
         <Search
           onChangeHandler={onSearchChange(setSearchField)}
           className="search-box"

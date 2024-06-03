@@ -4,7 +4,7 @@ import {
   Route,
   NavLink,
 } from "react-router-dom";
-import logo from "../../assets/formula1-logo.png";
+import logo from "../../assets/formula1-logo_rendered.png";
 
 import Races from "../Races/Races";
 import RaceDetails from "../Races/RaceDetails";
