@@ -76,7 +76,7 @@ const DriverDetails = () => {
                             text4={driverDetails.Driver.url}
                             familyName={driverDetails.Driver.familyName}
                             cardCountryCode={driverCountryCode}
-                            driverDetails={driverDetails}
+                            driverDetails={true}
                         />
                         <table>
                             <caption>Driver Details</caption>

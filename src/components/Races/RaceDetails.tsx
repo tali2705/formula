@@ -15,11 +15,6 @@ import {
     IRaceResult,
 } from '../Interfaces/GlobalInterface';
 
-const getBestTime = (result: IQualifyingResult): string => {
-    const times = [result.Q1, result.Q2, result.Q3].filter(Boolean);
-    return times.sort()[0];
-};
-
 const RaceDetails: React.FC = () => {
     const [qualifyingResults, setQualifyingResults] = useState<
         IQualifyingResult[]
@@ -29,6 +24,11 @@ const RaceDetails: React.FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const { round } = useParams<{ round: string }>();
+
+    const getBestTime = (result: IQualifyingResult): string => {
+        const times = [result.Q1, result.Q2, result.Q3].filter(Boolean);
+        return times.sort()[0];
+    };
 
     const getRaceDetails = useCallback(async () => {
         const url1 = `http://ergast.com/api/f1/2023/${round}/qualifying.json`;

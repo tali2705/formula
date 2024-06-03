@@ -14,7 +14,7 @@ const DriverRow: React.FC<{ driver: IDriverRow }> = ({ driver }) => {
     };
 
     return (
-        <tr key={driver.position}>
+        <tr>
             <td>{driver.position}</td>
             <td>
                 <img
