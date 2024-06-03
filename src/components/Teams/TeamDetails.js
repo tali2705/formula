@@ -115,8 +115,8 @@ const TeamDetails = () => {
                         height: "32px",
                       }}
                     />
+                    {result.raceName}
                   </td>
-                  <td>{result.raceName}</td>
                   <td>{firstDriverPoints || "N/A"}</td>
                   <td>{secondDriverPoints || "N/A"}</td>
                   <td>{teamPoints || "N/A"}</td>

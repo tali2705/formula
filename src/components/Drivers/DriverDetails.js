@@ -101,8 +101,8 @@ const DriverDetails = () => {
                       src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
                       alt={countryCode}
                     />
+                    {result.raceName}
                   </td>
-                  <td>{result.raceName}</td>
                   <td>{raceResult.Constructor.name}</td>
                   <td>{raceResult.grid}</td>
                   <td>{raceResult.position}</td>
