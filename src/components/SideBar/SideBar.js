@@ -29,40 +29,30 @@ const SideBar = () => {
             />
           </div>
           <nav className="side-nav">
-            <ul className="side-nav-items">
-              <li className="side-nav-item">
-                <NavLink
-                  to="/"
-                  className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "active" : ""
-                  }
-                >
-                  Drivers
-                </NavLink>
-              </li>
-
-              <li className="side-nav-item">
-                <NavLink
-                  to="/teams"
-                  className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "active" : ""
-                  }
-                >
-                  Teams
-                </NavLink>
-              </li>
-
-              <li className="side-nav-item">
-                <NavLink
-                  to="/races"
-                  className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "active" : ""
-                  }
-                >
-                  Races
-                </NavLink>
-              </li>
-            </ul>
+            <NavLink
+              to="/"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
+              Drivers
+            </NavLink>
+            <NavLink
+              to="/teams"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
+              Teams
+            </NavLink>
+            <NavLink
+              to="/races"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
+              Races
+            </NavLink>
           </nav>
         </div>
         <div className="main-wrapper">
