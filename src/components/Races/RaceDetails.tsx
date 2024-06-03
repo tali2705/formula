@@ -8,28 +8,37 @@ import Card from '../Card/Card';
 import { fetchData } from '../utils/fetchData';
 import flagHandler from '../utils/flagHandler';
 
-const getBestTime = (result) => {
-    const times = [result.Q1, result.Q2, result.Q3].filter(Boolean);
+import {
+    IApiResponse,
+    IRace,
+    IQualifyingResult,
+    IRaceResult,
+} from '../Interfaces/GlobalInterface';
 
+const getBestTime = (result: IQualifyingResult): string => {
+    const times = [result.Q1, result.Q2, result.Q3].filter(Boolean);
     return times.sort()[0];
 };
 
-const RaceDetails = () => {
-    const [qualifyingResults, setQualifyingResults] = useState([]);
-    const [raceDetails, setRaceDetails] = useState({});
-    const [raceResult, setRaceResult] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+const RaceDetails: React.FC = () => {
+    const [qualifyingResults, setQualifyingResults] = useState<
+        IQualifyingResult[]
+    >([]);
+    const [raceDetails, setRaceDetails] = useState<IRace | null>(null);
+    const [raceResult, setRaceResult] = useState<IRaceResult[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    const { round } = useParams();
+    const { round } = useParams<{ round: string }>();
 
     const getRaceDetails = useCallback(async () => {
         const url1 = `http://ergast.com/api/f1/2023/${round}/qualifying.json`;
         const url2 = `http://ergast.com/api/f1/2023/${round}/results.json`;
 
-        const [response1, response2] = await Promise.all([
-            fetchData(url1),
-            fetchData(url2),
-        ]);
+        const [response1, response2]: [IApiResponse, IApiResponse] =
+            await Promise.all([
+                fetchData<IApiResponse>(url1),
+                fetchData<IApiResponse>(url2),
+            ]);
 
         const qResults = response1.MRData.RaceTable.Races[0].QualifyingResults;
         const aboutRace = response1.MRData.RaceTable.Races[0];
@@ -45,14 +54,14 @@ const RaceDetails = () => {
         getRaceDetails();
     }, [getRaceDetails]);
 
-    const crumb = raceDetails.raceName;
+    const crumb = raceDetails?.raceName;
     const breadcrumbs = [
         { label: 'F1 - Feeder', route: '/' },
         { label: 'Teams', route: '/' },
         { label: `${crumb}`, route: `/driver/${round}` },
     ];
 
-    const raceCountryCode = raceDetails.Circuit
+    const raceCountryCode = raceDetails?.Circuit
         ? flagHandler(raceDetails.Circuit.Location.country)
         : '';
 
@@ -60,22 +69,26 @@ const RaceDetails = () => {
         <>
             {!isLoading ? (
                 <>
-                    <Header data={breadcrumbs} />
-                    <Card
-                        title={raceDetails.raceName}
-                        caption1={`Country: `}
-                        caption2={`Location: `}
-                        caption3={`Date: `}
-                        caption4={`Full report: `}
-                        text1={raceDetails.Circuit.Location.country}
-                        text2={raceDetails.Circuit.Location.locality}
-                        text3={raceDetails.date}
-                        text4={raceDetails.url}
-                        round={raceDetails.round}
-                        cardCountryCode={raceCountryCode}
-                        raceDetails={raceDetails}
-                    />
-                    <div>
+                    <div className='header'>
+                        <Header data={breadcrumbs} />
+                    </div>
+                    <div className='wrapper-details flex'>
+                        {raceDetails && (
+                            <Card
+                                title={raceDetails.raceName}
+                                caption1='Country: '
+                                caption2='Location: '
+                                caption3='Date: '
+                                caption4='Full report: '
+                                text1={raceDetails.Circuit.Location.country}
+                                text2={raceDetails.Circuit.Location.locality}
+                                text3={raceDetails.date}
+                                text4={raceDetails.url}
+                                round={raceDetails.round.toString()}
+                                cardCountryCode={raceCountryCode}
+                                raceDetails={true}
+                            />
+                        )}
                         <table>
                             <caption>Qualifying Results</caption>
                             <thead>
@@ -130,7 +143,7 @@ const RaceDetails = () => {
                             </tbody>
                         </table>
 
-                        <table>
+                        <table className='width90'>
                             <caption>Race Results</caption>
                             <thead>
                                 <tr>
@@ -174,7 +187,7 @@ const RaceDetails = () => {
                                     })
                                 ) : (
                                     <tr>
-                                        <td colSpan={4}>Loading drivers...</td>
+                                        <td colSpan={4}>Loading results...</td>
                                     </tr>
                                 )}
                             </tbody>

@@ -2,8 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import flagHandler from '../utils/flagHandler';
+import { IDriverRow } from '../Interfaces/GlobalInterface';
 
-const DriverRow = ({ driver }) => {
+const DriverRow: React.FC<{ driver: IDriverRow }> = ({ driver }) => {
     const navigate = useNavigate();
 
     const countryCode = flagHandler(driver.Driver.nationality);
@@ -17,6 +18,7 @@ const DriverRow = ({ driver }) => {
             <td>{driver.position}</td>
             <td>
                 <img
+                    className='table-flag'
                     src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
                     alt={countryCode}
                 />
