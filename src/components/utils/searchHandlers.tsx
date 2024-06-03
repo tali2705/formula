@@ -5,7 +5,7 @@ export const filterItems = <T,>(
     searchTerm: string,
     getKey: (item: T) => string
 ): T[] => {
-    const trimmedSearchTerm = searchTerm.trim().toLowerCase();
+    const trimmedSearchTerm: string = searchTerm.trim().toLowerCase();
 
     return items.filter((item) =>
         getKey(item).toLowerCase().includes(trimmedSearchTerm)

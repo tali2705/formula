@@ -23,16 +23,19 @@ const RaceDetails: React.FC = () => {
     const [raceResult, setRaceResult] = useState<IRaceResult[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    const { round } = useParams<{ round: string }>();
+    const { round } = useParams<{ round: string | undefined }>();
 
-    const getBestTime = (result: IQualifyingResult): string => {
-        const times = [result.Q1, result.Q2, result.Q3].filter(Boolean);
-        return times.sort()[0];
+    const getBestTime = (result: IQualifyingResult): string | undefined => {
+        const times: string[] = [result.Q1, result.Q2, result.Q3].filter(
+            (time) => time !== undefined
+        );
+
+        return times.sort()[0] || '';
     };
 
     const getRaceDetails = useCallback(async () => {
-        const url1 = `http://ergast.com/api/f1/2023/${round}/qualifying.json`;
-        const url2 = `http://ergast.com/api/f1/2023/${round}/results.json`;
+        const url1: string = `http://ergast.com/api/f1/2023/${round}/qualifying.json`;
+        const url2: string = `http://ergast.com/api/f1/2023/${round}/results.json`;
 
         const [response1, response2]: [IApiResponse, IApiResponse] =
             await Promise.all([
@@ -40,9 +43,11 @@ const RaceDetails: React.FC = () => {
                 fetchData<IApiResponse>(url2),
             ]);
 
-        const qResults = response1.MRData.RaceTable.Races[0].QualifyingResults;
-        const aboutRace = response1.MRData.RaceTable.Races[0];
-        const rResults = response2.MRData.RaceTable.Races[0].Results;
+        const qResults: IQualifyingResult[] =
+            response1.MRData.RaceTable.Races[0].QualifyingResults;
+        const aboutRace: IRace = response1.MRData.RaceTable.Races[0];
+        const rResults: IRaceResult[] =
+            response2.MRData.RaceTable.Races[0].Results;
 
         setQualifyingResults(qResults);
         setRaceDetails(aboutRace);
@@ -54,14 +59,17 @@ const RaceDetails: React.FC = () => {
         getRaceDetails();
     }, [getRaceDetails]);
 
-    const crumb = raceDetails?.raceName;
-    const breadcrumbs = [
+    const crumb: string | undefined = raceDetails?.raceName;
+    const breadcrumbs: {
+        label: string;
+        route: string;
+    }[] = [
         { label: 'F1 - Feeder', route: '/' },
         { label: 'Teams', route: '/' },
         { label: `${crumb}`, route: `/driver/${round}` },
     ];
 
-    const raceCountryCode = raceDetails?.Circuit
+    const raceCountryCode: string = raceDetails?.Circuit
         ? flagHandler(raceDetails.Circuit.Location.country)
         : '';
 

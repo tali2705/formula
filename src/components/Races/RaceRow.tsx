@@ -1,19 +1,19 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 import flagHandler from '../utils/flagHandler';
 
-import { IRaceRowProps } from '../Interfaces/GlobalInterface';
+import { IDriver, IRaceRowProps } from '../Interfaces/GlobalInterface';
 
 const RaceRow: React.FC<IRaceRowProps> = ({ race }) => {
-    const navigate = useNavigate();
+    const navigate: NavigateFunction = useNavigate();
 
-    const winner = race.Results[0].Driver;
-    const countryCodeWinner = flagHandler(winner.nationality);
-    const raceCountry = race.Circuit.Location.country;
-    const countryCodeRace = flagHandler(raceCountry);
+    const winner: IDriver = race.Results[0].Driver;
+    const countryCodeWinner: string = flagHandler(winner.nationality);
+    const raceCountry: string = race.Circuit.Location.country;
+    const countryCodeRace: string = flagHandler(raceCountry);
 
-    const handleRaceDetails = (round: number) => {
+    const handleRaceDetails = (round: number): void => {
         navigate(`/races/${round}`);
     };
 

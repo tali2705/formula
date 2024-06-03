@@ -66,7 +66,7 @@ const DriverDetails = () => {
                     <div className='wrapper-details'>
                         <Card
                             title={`${driverDetails.Driver.givenName} ${driverDetails.Driver.familyName}`}
-                            caption1='Country: '
+                            caption1='Nationality: '
                             caption2='Team: '
                             caption3='Birth: '
                             caption4='Biography: '

@@ -16,7 +16,7 @@ const Races: React.FC = () => {
     const [filteredRaces, setFilteredRaces] = useState<IRace[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    const getRaces = useCallback(async () => {
+    const getRaces = useCallback(async (): Promise<void> => {
         const url = 'http://ergast.com/api/f1/2023/results/1.json';
         const data = await fetchData<IApiResponse>(url);
 
@@ -37,7 +37,10 @@ const Races: React.FC = () => {
         );
     }, [races, searchField]);
 
-    const breadcrumbs = [
+    const breadcrumbs: {
+        label: string;
+        route: string;
+    }[] = [
         { label: 'F1 - Feeder', route: '/' },
         { label: 'Races', route: '/races' },
     ];
