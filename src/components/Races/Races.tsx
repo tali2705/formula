@@ -17,10 +17,10 @@ const Races: React.FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const getRaces = useCallback(async (): Promise<void> => {
-        const url = 'http://ergast.com/api/f1/2023/results/1.json';
-        const data = await fetchData<IApiResponse>(url);
+        const url: string = 'http://ergast.com/api/f1/2023/results/1.json';
+        const data: IApiResponse = await fetchData<IApiResponse>(url);
 
-        const raceStandings = data.MRData.RaceTable.Races;
+        const raceStandings: IRace[] = data.MRData.RaceTable.Races;
 
         setRaces(raceStandings);
         setFilteredRaces(raceStandings);
