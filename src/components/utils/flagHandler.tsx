@@ -53,7 +53,7 @@ const countryMap: { [key: string]: string } = {
 };
 
 const flagHandler = (country: string): string => {
-    const formattedCountry = country.replace(/\s+/g, '');
+    const formattedCountry: string = country.replace(/\s+/g, '');
 
     return countryMap[formattedCountry] || 'UN';
 };
