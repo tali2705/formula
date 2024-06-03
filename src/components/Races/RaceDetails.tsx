@@ -33,7 +33,7 @@ const RaceDetails: React.FC = () => {
         return times.sort()[0] || '';
     };
 
-    const getRaceDetails = useCallback(async () => {
+    const getRaceDetails = useCallback(async (): Promise<void> => {
         const url1: string = `http://ergast.com/api/f1/2023/${round}/qualifying.json`;
         const url2: string = `http://ergast.com/api/f1/2023/${round}/results.json`;
 

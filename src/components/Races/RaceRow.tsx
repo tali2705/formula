@@ -18,7 +18,7 @@ const RaceRow: React.FC<IRaceRowProps> = ({ race }) => {
     };
 
     return (
-        <tr key={race.round}>
+        <tr>
             <td>{race.round}</td>
             <td onClick={() => handleRaceDetails(race.round)}>
                 <img
