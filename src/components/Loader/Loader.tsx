@@ -1,15 +1,17 @@
 import React from 'react';
 
+import { LoaderContainer } from './Loader.styles';
+
 const Loader: React.FC = () => {
     return (
-        <div className='loader-container'>
+        <LoaderContainer>
             <img
                 src={require('../../assets/Kaciga.png')}
                 alt='Loading...'
                 className='loader'
             />
             <p>Loading...</p>
-        </div>
+        </LoaderContainer>
     );
 };
 

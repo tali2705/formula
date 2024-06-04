@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import './styles/styles.scss';
+
 import Footer from './components/Footer/Footer';
 import Drivers from './components/Drivers/Drivers';
 import DriverDetails from './components/Drivers/DriverDetails';
@@ -10,8 +12,6 @@ import RaceDetails from './components/Races/RaceDetails';
 import Home from './components/HomePage/Home';
 
 import ScrollToTop from './components/utils/ScrollToTop';
-
-import './styles/styles.scss';
 
 function App(): JSX.Element {
     return (
