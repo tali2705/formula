@@ -64,7 +64,8 @@ const TeamDetails: () => JSX.Element = () => {
         return <Loader />;
     }
 
-    const crumb: string = teamDetails?.Constructor?.name || 'Team Details';
+    const crumb: string | undefined =
+        teamDetails?.Constructor?.name || 'Team Details';
 
     const breadcrumbs: ICrumb[] = [
         { label: 'F1 - Feeder', route: '/' },
@@ -84,20 +85,23 @@ const TeamDetails: () => JSX.Element = () => {
                     <Breadcrumbs data={breadcrumbs} />
                 </div>
                 <div className='wrapper-details'>
-                    <Card
-                        title={teamDetails?.Constructor?.name || ''}
-                        caption1='Country: '
-                        caption2='Position: '
-                        caption3='Points: '
-                        caption4='History: '
-                        text1={teamDetails?.Constructor?.nationality || ''}
-                        text2={teamDetails?.position || ''}
-                        text3={teamDetails?.points || ''}
-                        text4={teamDetails?.Constructor?.url || ''}
-                        cardCountryCode={teamCountryCode}
-                        teamId={teamDetails?.Constructor?.constructorId}
-                        teamDetails={true}
-                    />
+                    {teamDetails && (
+                        <Card
+                            title={teamDetails.Constructor.name || ''}
+                            caption1='Country: '
+                            caption2='Position: '
+                            caption3='Points: '
+                            caption4='History: '
+                            text1={teamDetails.Constructor.nationality || ''}
+                            text2={teamDetails.position || ''}
+                            text3={teamDetails.points || ''}
+                            text4={teamDetails.Constructor.url || ''}
+                            cardCountryCode={teamCountryCode}
+                            teamId={teamDetails.Constructor.constructorId}
+                            teamDetails={true}
+                        />
+                    )}
+
                     <table>
                         <caption>Team Details</caption>
                         <thead>

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
 import { ITeamRow } from '../Interfaces/GlobalInterface';
 

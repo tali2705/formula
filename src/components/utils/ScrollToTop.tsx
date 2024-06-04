@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { useLocation } from 'react-router';
 
 import { IScrollToTopProps } from '../Interfaces/GlobalInterface';
