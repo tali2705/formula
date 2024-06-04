@@ -218,3 +218,9 @@ export interface IBreadCrumby {
     label: string;
     route: string;
 }
+
+export interface ISearchProps {
+    className?: string;
+    placeholder: string;
+    onChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
