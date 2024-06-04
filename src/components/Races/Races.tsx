@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
-import Loader from '../../Loader';
+import Loader from '../Loader/Loader';
 import Search from '../Header/Search';
 import RaceRow from './RaceRow';
 import Breadcrumbs from '../Header/Breadcrumbs';

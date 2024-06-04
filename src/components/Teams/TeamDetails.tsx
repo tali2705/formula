@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import Loader from '../../Loader';
+import Loader from '../Loader/Loader';
 import Card from '../Card/Card';
 import Breadcrumbs from '../Header/Breadcrumbs';
 import SideBar from '../SideBar/SideBar';

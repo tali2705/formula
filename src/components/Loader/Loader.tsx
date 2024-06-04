@@ -4,7 +4,7 @@ const Loader: React.FC = () => {
     return (
         <div className='loader-container'>
             <img
-                src={require('./assets/Kaciga.png')}
+                src={require('../../assets/Kaciga.png')}
                 alt='Loading...'
                 className='loader'
             />
