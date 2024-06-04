@@ -219,6 +219,10 @@ export interface IBreadCrumby {
     route: string;
 }
 
+export interface IHeaderProps {
+    data: IBreadCrumby[];
+}
+
 export interface ISearchProps {
     className?: string;
     placeholder: string;
