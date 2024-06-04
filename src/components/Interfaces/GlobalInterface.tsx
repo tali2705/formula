@@ -136,6 +136,13 @@ export interface IDriverDetails {
     Constructors: IConstructorName[];
 }
 
+export interface IDriverRaceResult {
+    Driver: IDriver;
+    Constructor: IConstructorName;
+    grid: number;
+    position: string;
+}
+
 export interface IConstructorName {
     name: string;
 }
@@ -227,4 +234,9 @@ export interface ISearchProps {
     className?: string;
     placeholder: string;
     onChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface INavLinkItem {
+    label: string;
+    to: string;
 }

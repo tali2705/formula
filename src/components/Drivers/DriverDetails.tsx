@@ -13,9 +13,9 @@ import {
     IApiResponseStandings,
     IDriverResult,
     IDriverDetails,
+    IDriverRaceResult,
     IDriverStanding,
     IDriver,
-    IConstructorName,
     IBreadCrumby,
 } from '../Interfaces/GlobalInterface';
 
@@ -115,13 +115,8 @@ const DriverDetails: React.FC = () => {
                     <tbody>
                         {driverResult.length > 0 ? (
                             driverResult.map((result) => {
-                                const raceResult: {
-                                    Driver: IDriver;
-                                    Constructor: IConstructorName;
-                                    grid: number;
-                                    position: string;
-                                } = result.Results[0];
-
+                                const raceResult: IDriverRaceResult =
+                                    result.Results[0];
                                 const countryCode: string = flagHandler(
                                     result.Circuit.Location.country
                                 );
