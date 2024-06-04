@@ -102,14 +102,16 @@ const RaceDetails = () => {
                   <tr key={qualifyRes.position}>
                     <td>{qualifyRes.position}</td>
                     <td>
-                      <img
-                        src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-                        alt={countryCode}
-                        className="table-flag"
-                      />
-                      <Link to={`/drivers/${qualifyRes.Driver.driverId}`}>
-                        {qualifyRes.Driver.familyName}
-                      </Link>
+                      <span>
+                        <img
+                          src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
+                          alt={countryCode}
+                          className="table-flag"
+                        />
+                        <Link to={`/drivers/${qualifyRes.Driver.driverId}`}>
+                          {qualifyRes.Driver.familyName}
+                        </Link>
+                      </span>
                     </td>
                     <td>{qualifyRes.Constructor.name}</td>
                     <td>{bestTime}</td>
@@ -137,14 +139,16 @@ const RaceDetails = () => {
                   <tr key={raceRes.position}>
                     <td>{raceRes.position}</td>
                     <td>
-                      <img
-                        src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-                        alt={countryCode}
-                        className="table-flag"
-                      />
-                      <Link to={`/drivers/${raceRes.Driver.driverId}`}>
-                        {raceRes.Driver.familyName}
-                      </Link>
+                      <span className="flex">
+                        <img
+                          src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
+                          alt={countryCode}
+                          className="table-flag"
+                        />
+                        <Link to={`/drivers/${raceRes.Driver.driverId}`}>
+                          {raceRes.Driver.familyName}
+                        </Link>
+                      </span>
                     </td>
                     <td>{raceRes.Constructor.name}</td>
                     <td>{raceRes.Time ? raceRes.Time.time : raceRes.status}</td>

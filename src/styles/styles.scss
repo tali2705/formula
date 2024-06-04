@@ -5,17 +5,48 @@ $secondary-color: #333;
 $big-font: "Racing Sans One", "sans-serif";
 $primary-font: "Roboto", "sans-serif";
 
-.flex {
-  display: flex;
-}
-
 //App, all components
 .wrapper {
-  display: flex;
+  overflow: hidden;
+  box-sizing: border-box;
   min-height: 100vh;
-  font-family: $primary-font;
+  // background-color: black;
   background-color: $primary-color;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: $primary-font;
+  .homepage {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    .homepage-logo {
+      display: flex;
+      img {
+        width: 500px;
+      }
+    }
+    .homepage-links {
+      display: flex;
+      justify-content: space-around;
+      padding: 40px;
+      font-weight: 900;
+      font-size: 25px;
+      a {
+        text-decoration: none;
+        color: $secondary-color;
+        padding: 15px 35px;
+        border-left: 2px solid $secondary-color;
+        &:hover {
+          background-color: $big-font-color;
+        }
+        &:first-child {
+          border: none;
+        }
+      }
+    }
+  }
   .content-wrapper {
     justify-content: space-between;
     display: flex;
@@ -29,8 +60,9 @@ $primary-font: "Roboto", "sans-serif";
       //HEADER
       .header {
         min-width: 100%;
-        min-height: 20px;
-        background-color: $primary-color;
+        min-height: 99px;
+        border-bottom: 1px solid $big-font-color;
+        color: $big-font-color;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -43,16 +75,17 @@ $primary-font: "Roboto", "sans-serif";
 
           span {
             font-size: larger;
-            margin-left: 5px;
+            margin-left: 20px;
           }
 
           a {
             margin: 0 5px;
             padding: 10px 15px;
             font-size: larger;
+            font-weight: 800;
             margin: 10px 15px;
             text-decoration: none;
-            color: $secondary-color;
+            color: $big-font-color;
 
             &:hover {
               padding: 10px 15px;
@@ -92,7 +125,7 @@ $primary-font: "Roboto", "sans-serif";
       }
 
       table {
-        width: 100%;
+        width: 80%;
         margin: 20px auto;
 
         caption {
@@ -100,34 +133,33 @@ $primary-font: "Roboto", "sans-serif";
           font-size: 24px;
           font-weight: 600;
           font-style: italic;
-          padding: 10px 10px;
+          padding: 10px;
           text-align: left;
           border-top-left-radius: 10px;
           border-top-right-radius: 10px;
         }
 
-        tr {
-          border-bottom: 1px solid $big-font-color;
-        }
-
         td {
-          border-collapse: collapse;
-          padding: 15px;
-          font-size: 18px;
+          padding: 0 5px;
+          font-size: 16px;
           text-align: left;
+          border-left: 1px solid $big-font-color;
+          vertical-align: middle;
 
           a {
             text-decoration: none;
             color: $secondary-color;
+            cursor: pointer;
           }
-
           span {
-            margin-left: 10px;
+            display: flex;
+            align-items: center;
+            width: fit-content;
+            cursor: pointer;
           }
-
           .table-flag {
-            width: 18px;
-            height: 18px;
+            width: 32px;
+            height: 32px;
           }
 
           .icon {
@@ -136,7 +168,7 @@ $primary-font: "Roboto", "sans-serif";
         }
 
         th {
-          background-color: $primary-color;
+          background-color: $big-font-color;
           font-size: 20px;
           font-weight: 600;
           padding: 15px;
@@ -160,13 +192,10 @@ $primary-font: "Roboto", "sans-serif";
     min-width: 15%;
     display: flex;
     flex-direction: column;
-    background-color: $big-font-color;
-
     img {
       width: 100%;
       margin: 10px auto;
     }
-
     .side-nav {
       display: flex;
       flex-direction: column;
@@ -178,44 +207,25 @@ $primary-font: "Roboto", "sans-serif";
         font-family: "Racing Sans One", "sans-serif";
         width: fit-content;
         padding: 20px 0px;
-        color: $primary-color;
+        color: $big-font-color;
         text-align: center;
         text-decoration: none;
         font-size: 22px;
         width: 100%;
-        border-top: 1px solid $primary-color;
+        border-top: 1px solid $big-font-color;
 
         &:last-child {
-          border-bottom: 1px solid $primary-color;
+          border-bottom: 1px solid $big-font-color;
         }
 
         &:hover {
           background-color: $secondary-color;
+          color: $primary-color;
         }
       }
-
       .active {
-        background-color: $secondary-color;
+        color: $secondary-color;
       }
-    }
-  }
-
-  .homepage {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    margin: 20px auto;
-
-    .homepage-logo {
-      img {
-        width: 500px;
-      }
-    }
-
-    .homepage-links {
-      display: flex;
-      justify-content: space-around;
-      padding: 40px;
     }
   }
 }
@@ -226,48 +236,49 @@ $primary-font: "Roboto", "sans-serif";
   flex-direction: row;
   width: 100%;
   margin-top: 30px;
-
-  .card-content {
-    margin-left: 15px;
-    margin-right: 30px;
-
-    .card-header {
-      display: flex;
-      align-items: end;
-
-      .card-pic {
-        width: 100px;
-        margin: 0 auto;
-      }
-
-      .card-title {
+  .card-wrapper {
+    padding: 10px;
+    .card-content {
+      margin-left: 5px;
+      background-color: $primary-color;
+      border: 2px solid $big-font-color;
+      .card-header {
         display: flex;
         flex-direction: column;
-        justify-content: end;
-        align-items: start;
 
-        h3 {
-          font-weight: 600;
-          font-size: 18px;
+        .card-pic {
+          width: 200px;
+          margin: 0 auto;
+        }
+
+        .card-title {
+          display: flex;
+          flex-direction: column;
+          justify-content: end;
+          align-items: start;
+
+          h3 {
+            font-weight: 600;
+            font-size: 18px;
+          }
         }
       }
-    }
 
-    .card-info {
-      margin-top: 15px;
+      .card-info {
+        margin-top: 15px;
 
-      p {
-        display: flex;
-        margin-top: 10px;
-      }
+        p {
+          display: flex;
+          margin-top: 10px;
+        }
 
-      span {
-        font-weight: 600;
+        span {
+          font-weight: 600;
+        }
       }
     }
   }
 }
-
 //Loader...
 .loader-container {
   display: flex;
@@ -293,4 +304,9 @@ $primary-font: "Roboto", "sans-serif";
       transform: rotate(360deg);
     }
   }
+}
+.footer {
+  padding: 10px 0;
+  border-top: 2px solid $big-font-color;
+  text-align: center;
 }

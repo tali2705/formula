@@ -7,9 +7,9 @@ const Home = () => {
         <img src={hplogo} alt="Homepage logo" />
       </div>
       <div className="homepage-links">
-        <NavLink to="/drivers">Drivers</NavLink>
-        <NavLink to="/teams">Teams</NavLink>
-        <NavLink to="/races">Races</NavLink>
+        <NavLink className="link" to="/drivers">Drivers</NavLink>
+        <NavLink className="link" to="/teams">Teams</NavLink>
+        <NavLink className="link" to="/races">Races</NavLink>
       </div>
     </nav>
   );

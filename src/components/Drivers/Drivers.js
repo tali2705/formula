@@ -62,10 +62,8 @@ const Drivers = () => {
         </div>
         <div className="main-content">
           <h2 className="title">DRIVERS CHAMIPONSHIP</h2>
-          <table className="main-table">
-            <caption className="table-caption">
-              Drivers Championship Standings - 2023
-            </caption>
+          <table>
+            <caption>Drivers Championship Standings - 2023</caption>
             <tbody>
               {filteredDrivers.length > 0 ? (
                 filteredDrivers.map((driver) => (

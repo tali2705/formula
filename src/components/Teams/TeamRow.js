@@ -16,15 +16,17 @@ const TeamRow = ({ team }) => {
     <tr>
       <td>{team.position}</td>
       <td onClick={handleTeamDetails}>
-        <img
-          src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-          alt={countryCode}
-          className="table-flag"
-        />
-        {team.Constructor.name}
+        <span>
+          <img
+            src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
+            alt={countryCode}
+            className="table-flag"
+          />
+          {team.Constructor.name}
+        </span>
       </td>
       <td>
-        <div className="flex">
+        <span className="flex">
           Details:
           <Link to={team.Constructor.url} target="_blank">
             <div className="icon">
@@ -33,7 +35,7 @@ const TeamRow = ({ team }) => {
               </svg>
             </div>
           </Link>
-        </div>
+        </span>
       </td>
       <td>{team.points}</td>
     </tr>
