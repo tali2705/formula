@@ -1,4 +1,4 @@
-const countryMap = {
+const countryMap: { [key: string]: string } = {
     American: 'US',
     Australia: 'AU',
     Australian: 'AU',
@@ -52,8 +52,8 @@ const countryMap = {
     Venezuelan: 'VE',
 };
 
-const flagHandler = (country) => {
-    const formattedCountry = country.replace(/\s+/g, '');
+const flagHandler = (country: string): string => {
+    const formattedCountry: string = country.replace(/\s+/g, '');
 
     return countryMap[formattedCountry] || 'UN';
 };
