@@ -57,8 +57,11 @@ const TeamDetails = () => {
         getTeamDetails();
     }, [getTeamDetails]);
 
-    const crumb: string | undefined =
-        teamDetails?.Constructor?.name || 'Team Details';
+    if (isLoading) {
+        return <Loader />;
+    }
+
+    const crumb = teamDetails?.Constructor?.name || 'Team Details';
 
     const breadcrumbs: IBreadCrumby[] = [
         { label: 'F1 - Feeder', route: '/' },
@@ -67,10 +70,8 @@ const TeamDetails = () => {
     ];
 
     const teamCountryCode: string = teamDetails?.Constructor
-        ? flagHandler(teamDetails.Constructor.nationality)
+        ? flagHandler(teamDetails?.Constructor.nationality)
         : '';
-
-    isLoading && <Loader />;
 
     return (
         <>
@@ -110,7 +111,7 @@ const TeamDetails = () => {
                             const raceResult: ITeamRaceResult[] =
                                 result.Results;
                             const countryCode: string = flagHandler(
-                                result.Circuit.Location.country
+                                result.Circuit?.Location?.country
                             );
 
                             const firstDriverPoints: string =
@@ -125,9 +126,7 @@ const TeamDetails = () => {
                                     <td>
                                         <img
                                             src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-                                            alt={
-                                                result.Circuit.Location.country
-                                            }
+                                            alt={countryCode}
                                             style={{
                                                 width: '32px',
                                                 height: '32px',

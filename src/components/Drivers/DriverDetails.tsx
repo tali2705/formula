@@ -54,7 +54,11 @@ const DriverDetails: React.FC = () => {
         getDriverDetails();
     }, [getDriverDetails]);
 
-    const crumb = driverResult[0].Results[0].Driver;
+    if (isLoading) {
+        return <Loader />;
+    }
+
+    const crumb: IDriver = driverResult[0]?.Results[0]?.Driver;
 
     const breadcrumbs: IBreadCrumby[] =
         driverResult.length > 0
@@ -72,8 +76,6 @@ const DriverDetails: React.FC = () => {
         driverResult.length > 0
             ? flagHandler(driverResult[0].Results[0].Driver.nationality)
             : '';
-
-    isLoading && <Loader />;
 
     return (
         <>
