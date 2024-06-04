@@ -22,7 +22,7 @@ const RaceRow = ({ race }) => {
                 <img
                     src={`https://flagsapi.com/${countryCodeRace}/shiny/64.png`}
                     alt={countryCodeRace}
-                    style={{ width: '32px', height: '32px' }}
+                    className="table-flag"
                 />
                 {race.raceName}
             </td>
@@ -32,7 +32,7 @@ const RaceRow = ({ race }) => {
                 <img
                     src={`https://flagsapi.com/${countryCodeWinner}/shiny/64.png`}
                     alt={countryCodeWinner}
-                    style={{ width: '32px', height: '32px' }}
+                    className="table-flag"
                 />
                 {winner.familyName}
             </td>

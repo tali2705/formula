@@ -115,10 +115,7 @@ const TeamDetails = () => {
                       <img
                         src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
                         alt={result.Circuit.Location.country}
-                        style={{
-                          width: "32px",
-                          height: "32px",
-                        }}
+                        className="table-flag"
                       />
                       {result.raceName}
                     </td>

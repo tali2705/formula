@@ -15,14 +15,17 @@ $primary-font: "Roboto", "sans-serif";
   min-height: 100vh;
   font-family: $primary-font;
   background-color: $primary-color;
+
   .content-wrapper {
     justify-content: space-between;
     display: flex;
+
     .content-wrapper-right {
       min-width: 85%;
       display: flex;
       align-items: center;
       flex-direction: column;
+
       //HEADER
       .header {
         min-width: 100%;
@@ -31,15 +34,18 @@ $primary-font: "Roboto", "sans-serif";
         display: flex;
         justify-content: space-between;
         align-items: center;
+
         .crumbs {
           display: flex;
           justify-content: center;
           align-items: center;
           padding: 20px;
+
           span {
             font-size: larger;
             margin-left: 5px;
           }
+
           a {
             margin: 0 5px;
             padding: 10px 15px;
@@ -47,6 +53,7 @@ $primary-font: "Roboto", "sans-serif";
             margin: 10px 15px;
             text-decoration: none;
             color: $secondary-color;
+
             &:hover {
               padding: 10px 15px;
               background-color: $secondary-color;
@@ -55,6 +62,7 @@ $primary-font: "Roboto", "sans-serif";
             }
           }
         }
+
         .search-box {
           border: 1px solid $big-font-color;
           padding: 8px 10px;
@@ -63,6 +71,7 @@ $primary-font: "Roboto", "sans-serif";
           border-radius: 15px;
           display: flex;
           align-items: center;
+
           input {
             margin-left: 5px;
             background-color: #fff;
@@ -72,6 +81,7 @@ $primary-font: "Roboto", "sans-serif";
           }
         }
       }
+
       //TABLE FOR ALL COMPONENTS
       .title {
         margin-top: 20px;
@@ -80,9 +90,11 @@ $primary-font: "Roboto", "sans-serif";
         font-size: 40px;
         color: $secondary-color;
       }
+
       table {
         width: 100%;
         margin: 20px auto;
+
         caption {
           color: $big-font-color;
           font-size: 24px;
@@ -93,25 +105,31 @@ $primary-font: "Roboto", "sans-serif";
           border-top-left-radius: 10px;
           border-top-right-radius: 10px;
         }
+
         tr {
           border-bottom: 1px solid $big-font-color;
         }
+
         td {
           border-collapse: collapse;
           padding: 15px;
           font-size: 18px;
           text-align: left;
+
           span {
             margin-left: 10px;
           }
+
           .table-flag {
-            width: 34px;
-            height: 34px;
+            width: 18px;
+            height: 18px;
           }
+
           .icon {
             width: 15px;
           }
         }
+
         th {
           background-color: $primary-color;
           font-size: 20px;
@@ -131,22 +149,26 @@ $primary-font: "Roboto", "sans-serif";
       margin-top: 30px;
     }
   }
+
   //Sidebar
   .sidebar-wrapper {
     min-width: 15%;
     display: flex;
     flex-direction: column;
     background-color: $big-font-color;
+
     img {
       width: 100%;
       margin: 10px auto;
     }
+
     .side-nav {
       display: flex;
       flex-direction: column;
       text-align: center;
       font-family: $big-font;
       margin-top: 15px;
+
       a {
         font-family: "Racing Sans One", "sans-serif";
         width: fit-content;
@@ -157,16 +179,38 @@ $primary-font: "Roboto", "sans-serif";
         font-size: 22px;
         width: 100%;
         border-top: 1px solid $primary-color;
+
         &:last-child {
           border-bottom: 1px solid $primary-color;
         }
+
         &:hover {
           background-color: $secondary-color;
         }
       }
+
       .active {
         background-color: $secondary-color;
       }
+    }
+  }
+
+  .homepage {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    margin: 20px auto;
+
+    .homepage-logo {
+      img {
+        width: 500px;
+      }
+    }
+
+    .homepage-links {
+      display: flex;
+      justify-content: space-around;
+      padding: 40px;
     }
   }
 }
@@ -177,33 +221,41 @@ $primary-font: "Roboto", "sans-serif";
   flex-direction: row;
   width: 100%;
   margin-top: 30px;
+
   .card-content {
     margin-left: 15px;
     margin-right: 30px;
+
     .card-header {
       display: flex;
       align-items: end;
+
       .card-pic {
         width: 100px;
         margin: 0 auto;
       }
+
       .card-title {
         display: flex;
         flex-direction: column;
         justify-content: end;
         align-items: start;
+
         h3 {
           font-weight: 600;
           font-size: 18px;
         }
       }
     }
+
     .card-info {
       margin-top: 15px;
+
       p {
         display: flex;
         margin-top: 10px;
       }
+
       span {
         font-weight: 600;
       }
