@@ -1,11 +1,28 @@
-import SideBar from "./components/SideBar/SideBar";
-import Footer from "./components/Footer/Footer";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./styles/styles.scss";
+import Footer from "./components/Footer/Footer";
+import Drivers from "./components/Drivers/Drivers";
+import DriverDetails from "./components/Drivers/DriverDetails";
+import Teams from "./components/Teams/Teams";
+import TeamDetails from "./components/Teams/TeamDetails";
+import Races from "./components/Races/Races";
+import RaceDetails from "./components/Races/RaceDetails";
 
 function App() {
   return (
     <>
-      <SideBar />
+      <div className="wrapper">
+        <Router>
+          <Routes>
+            <Route path="/" element={<Drivers />} />
+            <Route path="/:driverId" element={<DriverDetails />} />
+            <Route path="/teams" element={<Teams />} />
+            <Route path="/teams/:constructorId" element={<TeamDetails />} />
+            <Route path="/races" element={<Races />} />
+            <Route path="/races/:round" element={<RaceDetails />} />
+          </Routes>
+        </Router>
+      </div>
       <Footer />
     </>
   );

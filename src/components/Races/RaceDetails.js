@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Loader from "../../Loader";
 import Card from "../Card/Card";
 import Breadcrumbs from "../Header/Breadcrumbs";
+import SideBar from "../SideBar/SideBar";
 
 import { fetchData } from "../utils/fetchData";
 import flagHandler from "../utils/flagHandler";
@@ -61,99 +62,102 @@ const RaceDetails = () => {
     : "";
 
   return (
-    <>
-      <div className="header">
-        <Breadcrumbs data={breadcrumbs} />
+    <div className="content-wrapper">
+      <SideBar />
+      <div className="content-wrapper-right">
+        <div className="header">
+          <Breadcrumbs data={breadcrumbs} />
+        </div>
+        <div className="wrapper-details">
+          <Card
+            title={raceDetails.raceName}
+            caption1={`Country: `}
+            caption2={`Location: `}
+            caption3={`Date: `}
+            caption4={`Full report: `}
+            text1={raceDetails.Circuit.Location.country}
+            text2={raceDetails.Circuit.Location.locality}
+            text3={raceDetails.date}
+            text4={raceDetails.url}
+            round={raceDetails.round}
+            cardCountryCode={raceCountryCode}
+            raceDetails={true}
+          />
+          <table>
+            <caption>Qualifying Results</caption>
+            <thead>
+              <tr>
+                <th>Pos</th>
+                <th>Driver</th>
+                <th>Team</th>
+                <th>Best Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {qualifyingResults.map((qualifyRes) => {
+                const countryCode = flagHandler(qualifyRes.Driver.nationality);
+                const bestTime = getBestTime(qualifyRes);
+
+                return (
+                  <tr key={qualifyRes.position}>
+                    <td>{qualifyRes.position}</td>
+                    <td>
+                      <img
+                        src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
+                        alt={countryCode}
+                        style={{
+                          width: "32px",
+                          height: "32px",
+                        }}
+                      />
+                      {qualifyRes.Driver.familyName}
+                    </td>
+                    <td>{qualifyRes.Constructor.name}</td>
+                    <td>{bestTime}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+
+          <table className="width90">
+            <caption>Race Results</caption>
+            <thead>
+              <tr>
+                <th>Pos</th>
+                <th>Driver</th>
+                <th>Team</th>
+                <th>Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              {raceResult.map((raceRes) => {
+                const countryCode = flagHandler(raceRes.Driver.nationality);
+
+                return (
+                  <tr key={raceRes.position}>
+                    <td>{raceRes.position}</td>
+                    <td>
+                      <img
+                        src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
+                        alt={countryCode}
+                        style={{
+                          width: "32px",
+                          height: "32px",
+                        }}
+                      />
+                      {raceRes.Driver.familyName}
+                    </td>
+                    <td>{raceRes.Constructor.name}</td>
+                    <td>{raceRes.Time ? raceRes.Time.time : raceRes.status}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
-      <div className="wrapper-details flex">
-        <Card
-          title={raceDetails.raceName}
-          caption1={`Country: `}
-          caption2={`Location: `}
-          caption3={`Date: `}
-          caption4={`Full report: `}
-          text1={raceDetails.Circuit.Location.country}
-          text2={raceDetails.Circuit.Location.locality}
-          text3={raceDetails.date}
-          text4={raceDetails.url}
-          round={raceDetails.round}
-          cardCountryCode={raceCountryCode}
-          raceDetails={true}
-        />
-        <table>
-          <caption>Qualifying Results</caption>
-          <thead>
-            <tr>
-              <th>Pos</th>
-              <th>Driver</th>
-              <th>Team</th>
-              <th>Best Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            {qualifyingResults.map((qualifyRes) => {
-              const countryCode = flagHandler(qualifyRes.Driver.nationality);
-              const bestTime = getBestTime(qualifyRes);
-
-              return (
-                <tr key={qualifyRes.position}>
-                  <td>{qualifyRes.position}</td>
-                  <td>
-                    <img
-                      src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-                      alt={countryCode}
-                      style={{
-                        width: "32px",
-                        height: "32px",
-                      }}
-                    />
-                    {qualifyRes.Driver.familyName}
-                  </td>
-                  <td>{qualifyRes.Constructor.name}</td>
-                  <td>{bestTime}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-
-        <table className="width90">
-          <caption>Race Results</caption>
-          <thead>
-            <tr>
-              <th>Pos</th>
-              <th>Driver</th>
-              <th>Team</th>
-              <th>Result</th>
-            </tr>
-          </thead>
-          <tbody>
-            {raceResult.map((raceRes) => {
-              const countryCode = flagHandler(raceRes.Driver.nationality);
-
-              return (
-                <tr key={raceRes.position}>
-                  <td>{raceRes.position}</td>
-                  <td>
-                    <img
-                      src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-                      alt={countryCode}
-                      style={{
-                        width: "32px",
-                        height: "32px",
-                      }}
-                    />
-                    {raceRes.Driver.familyName}
-                  </td>
-                  <td>{raceRes.Constructor.name}</td>
-                  <td>{raceRes.Time ? raceRes.Time.time : raceRes.status}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    </>
+    </div>
   );
 };
 

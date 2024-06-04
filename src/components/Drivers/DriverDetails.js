@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Loader from "../../Loader";
 import Card from "../Card/Card";
 import Breadcrumbs from "../Header/Breadcrumbs";
+import SideBar from "../SideBar/SideBar";
 
 import { fetchData } from "../utils/fetchData";
 import flagHandler from "../utils/flagHandler";
@@ -58,63 +59,67 @@ const DriverDetails = () => {
       : "";
 
   return (
-    <>
-      <div className="header">
-        <Breadcrumbs data={breadcrumbs} />
-      </div>
+    <div className="content-wrapper">
+      <SideBar />
+      <div className="content-wrapper-right">
+        <div className="header">
+          <Breadcrumbs data={breadcrumbs} />
+        </div>
+        <div className="wrapper-details">
+          <Card
+            title={`${driverDetails.Driver.givenName} ${driverDetails.Driver.familyName}`}
+            caption1="Nationality: "
+            caption2="Team: "
+            caption3="Birth: "
+            caption4="Biography: "
+            text1={driverDetails.Driver.nationality}
+            text2={driverDetails.Constructors[0].name}
+            text3={driverDetails.Driver.dateOfBirth}
+            text4={driverDetails.Driver.url}
+            familyName={driverDetails.Driver.familyName}
+            cardCountryCode={driverCountryCode}
+            driverDetails={true}
+          />
+          <table>
+            <caption>Driver Details</caption>
+            <thead>
+              <tr>
+                <th>Round</th>
+                <th>Race Name</th>
+                <th>Constructor</th>
+                <th>Grid</th>
+                <th>Position</th>
+              </tr>
+            </thead>
+            <tbody>
+              {driverResult.map((result) => {
+                const raceResult = result.Results[0];
+                const countryCode = flagHandler(
+                  result.Circuit.Location.country
+                );
 
-      <div className="wrapper-details">
-        <Card
-          title={`${driverDetails.Driver.givenName} ${driverDetails.Driver.familyName}`}
-          caption1="Nationality: "
-          caption2="Team: "
-          caption3="Birth: "
-          caption4="Biography: "
-          text1={driverDetails.Driver.nationality}
-          text2={driverDetails.Constructors[0].name}
-          text3={driverDetails.Driver.dateOfBirth}
-          text4={driverDetails.Driver.url}
-          familyName={driverDetails.Driver.familyName}
-          cardCountryCode={driverCountryCode}
-          driverDetails={true}
-        />
-        <table>
-          <caption>Driver Details</caption>
-          <thead>
-            <tr>
-              <th>Round</th>
-              <th>Race Name</th>
-              <th>Constructor</th>
-              <th>Grid</th>
-              <th>Position</th>
-            </tr>
-          </thead>
-          <tbody>
-            {driverResult.map((result) => {
-              const raceResult = result.Results[0];
-              const countryCode = flagHandler(result.Circuit.Location.country);
-
-              return (
-                <tr key={result.round}>
-                  <td>{result.round}</td>
-                  <td>
-                    <img
-                      className="table-flag"
-                      src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-                      alt={countryCode}
-                    />
-                    {result.raceName}
-                  </td>
-                  <td>{raceResult.Constructor.name}</td>
-                  <td>{raceResult.grid}</td>
-                  <td>{raceResult.position}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                return (
+                  <tr key={result.round}>
+                    <td>{result.round}</td>
+                    <td>
+                      <img
+                        className="table-flag"
+                        src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
+                        alt={countryCode}
+                      />
+                      {result.raceName}
+                    </td>
+                    <td>{raceResult.Constructor.name}</td>
+                    <td>{raceResult.grid}</td>
+                    <td>{raceResult.position}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

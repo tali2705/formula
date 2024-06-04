@@ -7,6 +7,7 @@ import TeamRow from "./TeamRow";
 
 import { fetchData } from "../utils/fetchData";
 import { filterItems, onSearchChange } from "../utils/searchHandlers";
+import SideBar from "../SideBar/SideBar";
 
 const Teams = () => {
   const [constructorStandings, setConstructorStandings] = useState([]);
@@ -50,44 +51,47 @@ const Teams = () => {
   ];
 
   return (
-    <>
-      <div className="header">
-        <Breadcrumbs data={breadcrumbs} />
-        <Search
-          onChangeHandler={onSearchChange(setSearchField)}
-          className="search-box"
-        />
-      </div>
-      <div className="wrapper-content">
-        <h2 className="title">Constructors Championship</h2>
-        <table className="main-table">
-          <caption className="table-caption">
-            Constructors for Championship Standings - 2023
-          </caption>
+    <div className="content-wrapper">
+      <SideBar />
+      <div className="content-wrapper-right">
+        <div className="header">
+          <Breadcrumbs data={breadcrumbs} />
+          <Search
+            onChangeHandler={onSearchChange(setSearchField)}
+            className="search-box"
+          />
+        </div>
+        <div className="main-content">
+          <h2 className="title">Constructors Championship</h2>
+          <table className="main-table">
+            <caption className="table-caption">
+              Constructors for Championship Standings - 2023
+            </caption>
 
-          <thead>
-            <tr>
-              <th>Position</th>
-              <th>Constructor</th>
-              <th>Details</th>
-              <th>Points</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {filteredTeams.length > 0 ? (
-              filteredTeams.map((team) => (
-                <TeamRow key={team.position} team={team} />
-              ))
-            ) : (
+            <thead>
               <tr>
-                <td colSpan={4}>No results found.</td>
+                <th>Position</th>
+                <th>Constructor</th>
+                <th>Details</th>
+                <th>Points</th>
               </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {filteredTeams.length > 0 ? (
+                filteredTeams.map((team) => (
+                  <TeamRow key={team.position} team={team} />
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={4}>No results found.</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

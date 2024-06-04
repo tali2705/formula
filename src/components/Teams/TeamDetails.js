@@ -7,6 +7,7 @@ import Breadcrumbs from "../Header/Breadcrumbs";
 
 import { fetchData } from "../utils/fetchData";
 import flagHandler from "../utils/flagHandler";
+import SideBar from "../SideBar/SideBar";
 
 const TeamDetails = () => {
   const [teamDetails, setTeamDetails] = useState({});
@@ -63,70 +64,75 @@ const TeamDetails = () => {
     : "";
 
   return (
-    <>
-      <div className="header">
-        <Breadcrumbs data={breadcrumbs} />
-      </div>
-      <div className="wrapper-details">
-        <Card
-          title={teamDetails.Constructor?.name}
-          caption1="Country: "
-          caption2="Position: "
-          caption3="Points: "
-          caption4="History: "
-          text1={teamDetails.Constructor?.nationality}
-          text2={teamDetails.position}
-          text3={teamDetails.points}
-          text4={teamDetails.Constructor?.url}
-          cardCountryCode={teamCountryCode}
-          teamId={teamDetails.Constructor.constructorId}
-          teamDetails={true}
-        />
-        <table>
-          <caption>Team Details</caption>
-          <thead>
-            <tr>
-              <th>Round</th>
-              <th>Grand Prix</th>
-              <th>{drivers[0]}</th>
-              <th>{drivers[1]}</th>
-              <th>Points</th>
-            </tr>
-          </thead>
-          <tbody>
-            {teamResults.map((result) => {
-              const raceResult = result.Results;
-              const countryCode = flagHandler(result.Circuit.Location.country);
-              const firstDriverPoints = raceResult[0]?.points;
-              const secondDriverPoints = raceResult[1]?.points;
-              const teamPoints =
-                (firstDriverPoints ? +firstDriverPoints : 0) +
-                (secondDriverPoints ? +secondDriverPoints : 0);
+    <div className="content-wrapper">
+      <SideBar />
+      <div className="content-wrapper-right">
+        <div className="header">
+          <Breadcrumbs data={breadcrumbs} />
+        </div>
+        <div className="wrapper-details">
+          <Card
+            title={teamDetails.Constructor?.name}
+            caption1="Country: "
+            caption2="Position: "
+            caption3="Points: "
+            caption4="History: "
+            text1={teamDetails.Constructor?.nationality}
+            text2={teamDetails.position}
+            text3={teamDetails.points}
+            text4={teamDetails.Constructor?.url}
+            cardCountryCode={teamCountryCode}
+            teamId={teamDetails.Constructor.constructorId}
+            teamDetails={true}
+          />
+          <table>
+            <caption>Team Details</caption>
+            <thead>
+              <tr>
+                <th>Round</th>
+                <th>Grand Prix</th>
+                <th>{drivers[0]}</th>
+                <th>{drivers[1]}</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              {teamResults.map((result) => {
+                const raceResult = result.Results;
+                const countryCode = flagHandler(
+                  result.Circuit.Location.country
+                );
+                const firstDriverPoints = raceResult[0]?.points;
+                const secondDriverPoints = raceResult[1]?.points;
+                const teamPoints =
+                  (firstDriverPoints ? +firstDriverPoints : 0) +
+                  (secondDriverPoints ? +secondDriverPoints : 0);
 
-              return (
-                <tr key={result.round}>
-                  <td>{result.round}</td>
-                  <td>
-                    <img
-                      src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-                      alt={result.Circuit.Location.country}
-                      style={{
-                        width: "32px",
-                        height: "32px",
-                      }}
-                    />
-                    {result.raceName}
-                  </td>
-                  <td>{firstDriverPoints || "N/A"}</td>
-                  <td>{secondDriverPoints || "N/A"}</td>
-                  <td>{teamPoints || "N/A"}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                return (
+                  <tr key={result.round}>
+                    <td>{result.round}</td>
+                    <td>
+                      <img
+                        src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
+                        alt={result.Circuit.Location.country}
+                        style={{
+                          width: "32px",
+                          height: "32px",
+                        }}
+                      />
+                      {result.raceName}
+                    </td>
+                    <td>{firstDriverPoints || "N/A"}</td>
+                    <td>{secondDriverPoints || "N/A"}</td>
+                    <td>{teamPoints || "N/A"}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,71 +1,36 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  NavLink,
-} from "react-router-dom";
-import logo from "../../assets/formula1-logo_rendered.png";
-
-import Races from "../Races/Races";
-import RaceDetails from "../Races/RaceDetails";
-
-import Teams from "../Teams/Teams";
-import TeamDetails from "../Teams/TeamDetails";
-
-import Drivers from "../Drivers/Drivers";
-import DriverDetails from "../Drivers/DriverDetails";
+import { NavLink } from "react-router-dom";
+import logo from "../../assets/FI-logo_rendered.png";
 
 const SideBar = () => {
   return (
-    <div className="wrapper">
-      <Router>
-        <div className="sidebar-wrapper">
-          <div>
-            <img
-              className="logo"
-              src={logo}
-              style={{ width: "100%" }}
-              alt="logo"
-            />
-          </div>
-          <nav className="side-nav">
-            <NavLink
-              to="/"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "active" : ""
-              }
-            >
-              Drivers
-            </NavLink>
-            <NavLink
-              to="/teams"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "active" : ""
-              }
-            >
-              Teams
-            </NavLink>
-            <NavLink
-              to="/races"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "active" : ""
-              }
-            >
-              Races
-            </NavLink>
-          </nav>
-        </div>
-        <div className="main-wrapper">
-          <Routes>
-            <Route path="/" element={<Drivers />} />
-            <Route path="/:driverId" element={<DriverDetails />} />
-            <Route path="/teams" element={<Teams />} />
-            <Route path="/teams/:constructorId" element={<TeamDetails />} />
-            <Route path="/races" element={<Races />} />
-            <Route path="/races/:round" element={<RaceDetails />} />
-          </Routes>
-        </div>
-      </Router>
+    <div className="sidebar-wrapper">
+      <img className="logo" src={logo} alt="logo" />
+      <nav className="side-nav">
+        <NavLink
+          to="/"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          }
+        >
+          Drivers
+        </NavLink>
+        <NavLink
+          to="/teams"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          }
+        >
+          Teams
+        </NavLink>
+        <NavLink
+          to="/races"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          }
+        >
+          Races
+        </NavLink>
+      </nav>
     </div>
   );
 };
