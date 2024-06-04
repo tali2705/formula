@@ -11,6 +11,7 @@ import { filterItems, onSearchChange } from '../utils/searchHandlers';
 import {
     IDriverStanding,
     IApiResponseStandings,
+    IBreadCrumby,
 } from '../Interfaces/GlobalInterface';
 
 const Drivers: React.FC = () => {
@@ -50,52 +51,47 @@ const Drivers: React.FC = () => {
         );
     }, [drivers, searchField]);
 
-    const breadcrumbs: {
-        label: string;
-        route: string;
-    }[] = [
+    if (isLoading) {
+        return <Loader />;
+    }
+
+    const breadcrumbs: IBreadCrumby[] = [
         { label: 'F1 - Feeder', route: '/' },
         { label: 'Drivers', route: '/' },
     ];
 
     return (
         <>
-            {!isLoading ? (
-                <>
-                    <div className='header'>
-                        <Header data={breadcrumbs} />
-                        <Search
-                            onChangeHandler={onSearchChange(setSearchField)}
-                            className='search-box'
-                            placeholder='Search...'
-                        />
-                    </div>
-                    <div className='wrapper-content'>
-                        <h2 className='title'>Drivers Championship</h2>
-                        <table className='main-table'>
-                            <caption className='table-caption'>
-                                Drivers Championship Standings - 2023
-                            </caption>
-                            <tbody>
-                                {filteredDrivers.length > 0 ? (
-                                    filteredDrivers.map((driver) => (
-                                        <DriverRow
-                                            key={driver.position}
-                                            driver={driver}
-                                        />
-                                    ))
-                                ) : (
-                                    <tr>
-                                        <td colSpan={5}>Loading drivers...</td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
-                </>
-            ) : (
-                <Loader />
-            )}
+            <div className='header'>
+                <Header data={breadcrumbs} />
+                <Search
+                    onChangeHandler={onSearchChange(setSearchField)}
+                    className='search-box'
+                    placeholder='Search...'
+                />
+            </div>
+            <div className='wrapper-content'>
+                <h2 className='title'>Drivers Championship</h2>
+                <table className='main-table'>
+                    <caption className='table-caption'>
+                        Drivers Championship Standings - 2023
+                    </caption>
+                    <tbody>
+                        {filteredDrivers.length > 0 ? (
+                            filteredDrivers.map((driver) => (
+                                <DriverRow
+                                    key={driver.position}
+                                    driver={driver}
+                                />
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan={5}>Loading drivers...</td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
         </>
     );
 };

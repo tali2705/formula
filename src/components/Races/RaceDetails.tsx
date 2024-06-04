@@ -60,6 +60,10 @@ const RaceDetails: React.FC = () => {
         getRaceDetails();
     }, [getRaceDetails]);
 
+    if (isLoading) {
+        return <Loader />;
+    }
+
     const crumb: string | undefined = raceDetails?.raceName || 'Race Details';
 
     const breadcrumbs: IBreadCrumby[] = [
@@ -74,136 +78,120 @@ const RaceDetails: React.FC = () => {
 
     return (
         <>
-            {!isLoading ? (
-                <>
-                    <div className='header'>
-                        <Header data={breadcrumbs} />
-                    </div>
-                    <div className='wrapper-details flex'>
-                        {raceDetails && (
-                            <Card
-                                title={raceDetails.raceName}
-                                caption1='Country: '
-                                caption2='Location: '
-                                caption3='Date: '
-                                caption4='Full report: '
-                                text1={raceDetails.Circuit.Location.country}
-                                text2={raceDetails.Circuit.Location.locality}
-                                text3={raceDetails.date}
-                                text4={raceDetails.url}
-                                round={raceDetails.round.toString()}
-                                cardCountryCode={raceCountryCode}
-                                raceDetails={true}
-                            />
+            <div className='header'>
+                <Header data={breadcrumbs} />
+            </div>
+            <div className='wrapper-details flex'>
+                {raceDetails && (
+                    <Card
+                        title={raceDetails.raceName}
+                        caption1='Country: '
+                        caption2='Location: '
+                        caption3='Date: '
+                        caption4='Full report: '
+                        text1={raceDetails.Circuit.Location.country}
+                        text2={raceDetails.Circuit.Location.locality}
+                        text3={raceDetails.date}
+                        text4={raceDetails.url}
+                        round={raceDetails.round.toString()}
+                        cardCountryCode={raceCountryCode}
+                        raceDetails={true}
+                    />
+                )}
+                <table>
+                    <caption>Qualifying Results</caption>
+                    <thead>
+                        <tr>
+                            <th>Pos</th>
+                            <th>Driver</th>
+                            <th>Team</th>
+                            <th>Best Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {qualifyingResults.length > 0 ? (
+                            qualifyingResults.map((qualifyRes) => {
+                                const countryCode: string = flagHandler(
+                                    qualifyRes.Driver.nationality
+                                );
+                                const bestTime: string | undefined =
+                                    getBestTime(qualifyRes);
+
+                                return (
+                                    <tr key={qualifyRes.position}>
+                                        <td>{qualifyRes.position}</td>
+                                        <td>
+                                            <img
+                                                src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
+                                                alt={countryCode}
+                                                style={{
+                                                    width: '32px',
+                                                    height: '32px',
+                                                }}
+                                            />
+                                            {qualifyRes.Driver.familyName}
+                                        </td>
+                                        <td>{qualifyRes.Constructor.name}</td>
+                                        <td>{bestTime}</td>
+                                    </tr>
+                                );
+                            })
+                        ) : (
+                            <tr>
+                                <td colSpan={4}>Loading drivers...</td>
+                            </tr>
                         )}
-                        <table>
-                            <caption>Qualifying Results</caption>
-                            <thead>
-                                <tr>
-                                    <th>Pos</th>
-                                    <th>Driver</th>
-                                    <th>Team</th>
-                                    <th>Best Time</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {qualifyingResults.length > 0 ? (
-                                    qualifyingResults.map((qualifyRes) => {
-                                        const countryCode: string = flagHandler(
-                                            qualifyRes.Driver.nationality
-                                        );
-                                        const bestTime: string | undefined =
-                                            getBestTime(qualifyRes);
+                    </tbody>
+                </table>
 
-                                        return (
-                                            <tr key={qualifyRes.position}>
-                                                <td>{qualifyRes.position}</td>
-                                                <td>
-                                                    <img
-                                                        src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-                                                        alt={countryCode}
-                                                        style={{
-                                                            width: '32px',
-                                                            height: '32px',
-                                                        }}
-                                                    />
-                                                    {
-                                                        qualifyRes.Driver
-                                                            .familyName
-                                                    }
-                                                </td>
-                                                <td>
-                                                    {
-                                                        qualifyRes.Constructor
-                                                            .name
-                                                    }
-                                                </td>
-                                                <td>{bestTime}</td>
-                                            </tr>
-                                        );
-                                    })
-                                ) : (
-                                    <tr>
-                                        <td colSpan={4}>Loading drivers...</td>
+                <table className='width90'>
+                    <caption>Race Results</caption>
+                    <thead>
+                        <tr>
+                            <th>Pos</th>
+                            <th>Driver</th>
+                            <th>Team</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {raceResult.length > 0 ? (
+                            raceResult.map((raceRes) => {
+                                const countryCode: string = flagHandler(
+                                    raceRes.Driver.nationality
+                                );
+
+                                return (
+                                    <tr key={raceRes.position}>
+                                        <td>{raceRes.position}</td>
+                                        <td>
+                                            <img
+                                                src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
+                                                alt={countryCode}
+                                                style={{
+                                                    width: '32px',
+                                                    height: '32px',
+                                                }}
+                                            />
+                                            {raceRes.Driver.familyName}
+                                        </td>
+                                        <td>{raceRes.Constructor.name}</td>
+                                        <td>
+                                            {raceRes.Time
+                                                ? raceRes.Time.time
+                                                : raceRes.status}
+                                        </td>
                                     </tr>
-                                )}
-                            </tbody>
-                        </table>
-
-                        <table className='width90'>
-                            <caption>Race Results</caption>
-                            <thead>
-                                <tr>
-                                    <th>Pos</th>
-                                    <th>Driver</th>
-                                    <th>Team</th>
-                                    <th>Result</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {raceResult.length > 0 ? (
-                                    raceResult.map((raceRes) => {
-                                        const countryCode: string = flagHandler(
-                                            raceRes.Driver.nationality
-                                        );
-
-                                        return (
-                                            <tr key={raceRes.position}>
-                                                <td>{raceRes.position}</td>
-                                                <td>
-                                                    <img
-                                                        src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
-                                                        alt={countryCode}
-                                                        style={{
-                                                            width: '32px',
-                                                            height: '32px',
-                                                        }}
-                                                    />
-                                                    {raceRes.Driver.familyName}
-                                                </td>
-                                                <td>
-                                                    {raceRes.Constructor.name}
-                                                </td>
-                                                <td>
-                                                    {raceRes.Time
-                                                        ? raceRes.Time.time
-                                                        : raceRes.status}
-                                                </td>
-                                            </tr>
-                                        );
-                                    })
-                                ) : (
-                                    <tr>
-                                        <td colSpan={4}>Loading results...</td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
-                </>
-            ) : (
-                <Loader />
-            )}
+                                );
+                            })
+                        ) : (
+                            <tr>
+                                <td colSpan={4}>Loading results...</td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
         </>
     );
 };

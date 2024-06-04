@@ -17,7 +17,7 @@ import {
     IBreadCrumby,
 } from '../Interfaces/GlobalInterface';
 
-const TeamDetails = () => {
+const TeamDetails: () => JSX.Element = () => {
     const [teamDetails, setTeamDetails] = useState<ITeamStanding | null>(null);
     const [teamResults, setTeamResults] = useState<ITeamRace[]>([]);
     const [drivers, setDrivers] = useState<string[]>([]);
@@ -28,10 +28,13 @@ const TeamDetails = () => {
     }>();
 
     const getTeamDetails = useCallback(async (): Promise<void> => {
-        const url1 = `http://ergast.com/api/f1/2023/constructors/${constructorId}/results.json`;
-        const url2 = `http://ergast.com/api/f1/2023/constructors/${constructorId}/constructorStandings.json`;
+        const url1: string = `http://ergast.com/api/f1/2023/constructors/${constructorId}/results.json`;
+        const url2: string = `http://ergast.com/api/f1/2023/constructors/${constructorId}/constructorStandings.json`;
 
-        const [response1, response2] = await Promise.all([
+        const [response1, response2]: [
+            IApiResponseTeamResults,
+            IApiResponseTeamStandings
+        ] = await Promise.all([
             fetchData<IApiResponseTeamResults>(url1),
             fetchData<IApiResponseTeamStandings>(url2),
         ]);
@@ -61,7 +64,7 @@ const TeamDetails = () => {
         return <Loader />;
     }
 
-    const crumb = teamDetails?.Constructor?.name || 'Team Details';
+    const crumb: string = teamDetails?.Constructor?.name || 'Team Details';
 
     const breadcrumbs: IBreadCrumby[] = [
         { label: 'F1 - Feeder', route: '/' },

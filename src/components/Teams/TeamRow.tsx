@@ -1,14 +1,14 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
 import { ITeamRow } from '../Interfaces/GlobalInterface';
 
 import flagHandler from '../utils/flagHandler';
 
 const TeamRow: React.FC<ITeamRow> = ({ team }) => {
-    const navigate = useNavigate();
+    const navigate: NavigateFunction = useNavigate();
 
-    const countryCode = flagHandler(team.Constructor.nationality);
+    const countryCode: string = flagHandler(team.Constructor.nationality);
 
-    const handleTeamDetails = () => {
+    const handleTeamDetails = (): void => {
         navigate(`/teams/${team.Constructor.constructorId}`);
     };
 
