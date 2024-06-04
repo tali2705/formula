@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import Loader from "../../Loader";
 import Card from "../Card/Card";
@@ -117,7 +117,9 @@ const TeamDetails = () => {
                         alt={result.Circuit.Location.country}
                         className="table-flag"
                       />
-                      {result.raceName}
+                      <Link to={`/races/${result.round}`}>
+                        {result.raceName}
+                      </Link>
                     </td>
                     <td>{firstDriverPoints || "N/A"}</td>
                     <td>{secondDriverPoints || "N/A"}</td>

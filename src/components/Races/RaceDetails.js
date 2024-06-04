@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import Loader from "../../Loader";
 import Card from "../Card/Card";
@@ -54,7 +54,7 @@ const RaceDetails = () => {
   const breadcrumbs = [
     { label: "F1 - Feeder", route: "/" },
     { label: "Races", route: "/races" },
-    { label: `${crumb}`, route: `/driver/${round}` },
+    { label: `${crumb}`, route: `/races/${round}` },
   ];
 
   const raceCountryCode = raceDetails.Circuit
@@ -110,7 +110,9 @@ const RaceDetails = () => {
                           height: "32px",
                         }}
                       />
-                      {qualifyRes.Driver.familyName}
+                      <Link to={`/drivers/${qualifyRes.Driver.driverId}`}>
+                        {qualifyRes.Driver.familyName}
+                      </Link>
                     </td>
                     <td>{qualifyRes.Constructor.name}</td>
                     <td>{bestTime}</td>
@@ -120,7 +122,7 @@ const RaceDetails = () => {
             </tbody>
           </table>
 
-          <table className="width90">
+          <table>
             <caption>Race Results</caption>
             <thead>
               <tr>

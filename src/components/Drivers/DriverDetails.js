@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import Loader from "../../Loader";
 import Card from "../Card/Card";
@@ -107,7 +107,9 @@ const DriverDetails = () => {
                         src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
                         alt={countryCode}
                       />
-                      {result.raceName}
+                      <Link to={`/races/${result.round}`}>
+                        {result.raceName}
+                      </Link>
                     </td>
                     <td>{raceResult.Constructor.name}</td>
                     <td>{raceResult.grid}</td>

@@ -9,7 +9,7 @@ const DriverRow = ({ driver }) => {
   const countryCode = flagHandler(driver.Driver.nationality);
 
   const handleDriverDetails = () => {
-    navigate(`/${driver.Driver.driverId}`);
+    navigate(`/drivers/${driver.Driver.driverId}`);
   };
 
   return (
