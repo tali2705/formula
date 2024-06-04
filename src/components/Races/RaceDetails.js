@@ -142,7 +142,9 @@ const RaceDetails = () => {
                         alt={countryCode}
                         className="table-flag"
                       />
-                      {raceRes.Driver.familyName}
+                      <Link to={`/drivers/${raceRes.Driver.driverId}`}>
+                        {raceRes.Driver.familyName}
+                      </Link>
                     </td>
                     <td>{raceRes.Constructor.name}</td>
                     <td>{raceRes.Time ? raceRes.Time.time : raceRes.status}</td>
