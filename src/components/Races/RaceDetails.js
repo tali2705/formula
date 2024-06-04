@@ -105,10 +105,7 @@ const RaceDetails = () => {
                       <img
                         src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
                         alt={countryCode}
-                        style={{
-                          width: "32px",
-                          height: "32px",
-                        }}
+                        className="table-flag"
                       />
                       <Link to={`/drivers/${qualifyRes.Driver.driverId}`}>
                         {qualifyRes.Driver.familyName}
@@ -143,10 +140,7 @@ const RaceDetails = () => {
                       <img
                         src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
                         alt={countryCode}
-                        style={{
-                          width: "32px",
-                          height: "32px",
-                        }}
+                        className="table-flag"
                       />
                       {raceRes.Driver.familyName}
                     </td>
