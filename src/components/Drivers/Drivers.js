@@ -46,7 +46,7 @@ const Drivers = () => {
 
   const breadcrumbs = [
     { label: "F1 - Feeder", route: "/" },
-    { label: "Drivers", route: "/" },
+    { label: "Drivers", route: "/drivers" },
   ];
 
   return (

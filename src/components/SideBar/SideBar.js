@@ -7,7 +7,7 @@ const SideBar = () => {
       <img className="logo" src={logo} alt="logo" />
       <nav className="side-nav">
         <NavLink
-          to="/"
+          to="/drivers"
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "active" : ""
           }

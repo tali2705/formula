@@ -47,7 +47,7 @@ const Teams = () => {
 
   const breadcrumbs = [
     { label: "F1 - Feeder", route: "/" },
-    { label: "Teams", route: "/" },
+    { label: "Teams", route: "/teams" },
   ];
 
   return (

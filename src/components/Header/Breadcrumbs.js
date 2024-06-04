@@ -6,7 +6,7 @@ const Breadcrumbs = (props) => {
     <div className="crumbs">
       {props.data?.map((crumb, k) => {
         return (
-          <div className="crumb">
+          <div className="crumb" key={k}>
             {k < props.data.length - 1 ? (
               <Link className="crumb" to={crumb.route}>
                 {crumb.label}

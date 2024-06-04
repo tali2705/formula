@@ -46,10 +46,10 @@ const DriverDetails = () => {
 
   const breadcrumbs = [
     { label: "F1 - Feeder", route: "/" },
-    { label: "Drivers", route: "/" },
+    { label: "Drivers", route: "/drivers" },
     {
       label: `${driverResult[0].Results[0].Driver.givenName} ${driverResult[0].Results[0].Driver.familyName}`,
-      route: `/driver/${driverId}`,
+      route: `/drivers/${driverId}`,
     },
   ];
 
