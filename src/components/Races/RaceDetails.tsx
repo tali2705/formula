@@ -152,6 +152,7 @@ const RaceDetails: React.FC = () => {
                 <th>Driver</th>
                 <th>Team</th>
                 <th>Result</th>
+                <th>Points</th>
               </tr>
             </thead>
             <tbody>
