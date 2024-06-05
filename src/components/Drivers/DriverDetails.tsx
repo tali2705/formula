@@ -27,9 +27,7 @@ const DriverDetails: React.FC = () => {
     );
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    const { driverId } = useParams<{
-        driverId: string | undefined;
-    }>();
+    const { driverId } = useParams<{ driverId: string | undefined }>();
 
     const getDriverDetails = useCallback(async (): Promise<void> => {
         const driverResultURL: string = `http://ergast.com/api/f1/2023/drivers/${driverId}/results.json`;
@@ -78,6 +76,20 @@ const DriverDetails: React.FC = () => {
             ? flagHandler(driverResult[0].Results[0].Driver.nationality)
             : '';
 
+    const positionColorMap: { [key: string]: string } = {
+        '1': '#b04888',
+        '2': '#bf6c9f',
+        '3': '#cf91b7',
+        '4': '#dfb5cf',
+        '5': '#efdae7',
+    };
+
+    const getColor = (position?: string): string => {
+        return position && positionColorMap[position]
+            ? positionColorMap[position]
+            : '';
+    };
+
     return (
         <div className='content-wrapper'>
             <SideBar />
@@ -118,8 +130,13 @@ const DriverDetails: React.FC = () => {
                             {driverResult.map((result) => {
                                 const raceResult: IDriverRaceResult =
                                     result.Results[0];
+
                                 const countryCode: string = flagHandler(
                                     result.Circuit.Location.country
+                                );
+
+                                const color: string = getColor(
+                                    raceResult.position
                                 );
 
                                 return (
@@ -137,7 +154,9 @@ const DriverDetails: React.FC = () => {
                                         </td>
                                         <td>{raceResult.Constructor.name}</td>
                                         <td>{raceResult.grid}</td>
-                                        <td>{raceResult.position}</td>
+                                        <td style={{ backgroundColor: color }}>
+                                            {raceResult.position}
+                                        </td>
                                     </tr>
                                 );
                             })}

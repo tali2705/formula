@@ -77,6 +77,20 @@ const TeamDetails: () => JSX.Element = () => {
         ? flagHandler(teamDetails?.Constructor.nationality)
         : '';
 
+    const pointsColorMap: { [key: string]: string } = {
+        '26': '#b04888',
+        '25': '#b04888',
+        '19': '#b04888',
+        '18': '#bf6c9f',
+        '15': '#cf91b7',
+        '12': '#dfb5cf',
+        '10': '#efdae7',
+    };
+
+    const getColor = (points?: string): string => {
+        return points && pointsColorMap[points] ? pointsColorMap[points] : '';
+    };
+
     return (
         <div className='content-wrapper'>
             <SideBar />
@@ -125,13 +139,11 @@ const TeamDetails: () => JSX.Element = () => {
                                 const secondDriverPoints: string =
                                     raceResult[1]?.points;
                                 const teamPoints: number =
-                                    (firstDriverPoints
-                                        ? +firstDriverPoints
-                                        : 0) +
-                                    (secondDriverPoints
-                                        ? +secondDriverPoints
-                                        : 0);
-
+                                    +firstDriverPoints + +secondDriverPoints;
+                                const colorFirstDriver: string =
+                                    getColor(firstDriverPoints);
+                                const colorSecondDriver: string =
+                                    getColor(secondDriverPoints);
                                 return (
                                     <tr key={result.round}>
                                         <td>{result.round}</td>
@@ -148,8 +160,22 @@ const TeamDetails: () => JSX.Element = () => {
                                                 {result.raceName}
                                             </Link>
                                         </td>
-                                        <td>{firstDriverPoints || '0'}</td>
-                                        <td>{secondDriverPoints || '0'}</td>
+                                        <td
+                                            style={{
+                                                backgroundColor:
+                                                    colorFirstDriver,
+                                            }}
+                                        >
+                                            {firstDriverPoints || '0'}
+                                        </td>
+                                        <td
+                                            style={{
+                                                backgroundColor:
+                                                    colorSecondDriver,
+                                            }}
+                                        >
+                                            {secondDriverPoints || '0'}
+                                        </td>
                                         <td>{teamPoints || '0'}</td>
                                     </tr>
                                 );
