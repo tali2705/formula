@@ -20,7 +20,7 @@ $primary-font: "Roboto", "sans-serif";
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    margin: 0 auto;
+    margin: 7em auto 0 auto;
 
     .homepage-logo {
       display: flex;
@@ -33,15 +33,15 @@ $primary-font: "Roboto", "sans-serif";
     .homepage-links {
       display: flex;
       justify-content: space-around;
-      padding: 40px;
+      padding: 2.5em;
       font-weight: 900;
-      font-size: 25px;
+      font-size: 1.5em;
 
       a {
         text-decoration: none;
         color: $secondary-color;
-        padding: 15px 35px;
-        border-left: 2px solid $secondary-color;
+        padding: 0.9em 2.2em;
+        border-left: 0.12em solid $big-font-color;
 
         &:hover {
           background-color: $big-font-color;
@@ -67,90 +67,87 @@ $primary-font: "Roboto", "sans-serif";
       //HEADER
       .header {
         min-width: 100%;
-        min-height: 99px;
-        border-bottom: 1px solid $big-font-color;
+        min-height: 6.188em;
         color: $big-font-color;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        box-shadow: 0.125em 0em 0.313em $big-font-color;
+        // border-bottom: 0.06em solid $big-font-color;
 
         .crumbs {
           display: flex;
           justify-content: center;
           align-items: center;
-          padding: 20px;
+          padding: 1.25em;
 
           span {
-            font-size: larger;
-            margin-left: 20px;
+            font-size: 1.2em;
+            margin-left: 1.25em;
           }
 
           a {
-            margin: 0 5px;
-            padding: 10px 15px;
-            font-size: larger;
+            margin: 0 313em;
+            padding: 0.625em 0.9em;
+            font-size: 1.2em;
             font-weight: 800;
-            margin: 10px 15px;
+            margin: 0.625em 0.9em;
             text-decoration: none;
             color: $big-font-color;
 
             &:hover {
-              padding: 10px 15px;
+              padding: 0.625em 0.9em;
               background-color: $secondary-color;
-              //border-radius: 5px;
               color: $primary-color;
             }
           }
         }
 
         .search-box {
-          border: 1px solid $big-font-color;
-          padding: 8px 10px;
+          border: 0.063em solid $big-font-color;
+          padding: 0.5em 0.6em;
           background-color: #fff;
-          margin-right: 30px;
-          //border-radius: 5px;
+          margin-right: 1.8em;
           display: flex;
           align-items: center;
 
           input {
-            margin-left: 5px;
+            margin-left: 0.3em;
             background-color: #fff;
             border: none;
             outline: none;
-            font-size: 14px;
+            font-size: 0.9em;
           }
         }
       }
 
       //TABLE FOR ALL COMPONENTS
       .title {
-        margin-top: 20px;
+        margin-top: 0.5em;
         font-family: "Racing Sans One", "sans-serif";
         text-align: center;
-        font-size: 40px;
+        font-size: 2.5em;
         color: $secondary-color;
       }
 
       table {
-        width: 80%;
-        margin: 20px auto;
+        width: 75%;
+        margin: 1.25em auto;
 
         caption {
           color: $big-font-color;
-          font-size: 24px;
+          font-size: 1.5em;
           font-weight: 600;
           font-style: italic;
-          padding: 10px;
+          padding: 0.625em;
           text-align: left;
-          //border-top-left-radius: 10px;
-          //border-top-right-radius: 10px;
         }
 
         td {
-          padding: 0 5px;
-          font-size: 16px;
+          padding: 0 0.323em;
+          font-size: 1em;
           text-align: left;
-          border-right: 1px solid $big-font-color;
+          border-right: 0.06em solid $big-font-color;
           vertical-align: middle;
 
           a {
@@ -167,21 +164,21 @@ $primary-font: "Roboto", "sans-serif";
           }
 
           .table-flag {
-            width: 32px;
-            height: 32px;
+            width: 2em;
+            height: 2em;
           }
 
           .icon {
-            width: 15px;
+            width: 0.9em;
           }
         }
 
         th {
           background-color: $big-font-color;
-          border-right: 1px solid $big-font-color;
-          font-size: 20px;
+          border-right: 0.06em solid $big-font-color;
+          font-size: 1em;
           font-weight: 600;
-          padding: 15px;
+          padding: 0.9em;
           text-align: left;
         }
       }
@@ -189,23 +186,26 @@ $primary-font: "Roboto", "sans-serif";
 
     //DRIVERS, TEAMS, RACES UI
     .main-content {
-      margin: 20px auto;
+      margin: 1.25em auto;
       display: flex;
       flex-direction: column;
       width: 100%;
-      margin-top: 30px;
+      margin-top: 1.9em;
     }
   }
 
   //Sidebar
   .sidebar-wrapper {
+    box-shadow: 0 0 0.313em 0 $big-font-color;
     min-width: 15%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 
     img {
-      width: 100%;
-      margin: 10px auto;
+      margin: 10px auto 0 auto;
+      width: 90%;
+      height: 4.6em;
     }
 
     .side-nav {
@@ -213,21 +213,22 @@ $primary-font: "Roboto", "sans-serif";
       flex-direction: column;
       text-align: center;
       font-family: $big-font;
-      margin-top: 15px;
+      margin-top: 0.9em;
 
       a {
         font-family: "Racing Sans One", "sans-serif";
         width: fit-content;
-        padding: 20px 0px;
+        padding: 1.2em 0;
         color: $big-font-color;
         text-align: center;
         text-decoration: none;
-        font-size: 22px;
+        font-size: 1.4em;
         width: 100%;
-        border-top: 1px solid $big-font-color;
+        // border-top: 0.06em solid $big-font-color;
+        box-shadow: 0.02em 0.02em 0.02em $big-font-color;
 
         &:last-child {
-          border-bottom: 1px solid $big-font-color;
+          border-bottom: 0.06em solid $big-font-color;
         }
 
         &:hover {
@@ -244,19 +245,21 @@ $primary-font: "Roboto", "sans-serif";
 }
 
 .wrapper-details {
-  margin: 20px auto;
+  margin: 1.25em auto;
   display: flex;
   flex-direction: row;
   width: 100%;
-  margin-top: 30px;
+  margin-top: 1.8em;
 
   .card-wrapper {
-    padding: 10px;
+    margin-top: 4em;
+    padding: 0.6em;
 
     .card-content {
-      margin-left: 5px;
+      padding: 0.5em;
+      margin-left: 0.3em;
       background-color: $primary-color;
-      border: 2px solid $big-font-color;
+      border: 0.1em solid $big-font-color;
 
       .card-header {
         display: flex;
@@ -272,23 +275,21 @@ $primary-font: "Roboto", "sans-serif";
           flex-direction: column;
           justify-content: end;
           align-items: start;
-          margin-left: 10px;
+          margin-left: 0.6em;
 
           h3 {
             font-weight: 600;
-            font-size: 18px;
+            font-size: 1.1em;
           }
         }
       }
 
       .card-info {
-        margin-top: 15px;
+        margin-top: 0.9em;
 
         p {
           display: flex;
-          margin-top: 10px;
-          margin-left: 10px;
-          margin-bottom: 10px;
+          margin: 0.6em 0.6em 0.6em 0;
         }
 
         span {
@@ -300,11 +301,12 @@ $primary-font: "Roboto", "sans-serif";
 }
 
 .footer {
-  padding: 10px 0;
-  border-top: 1px solid $big-font-color;
+  padding: 0.6em 0;
+  // border-top: 1px solid $big-font-color;
   text-align: center;
+  box-shadow: 0 0 0.313em 0 $big-font-color;
 
   .footer-icons {
-    width: 15px;
+    width: 0.9em;
   }
 }
