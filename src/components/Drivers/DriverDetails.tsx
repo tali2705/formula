@@ -8,6 +8,7 @@ import SideBar from '../SideBar/SideBar';
 
 import { fetchData } from '../utils/fetchData';
 import flagHandler from '../utils/flagHandler';
+import tableColor from '../utils/tableColor';
 
 import {
     IApiResponse,
@@ -76,20 +77,6 @@ const DriverDetails: React.FC = () => {
             ? flagHandler(driverResult[0].Results[0].Driver.nationality)
             : '';
 
-    const positionColorMap: { [key: string]: string } = {
-        '1': '#b04888',
-        '2': '#bf6c9f',
-        '3': '#cf91b7',
-        '4': '#dfb5cf',
-        '5': '#efdae7',
-    };
-
-    const getColor = (position?: string): string => {
-        return position && positionColorMap[position]
-            ? positionColorMap[position]
-            : '';
-    };
-
     return (
         <div className='content-wrapper'>
             <SideBar />
@@ -135,7 +122,8 @@ const DriverDetails: React.FC = () => {
                                     result.Circuit.Location.country
                                 );
 
-                                const color: string = getColor(
+                                const color: string = tableColor(
+                                    '',
                                     raceResult.position
                                 );
 

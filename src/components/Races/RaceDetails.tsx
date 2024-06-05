@@ -8,6 +8,7 @@ import SideBar from '../SideBar/SideBar';
 
 import { fetchData } from '../utils/fetchData';
 import flagHandler from '../utils/flagHandler';
+import tableColor from '../utils/tableColor';
 
 import {
     IApiResponse,
@@ -73,27 +74,13 @@ const RaceDetails: React.FC = () => {
 
     const breadcrumbs: ICrumb[] = [
         { label: 'F1 - Feeder', route: '/' },
-        { label: 'Teams', route: '/' },
+        { label: 'Races', route: '/races' },
         { label: `${crumb}`, route: `/driver/${round}` },
     ];
 
     const raceCountryCode: string = raceDetails?.Circuit
         ? flagHandler(raceDetails.Circuit.Location.country)
         : '';
-
-    const pointsColorMap: { [key: string]: string } = {
-        '26': '#b04888',
-        '25': '#b04888',
-        '19': '#b04888',
-        '18': '#bf6c9f',
-        '15': '#cf91b7',
-        '12': '#dfb5cf',
-        '10': '#efdae7',
-    };
-
-    const getColor = (points?: string): string => {
-        return points && pointsColorMap[points] ? pointsColorMap[points] : '';
-    };
 
     return (
         <div className='content-wrapper'>
@@ -183,7 +170,10 @@ const RaceDetails: React.FC = () => {
                                     raceRes.Driver.nationality
                                 );
 
-                                const color: string = getColor(raceRes.points);
+                                const color: string = tableColor(
+                                    raceRes.points,
+                                    ''
+                                );
 
                                 return (
                                     <tr key={raceRes.position}>
@@ -208,10 +198,7 @@ const RaceDetails: React.FC = () => {
                                                 ? raceRes.Time.time
                                                 : raceRes.status}
                                         </td>
-                                        <td
-                                            className='defaultPositionColor'
-                                            style={{ backgroundColor: color }}
-                                        >
+                                        <td style={{ backgroundColor: color }}>
                                             {raceRes.points}
                                         </td>
                                     </tr>
