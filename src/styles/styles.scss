@@ -273,6 +273,7 @@ $primary-font: "Roboto", "sans-serif";
           flex-direction: column;
           justify-content: end;
           align-items: start;
+          margin-left: 10px;
 
           h3 {
             font-weight: 600;
@@ -287,6 +288,8 @@ $primary-font: "Roboto", "sans-serif";
         p {
           display: flex;
           margin-top: 10px;
+          margin-left: 10px;
+          margin-bottom: 10px;
         }
 
         span {
