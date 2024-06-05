@@ -98,7 +98,7 @@ $primary-font: "Roboto", "sans-serif";
             &:hover {
               padding: 10px 15px;
               background-color: $secondary-color;
-              border-radius: 10px;
+              //border-radius: 5px;
               color: $primary-color;
             }
           }
@@ -109,7 +109,7 @@ $primary-font: "Roboto", "sans-serif";
           padding: 8px 10px;
           background-color: #fff;
           margin-right: 30px;
-          border-radius: 15px;
+          //border-radius: 5px;
           display: flex;
           align-items: center;
 
@@ -143,15 +143,15 @@ $primary-font: "Roboto", "sans-serif";
           font-style: italic;
           padding: 10px;
           text-align: left;
-          border-top-left-radius: 10px;
-          border-top-right-radius: 10px;
+          //border-top-left-radius: 10px;
+          //border-top-right-radius: 10px;
         }
 
         td {
           padding: 0 5px;
           font-size: 16px;
           text-align: left;
-          border-left: 1px solid $big-font-color;
+          border-right: 1px solid $big-font-color;
           vertical-align: middle;
 
           a {
@@ -179,6 +179,7 @@ $primary-font: "Roboto", "sans-serif";
 
         th {
           background-color: $big-font-color;
+          border-right: 1px solid $big-font-color;
           font-size: 20px;
           font-weight: 600;
           padding: 15px;
@@ -298,6 +299,6 @@ $primary-font: "Roboto", "sans-serif";
 
 .footer {
   padding: 10px 0;
-  border-top: 2px solid $big-font-color;
+  border-top: 1px solid $big-font-color;
   text-align: center;
 }
