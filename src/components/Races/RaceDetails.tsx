@@ -208,7 +208,10 @@ const RaceDetails: React.FC = () => {
                                                 ? raceRes.Time.time
                                                 : raceRes.status}
                                         </td>
-                                        <td style={{ backgroundColor: color }}>
+                                        <td
+                                            className='defaultPositionColor'
+                                            style={{ backgroundColor: color }}
+                                        >
                                             {raceRes.points}
                                         </td>
                                     </tr>

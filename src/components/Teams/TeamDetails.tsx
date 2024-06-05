@@ -161,6 +161,7 @@ const TeamDetails: () => JSX.Element = () => {
                                             </Link>
                                         </td>
                                         <td
+                                            className='defaultPositionColor'
                                             style={{
                                                 backgroundColor:
                                                     colorFirstDriver,
@@ -169,6 +170,7 @@ const TeamDetails: () => JSX.Element = () => {
                                             {firstDriverPoints || '0'}
                                         </td>
                                         <td
+                                            className='defaultPositionColor'
                                             style={{
                                                 backgroundColor:
                                                     colorSecondDriver,

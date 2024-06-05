@@ -154,7 +154,10 @@ const DriverDetails: React.FC = () => {
                                         </td>
                                         <td>{raceResult.Constructor.name}</td>
                                         <td>{raceResult.grid}</td>
-                                        <td style={{ backgroundColor: color }}>
+                                        <td
+                                            className='defaultPositionColor'
+                                            style={{ backgroundColor: color }}
+                                        >
                                             {raceResult.position}
                                         </td>
                                     </tr>
