@@ -73,7 +73,6 @@ const RaceDetails: React.FC = () => {
     const crumb: string | undefined = raceDetails?.raceName || 'Race Details';
 
     const breadcrumbs: ICrumb[] = [
-        { label: 'F1 - Feeder', route: '/' },
         { label: 'Races', route: '/races' },
         { label: `${crumb}`, route: `/driver/${round}` },
     ];

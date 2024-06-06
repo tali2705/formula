@@ -55,10 +55,7 @@ const Drivers: React.FC = () => {
         return <Loader />;
     }
 
-    const breadcrumbs: ICrumb[] = [
-        { label: 'F1 - Feeder', route: '/' },
-        { label: 'Drivers', route: '/' },
-    ];
+    const breadcrumbs: ICrumb[] = [{ label: 'Drivers', route: '/' }];
 
     return (
         <div className='content-wrapper'>
