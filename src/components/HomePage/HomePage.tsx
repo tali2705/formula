@@ -1,8 +1,10 @@
 import { NavLink } from 'react-router-dom';
 
+import HomepageWrapper from './HomePage.styles';
+
 const Home: React.FC = () => {
     return (
-        <nav className='homepage'>
+        <HomepageWrapper>
             <div className='homepage-logo'>
                 <img
                     src={require('../../assets/homepage-logo.png')}
@@ -23,7 +25,7 @@ const Home: React.FC = () => {
                     Races
                 </NavLink>
             </div>
-        </nav>
+        </HomepageWrapper>
     );
 };
 
