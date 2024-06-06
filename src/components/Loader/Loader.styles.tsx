@@ -1,6 +1,6 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
-const primaryColor = '#faf0e6';
+const primaryColor = "#faf0e6";
 
 const spinAnimation = keyframes`
     0% {
@@ -13,17 +13,17 @@ const spinAnimation = keyframes`
 `;
 
 export const LoaderContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: ${primaryColor};
-    position: relative;
-    top: 40vh;
-    margin: 0 auto;
-    width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: ${primaryColor};
+  position: relative;
+  top: 40vh;
+  margin: 0 auto;
+  width: 12.5rem;
 
-    .loader {
-        animation: ${spinAnimation} 1s linear infinite;
-        margin-bottom: 15px;
-    }
+  .loader {
+    animation: ${spinAnimation} 1s linear infinite;
+    margin-bottom: 0.9em;
+  }
 `;
