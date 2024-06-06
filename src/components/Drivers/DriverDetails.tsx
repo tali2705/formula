@@ -31,8 +31,8 @@ const DriverDetails: React.FC = () => {
     const { driverId } = useParams<{ driverId: string | undefined }>();
 
     const getDriverDetails = useCallback(async (): Promise<void> => {
-        const driverResultURL: string = `http://ergast.com/api/f1/2023/drivers/${driverId}/results.json`;
-        const driverDetailsURL: string = `http://ergast.com/api/f1/2023/drivers/${driverId}/driverStandings.json`;
+        const driverResultURL: string = `https://ergast.com/api/f1/2023/drivers/${driverId}/results.json`;
+        const driverDetailsURL: string = `https://ergast.com/api/f1/2023/drivers/${driverId}/driverStandings.json`;
 
         const [driverResultsResponse, driverDetailsResponse]: [
             IApiResponse,

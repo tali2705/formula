@@ -30,8 +30,8 @@ const TeamDetails: () => JSX.Element = () => {
     }>();
 
     const getTeamDetails = useCallback(async (): Promise<void> => {
-        const teamResultURL: string = `http://ergast.com/api/f1/2023/constructors/${constructorId}/results.json`;
-        const teamDetailsURL: string = `http://ergast.com/api/f1/2023/constructors/${constructorId}/constructorStandings.json`;
+        const teamResultURL: string = `https://ergast.com/api/f1/2023/constructors/${constructorId}/results.json`;
+        const teamDetailsURL: string = `https://ergast.com/api/f1/2023/constructors/${constructorId}/constructorStandings.json`;
 
         const [teamResultResponse, teamDetailsResponse]: [
             IApiResponseTeamResults,

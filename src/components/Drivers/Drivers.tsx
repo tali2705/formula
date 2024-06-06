@@ -24,7 +24,7 @@ const Drivers: React.FC = () => {
 
     const getDrivers = useCallback(async (): Promise<void> => {
         const url: string =
-            'http://ergast.com/api/f1/2023/driverStandings.json';
+            'https://ergast.com/api/f1/2023/driverStandings.json';
         const data: IApiResponseStandings =
             await fetchData<IApiResponseStandings>(url);
 

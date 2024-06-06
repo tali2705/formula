@@ -25,7 +25,7 @@ const Teams: React.FC = () => {
 
     const getTeams = useCallback(async (): Promise<void> => {
         const url: string =
-            'http://ergast.com/api/f1/2023/constructorStandings.json';
+            'https://ergast.com/api/f1/2023/constructorStandings.json';
         const data: IApiResponseTeamStanding =
             await fetchData<IApiResponseTeamStanding>(url);
 

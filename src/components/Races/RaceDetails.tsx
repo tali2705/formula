@@ -37,8 +37,8 @@ const RaceDetails: React.FC = () => {
     };
 
     const getRaceDetails = useCallback(async () => {
-        const qualifyingResultsURL: string = `http://ergast.com/api/f1/2023/${round}/qualifying.json`;
-        const raceResultsURL: string = `http://ergast.com/api/f1/2023/${round}/results.json`;
+        const qualifyingResultsURL: string = `https://ergast.com/api/f1/2023/${round}/qualifying.json`;
+        const raceResultsURL: string = `https://ergast.com/api/f1/2023/${round}/results.json`;
 
         const [qualifyingResultsResponse, raceResultsResponse]: [
             IApiResponse,
