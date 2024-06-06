@@ -42,6 +42,7 @@ $primary-font: "Roboto", "sans-serif";
         color: $secondary-color;
         padding: 0.9em 2.2em;
         border-left: 0.12em solid #9dc3d1;
+        font-family: $big-font;
 
         &:hover {
           background-color: #9dc3d1;
