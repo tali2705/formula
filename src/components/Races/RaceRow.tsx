@@ -30,7 +30,12 @@ const RaceRow: React.FC<IRaceRowProps> = ({ race }) => {
                     {race.raceName}
                 </span>
             </td>
-            <td>{race.Circuit.circuitName}</td>
+            <td
+                style={{ cursor: 'pointer' }}
+                onClick={() => handleRaceDetails(race.round)}
+            >
+                {race.Circuit.circuitName}
+            </td>
             <td>{race.date}</td>
             <td>
                 <span>
