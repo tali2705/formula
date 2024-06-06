@@ -1,19 +1,20 @@
 const pointsColorMap: { [key: string]: string } = {
-    '26': '#b04888',
-    '25': '#b04888',
-    '19': '#b04888',
-    '18': '#bf6c9f',
-    '15': '#cf91b7',
-    '12': '#dfb5cf',
-    '10': '#efdae7',
+    '26': '#458fcc',
+    '25': '#458fcc',
+    '19': '#6cabdf',
+    '18': '#6cabdf',
+    '15': '#91c0e7',
+    '13': '#b5d5ef',
+    '12': '#b5d5ef',
+    '10': '#daeaf7',
 };
 
 const positionColorMap: { [key: string]: string } = {
-    '1': '#b04888',
-    '2': '#bf6c9f',
-    '3': '#cf91b7',
-    '4': '#dfb5cf',
-    '5': '#efdae7',
+    '1': '#4896d7',
+    '2': '#6cabdf',
+    '3': '#91c0e7',
+    '4': '#b5d5ef',
+    '5': '#daeaf7',
 };
 
 const tableColor = (points: string, position: string): string => {
@@ -23,7 +24,7 @@ const tableColor = (points: string, position: string): string => {
     if (positionColorMap[position]) {
         return positionColorMap[position];
     }
-    return '#efdaff';
+    return '#e9e9e9';
 };
 
 export default tableColor;
