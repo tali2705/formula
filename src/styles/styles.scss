@@ -99,7 +99,7 @@ $primary-font: "Roboto", "sans-serif";
               background-color: $secondary-color;
               color: $primary-color;
               border-radius: 3px;
-              box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.50);
+              box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
             }
           }
         }
@@ -229,7 +229,7 @@ $primary-font: "Roboto", "sans-serif";
         &:hover {
           background-color: $secondary-color;
           color: $primary-color;
-          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.50);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
           border-radius: 0 3px 3px 0;
         }
       }
@@ -257,7 +257,7 @@ $primary-font: "Roboto", "sans-serif";
       margin-left: 0.3em;
       background-color: $primary-color;
       border: 0.1em solid $big-font-color;
-      box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.20);
+      box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
 
       .card-header {
         display: flex;
@@ -299,13 +299,30 @@ $primary-font: "Roboto", "sans-serif";
 }
 
 .footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0.6em 0;
   border-top: 1px solid $big-font-color;
   text-align: center;
   background-color: #9dc3d1;
-  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.30);
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.3);
 
   .footer-icons {
-    width: 0.9em;
+    padding: 0 0.55em;
+    width: 1.2em;
   }
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
 }
