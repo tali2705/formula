@@ -143,7 +143,13 @@ const DriverDetails: React.FC = () => {
                                                 </Link>
                                             </span>
                                         </td>
-                                        <td>{raceResult.Constructor.name}</td>
+                                        <td>
+                                            <Link
+                                                to={`/teams/${raceResult.Constructor.constructorId}`}
+                                            >
+                                                {raceResult.Constructor.name}
+                                            </Link>
+                                        </td>
                                         <td>{raceResult.grid}</td>
                                         <td
                                             className='defaultPositionColor'
