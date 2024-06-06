@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 export interface IDriver {
   driverId: string;
@@ -12,14 +12,14 @@ export interface IDriver {
 export interface IDriverRow {
   position: string;
   Driver: IDriver;
-  Constructors: { name: string }[];
+  Constructors: { name: string; constructorId: string }[];
   points: string;
 }
 
 export interface IDriverStanding {
   position: string;
   Driver: IDriver;
-  Constructors: { name: string }[];
+  Constructors: { name: string; constructorId: string }[];
   points: string;
 }
 

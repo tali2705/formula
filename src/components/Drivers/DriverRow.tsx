@@ -1,5 +1,5 @@
 import React from "react";
-import { NavigateFunction, useNavigate } from "react-router-dom";
+import { Link, NavigateFunction, useNavigate } from "react-router-dom";
 
 import flagHandler from "../utils/flagHandler";
 import { IDriverRow } from "../Interfaces/GlobalInterface";
@@ -26,7 +26,11 @@ const DriverRow: React.FC<{ driver: IDriverRow }> = ({ driver }) => {
           {driver.Driver.givenName} {driver.Driver.familyName}
         </span>
       </td>
-      <td>{driver.Constructors.length > 0 && driver.Constructors[0].name}</td>
+      <td>
+        <Link to={`/teams/${driver.Constructors[0].constructorId}`}>
+          {driver.Constructors.length > 0 && driver.Constructors[0].name}
+        </Link>
+      </td>
       <td>{driver.points}</td>
     </tr>
   );

@@ -17,6 +17,7 @@ const TeamRow: React.FC<ITeamRow> = ({ team }) => {
     <tr>
       <td>{team.position}</td>
       <td onClick={handleTeamDetails}>
+       
         <span>
           <img
             src={`https://flagsapi.com/${countryCode}/shiny/64.png`}
