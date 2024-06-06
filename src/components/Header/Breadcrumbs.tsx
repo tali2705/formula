@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 
 import { IBreadcrumbsProps } from '../Interfaces/GlobalInterface';
 
+import CrumbsWrapper from './Breadcrumbs.styles';
+
 const Breadcrumbs: React.FC<IBreadcrumbsProps> = (props) => {
     return (
-        <div className='crumbs'>
+        <CrumbsWrapper>
             {props.data?.map((crumb, k) => {
                 return (
                     <div className='crumb' key={k}>
@@ -19,7 +21,7 @@ const Breadcrumbs: React.FC<IBreadcrumbsProps> = (props) => {
                     </div>
                 );
             })}
-        </div>
+        </CrumbsWrapper>
     );
 };
 

@@ -1,17 +1,21 @@
 import React from 'react';
-import { FaSearch } from 'react-icons/fa';
 
 import { ISearchProps } from '../Interfaces/GlobalInterface';
 
+import { FaSearch } from 'react-icons/fa';
+
+import SearchBoxWrapper from './Search.styles';
+
 const Search: React.FC<ISearchProps> = ({ onChangeHandler }) => (
-    <div className='search-box'>
+    <SearchBoxWrapper>
         <FaSearch className='search-icon' />
+
         <input
             type='search'
             placeholder='Search...'
             onChange={onChangeHandler}
         />
-    </div>
+    </SearchBoxWrapper>
 );
 
 export default Search;

@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 
 import { ICardProps } from '../Interfaces/GlobalInterface';
 
+import CardWrapper from './Card.styles';
+
 const Card: React.FC<ICardProps> = (props) => {
     let srcChunk: string = '';
     let propsChunk: string = '';
@@ -19,7 +21,7 @@ const Card: React.FC<ICardProps> = (props) => {
         (propsChunk = `${props.teamId}`);
 
     return (
-        <div className='card-wrapper'>
+        <CardWrapper>
             <div className='card-content'>
                 <div className='card-header'>
                     <img
@@ -60,7 +62,7 @@ const Card: React.FC<ICardProps> = (props) => {
                     </p>
                 </div>
             </div>
-        </div>
+        </CardWrapper>
     );
 };
 
