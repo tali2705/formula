@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-const primaryColor = '#faf0e6';
-const bigFontColor = '#98aeb6';
+import { primaryColor, bigFontColor } from '../../styles/GeneralStyles';
 
 const CardWrapper = styled.div`
     margin-top: 4em;

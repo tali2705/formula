@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
-const primaryColor = '#faf0e6';
-const bigFontColor = '#98aeb6';
-const secondaryColor = '#333';
+import {
+    primaryColor,
+    bigFontColor,
+    secondaryColor,
+} from '../../styles/GeneralStyles';
 
 const CrumbsWrapper = styled.div`
     display: flex;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const bigFontColor = '#98aeb6';
+import { bigFontColor } from '../../styles/GeneralStyles';
 
 const SearchBoxWrapper = styled.div`
     border: 0.063em solid ${bigFontColor};

@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
-const primaryColor = '#faf0e6';
-const bigFontColor = '#98aeb6';
-const secondaryColor = '#333';
-const bigFont = '"Racing Sans One", "sans-serif"';
+import {
+    primaryColor,
+    bigFontColor,
+    secondaryColor,
+    bigFont,
+} from '../../styles/GeneralStyles';
 
 const SidebarWrapper = styled.div`
     min-width: 15%;

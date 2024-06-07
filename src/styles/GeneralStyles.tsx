@@ -5,6 +5,7 @@ export const bigFontColor = '#98aeb6';
 export const secondaryColor = '#333';
 export const bigFont = '"Racing Sans One", "sans-serif"';
 export const primaryFont = '"Roboto", "sans-serif"';
+export const footerBackgroundColor = '#9dc3d1';
 
 export const WrapperDetails = styled.div`
     margin: 1.25em auto;
@@ -118,6 +119,7 @@ export const Wrapper = styled.div`
     font-family: ${primaryFont};
 `;
 export const TableDetails = styled.div`
-table {
-width: 100%;
-}`;
+    table {
+        width: 100%;
+    }
+`;

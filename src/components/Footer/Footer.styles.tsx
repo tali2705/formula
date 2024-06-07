@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
-const bigFontColor = '#98aeb6';
-const footerBackgroundColor = '#9dc3d1';
+import {
+    bigFontColor,
+    footerBackgroundColor,
+} from '../../styles/GeneralStyles';
 
 const FooterWrapper = styled.footer`
     display: flex;

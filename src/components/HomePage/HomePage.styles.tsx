@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-const secondaryColor = '#333';
+import { secondaryColor } from '../../styles/GeneralStyles';
+
 const bigFont = '"Racing Sans One", "sans-serif"';
 const linkBorderColor = '#9dc3d1';
 
