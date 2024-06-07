@@ -15,6 +15,8 @@ import {
     Header,
     ContentWrapperRight,
     ContentWrapper,
+    TableDetails,
+    MainContent
 } from '../../styles/GeneralStyles';
 
 import {
@@ -107,7 +109,7 @@ const DriverDetails: React.FC = () => {
                             driverDetails={true}
                         />
                     )}
-
+<MainContent>
                     <table>
                         <caption>Driver Details</caption>
                         <thead>
@@ -169,6 +171,7 @@ const DriverDetails: React.FC = () => {
                             })}
                         </tbody>
                     </table>
+                    </MainContent>
                 </WrapperDetails>
             </ContentWrapperRight>
         </ContentWrapper>

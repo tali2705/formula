@@ -15,6 +15,8 @@ import {
     Header,
     ContentWrapperRight,
     ContentWrapper,
+    MainContent,
+    TableDetails,
 } from '../../styles/GeneralStyles';
 
 import {
@@ -113,6 +115,7 @@ const RaceDetails: React.FC = () => {
                         />
                     )}
 
+    <TableDetails>
                     <table>
                         <caption>Qualifying Results</caption>
                         <thead>
@@ -164,7 +167,8 @@ const RaceDetails: React.FC = () => {
                             })}
                         </tbody>
                     </table>
-
+                    </TableDetails>
+                    <TableDetails>
                     <table>
                         <caption>Race Results</caption>
                         <thead>
@@ -224,6 +228,8 @@ const RaceDetails: React.FC = () => {
                             })}
                         </tbody>
                     </table>
+                    </TableDetails>
+
                 </WrapperDetails>
             </ContentWrapperRight>
         </ContentWrapper>

@@ -15,6 +15,7 @@ import {
     Header,
     ContentWrapperRight,
     ContentWrapper,
+    MainContent,
 } from '../../styles/GeneralStyles';
 
 import {
@@ -108,7 +109,7 @@ const TeamDetails: () => JSX.Element = () => {
                             teamDetails={true}
                         />
                     )}
-
+<MainContent>
                     <table>
                         <caption>Team Details</caption>
                         <thead>
@@ -185,6 +186,7 @@ const TeamDetails: () => JSX.Element = () => {
                             })}
                         </tbody>
                     </table>
+                    </MainContent>
                 </WrapperDetails>
             </ContentWrapperRight>
         </ContentWrapper>

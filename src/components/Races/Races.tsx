@@ -15,6 +15,7 @@ import {
     Header,
     ContentWrapperRight,
     ContentWrapper,
+    MainContent,
 } from '../../styles/GeneralStyles';
 
 const Races: React.FC = () => {
@@ -61,7 +62,7 @@ const Races: React.FC = () => {
                         className='search-box'
                     />
                 </Header>
-                <div className='main-content'>
+                <MainContent>
                     <h2 className='title'>RACE CALENDAR</h2>
                     <table>
                         <caption>Race Calendar - 2023</caption>
@@ -86,7 +87,7 @@ const Races: React.FC = () => {
                             )}
                         </tbody>
                     </table>
-                </div>
+                    </MainContent>
             </ContentWrapperRight>
         </ContentWrapper>
     );

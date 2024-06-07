@@ -18,6 +18,7 @@ import {
     Header,
     ContentWrapperRight,
     ContentWrapper,
+    MainContent,
 } from '../../styles/GeneralStyles';
 
 const Drivers: React.FC = () => {
@@ -74,7 +75,7 @@ const Drivers: React.FC = () => {
                         className='search-box'
                     />
                 </Header>
-                <div className='main-content'>
+                <MainContent>
                     <h2 className='title'>DRIVERS CHAMIPONSHIP</h2>
                     <table>
                         <caption>Drivers Championship Standings - 2023</caption>
@@ -93,7 +94,7 @@ const Drivers: React.FC = () => {
                             )}
                         </tbody>
                     </table>
-                </div>
+                    </MainContent>
             </ContentWrapperRight>
         </ContentWrapper>
     );

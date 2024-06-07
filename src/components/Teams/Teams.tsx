@@ -13,6 +13,7 @@ import {
     Header,
     ContentWrapperRight,
     ContentWrapper,
+    MainContent,
 } from '../../styles/GeneralStyles';
 
 import {
@@ -74,7 +75,7 @@ const Teams: React.FC = () => {
                         className='search-box'
                     />
                 </Header>
-                <div className='main-content'>
+                <MainContent>
                     <h2 className='title'>CONSTRUCTORS CHAMPIONSHIP</h2>
                     <table className='main-table'>
                         <caption className='table-caption'>
@@ -102,7 +103,7 @@ const Teams: React.FC = () => {
                             )}
                         </tbody>
                     </table>
-                </div>
+                    </MainContent>
             </ContentWrapperRight>
         </ContentWrapper>
     );

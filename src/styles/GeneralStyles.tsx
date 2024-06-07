@@ -47,7 +47,7 @@ export const ContentWrapperRight = styled.div`
     }
 
     table {
-        width: 100%;
+        width: 85%;
         margin: 1.25em auto;
 
         caption {
@@ -117,3 +117,7 @@ export const Wrapper = styled.div`
     justify-content: space-between;
     font-family: ${primaryFont};
 `;
+export const TableDetails = styled.div`
+table {
+width: 100%;
+}`;
