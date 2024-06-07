@@ -16,7 +16,7 @@ const CrumbsWrapper = styled.div`
     }
 
     a {
-        margin: 0 1.25em;
+        margin: 0.313em;
         padding: 0.625em 0.9em;
         font-size: 1.2em;
         font-weight: 800;

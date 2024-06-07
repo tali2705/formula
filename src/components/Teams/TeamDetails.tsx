@@ -10,6 +10,8 @@ import { fetchData } from '../utils/fetchData';
 import flagHandler from '../utils/flagHandler';
 import tableColor from '../utils/tableColor';
 
+import { WrapperDetails } from '../../styles/GeneralStyles';
+
 import {
     ITeamRace,
     IApiResponseTeamResults,
@@ -84,7 +86,7 @@ const TeamDetails: () => JSX.Element = () => {
                 <div className='header'>
                     <Breadcrumbs data={breadcrumbs} />
                 </div>
-                <div className='wrapper-details'>
+                <WrapperDetails>
                     {teamDetails && (
                         <Card
                             title={teamDetails.Constructor.name || ''}
@@ -178,7 +180,7 @@ const TeamDetails: () => JSX.Element = () => {
                             })}
                         </tbody>
                     </table>
-                </div>
+                </WrapperDetails>
             </div>
         </div>
     );

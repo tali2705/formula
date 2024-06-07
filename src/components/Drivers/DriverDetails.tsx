@@ -10,6 +10,8 @@ import { fetchData } from '../utils/fetchData';
 import flagHandler from '../utils/flagHandler';
 import tableColor from '../utils/tableColor';
 
+import { WrapperDetails } from '../../styles/GeneralStyles';
+
 import {
     IApiResponse,
     IApiResponseStandings,
@@ -83,7 +85,7 @@ const DriverDetails: React.FC = () => {
                 <div className='header'>
                     <Breadcrumbs data={breadcrumbs} />
                 </div>
-                <div className='wrapper-details'>
+                <WrapperDetails>
                     {driverDetails && (
                         <Card
                             title={`${driverDetails.Driver.givenName} ${driverDetails.Driver.familyName}`}
@@ -162,7 +164,7 @@ const DriverDetails: React.FC = () => {
                             })}
                         </tbody>
                     </table>
-                </div>
+                </WrapperDetails>
             </div>
         </div>
     );
