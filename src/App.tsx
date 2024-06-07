@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import './styles/styles.scss';
+import './styles/reset.scss';
 
 import Footer from './components/Footer/Footer';
 import Drivers from './components/Drivers/Drivers';
@@ -13,9 +13,11 @@ import HomePage from './components/HomePage/HomePage';
 
 import ScrollToTop from './components/utils/ScrollToTop';
 
+import { Wrapper } from './styles/GeneralStyles';
+
 function App(): JSX.Element {
     return (
-        <div className='wrapper'>
+        <Wrapper>
             <Router>
                 <ScrollToTop>
                     <Routes>
@@ -36,7 +38,7 @@ function App(): JSX.Element {
                 </ScrollToTop>
                 <Footer />
             </Router>
-        </div>
+        </Wrapper>
     );
 }
 

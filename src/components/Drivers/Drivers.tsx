@@ -14,7 +14,11 @@ import {
     IDriverStanding,
 } from '../Interfaces/GlobalInterface';
 
-import { Header, ContentWrapperRight } from '../../styles/GeneralStyles';
+import {
+    Header,
+    ContentWrapperRight,
+    ContentWrapper,
+} from '../../styles/GeneralStyles';
 
 const Drivers: React.FC = () => {
     const [drivers, setDrivers] = useState<IDriverStanding[]>([]);
@@ -60,7 +64,7 @@ const Drivers: React.FC = () => {
     const breadcrumbs: ICrumb[] = [{ label: 'Drivers', route: '/' }];
 
     return (
-        <div className='content-wrapper'>
+        <ContentWrapper>
             <SideBar />
             <ContentWrapperRight>
                 <Header>
@@ -91,7 +95,7 @@ const Drivers: React.FC = () => {
                     </table>
                 </div>
             </ContentWrapperRight>
-        </div>
+        </ContentWrapper>
     );
 };
 

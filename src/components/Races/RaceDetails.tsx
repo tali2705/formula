@@ -14,6 +14,7 @@ import {
     WrapperDetails,
     Header,
     ContentWrapperRight,
+    ContentWrapper,
 } from '../../styles/GeneralStyles';
 
 import {
@@ -88,7 +89,7 @@ const RaceDetails: React.FC = () => {
         : '';
 
     return (
-        <div className='content-wrapper'>
+        <ContentWrapper>
             <SideBar />
             <ContentWrapperRight>
                 <Header>
@@ -225,7 +226,7 @@ const RaceDetails: React.FC = () => {
                     </table>
                 </WrapperDetails>
             </ContentWrapperRight>
-        </div>
+        </ContentWrapper>
     );
 };
 

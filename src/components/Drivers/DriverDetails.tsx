@@ -14,6 +14,7 @@ import {
     WrapperDetails,
     Header,
     ContentWrapperRight,
+    ContentWrapper,
 } from '../../styles/GeneralStyles';
 
 import {
@@ -83,7 +84,7 @@ const DriverDetails: React.FC = () => {
             : '';
 
     return (
-        <div className='content-wrapper'>
+        <ContentWrapper>
             <SideBar />
             <ContentWrapperRight>
                 <Header>
@@ -170,7 +171,7 @@ const DriverDetails: React.FC = () => {
                     </table>
                 </WrapperDetails>
             </ContentWrapperRight>
-        </div>
+        </ContentWrapper>
     );
 };
 

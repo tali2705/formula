@@ -11,7 +11,11 @@ import { filterItems, onSearchChange } from '../utils/searchHandlers';
 
 import { IRace, IApiResponse, ICrumb } from '../Interfaces/GlobalInterface';
 
-import { Header, ContentWrapperRight } from '../../styles/GeneralStyles';
+import {
+    Header,
+    ContentWrapperRight,
+    ContentWrapper,
+} from '../../styles/GeneralStyles';
 
 const Races: React.FC = () => {
     const [races, setRaces] = useState<IRace[]>([]);
@@ -47,7 +51,7 @@ const Races: React.FC = () => {
     const breadcrumbs: ICrumb[] = [{ label: 'Races', route: '/races' }];
 
     return (
-        <div className='content-wrapper'>
+        <ContentWrapper>
             <SideBar />
             <ContentWrapperRight>
                 <Header>
@@ -84,7 +88,7 @@ const Races: React.FC = () => {
                     </table>
                 </div>
             </ContentWrapperRight>
-        </div>
+        </ContentWrapper>
     );
 };
 

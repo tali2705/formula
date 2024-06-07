@@ -9,7 +9,11 @@ import { fetchData } from '../utils/fetchData';
 import { filterItems, onSearchChange } from '../utils/searchHandlers';
 import SideBar from '../SideBar/SideBar';
 
-import { Header, ContentWrapperRight } from '../../styles/GeneralStyles';
+import {
+    Header,
+    ContentWrapperRight,
+    ContentWrapper,
+} from '../../styles/GeneralStyles';
 
 import {
     IApiResponseTeamStanding,
@@ -60,7 +64,7 @@ const Teams: React.FC = () => {
     const breadcrumbs: ICrumb[] = [{ label: 'Teams', route: '/' }];
 
     return (
-        <div className='content-wrapper'>
+        <ContentWrapper>
             <SideBar />
             <ContentWrapperRight>
                 <Header>
@@ -100,7 +104,7 @@ const Teams: React.FC = () => {
                     </table>
                 </div>
             </ContentWrapperRight>
-        </div>
+        </ContentWrapper>
     );
 };
 

@@ -14,6 +14,7 @@ import {
     WrapperDetails,
     Header,
     ContentWrapperRight,
+    ContentWrapper,
 } from '../../styles/GeneralStyles';
 
 import {
@@ -84,7 +85,7 @@ const TeamDetails: () => JSX.Element = () => {
         : '';
 
     return (
-        <div className='content-wrapper'>
+        <ContentWrapper>
             <SideBar />
             <ContentWrapperRight>
                 <Header>
@@ -186,7 +187,7 @@ const TeamDetails: () => JSX.Element = () => {
                     </table>
                 </WrapperDetails>
             </ContentWrapperRight>
-        </div>
+        </ContentWrapper>
     );
 };
 

@@ -47,7 +47,7 @@ export const ContentWrapperRight = styled.div`
     }
 
     table {
-        width: 75%;
+        width: 100%;
         margin: 1.25em auto;
 
         caption {
@@ -100,4 +100,20 @@ export const ContentWrapperRight = styled.div`
             text-align: left;
         }
     }
+`;
+
+export const ContentWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
+export const Wrapper = styled.div`
+    overflow: hidden;
+    box-sizing: border-box;
+    min-height: 100vh;
+    background-color: ${primaryColor};
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: ${primaryFont};
 `;
