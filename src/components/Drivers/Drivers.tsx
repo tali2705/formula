@@ -14,6 +14,8 @@ import {
     IDriverStanding,
 } from '../Interfaces/GlobalInterface';
 
+import { Header, ContentWrapperRight } from '../../styles/GeneralStyles';
+
 const Drivers: React.FC = () => {
     const [drivers, setDrivers] = useState<IDriverStanding[]>([]);
     const [searchField, setSearchField] = useState<string>('');
@@ -60,14 +62,14 @@ const Drivers: React.FC = () => {
     return (
         <div className='content-wrapper'>
             <SideBar />
-            <div className='content-wrapper-right'>
-                <div className='header'>
+            <ContentWrapperRight>
+                <Header>
                     <Breadcrumbs data={breadcrumbs} />
                     <Search
                         onChangeHandler={onSearchChange(setSearchField)}
                         className='search-box'
                     />
-                </div>
+                </Header>
                 <div className='main-content'>
                     <h2 className='title'>DRIVERS CHAMIPONSHIP</h2>
                     <table>
@@ -88,7 +90,7 @@ const Drivers: React.FC = () => {
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </ContentWrapperRight>
         </div>
     );
 };

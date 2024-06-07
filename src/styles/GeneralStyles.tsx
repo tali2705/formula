@@ -21,3 +21,83 @@ export const MainContent = styled.div`
     width: 100%;
     margin-top: 1.9em;
 `;
+
+export const Header = styled.header`
+    min-width: 100%;
+    min-height: 6.188em;
+    color: ${bigFontColor};
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.06em solid ${bigFontColor};
+`;
+
+export const ContentWrapperRight = styled.div`
+    min-width: 85%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .title {
+        margin-top: 0.5em;
+        font-family: ${bigFont};
+        text-align: center;
+        font-size: 2.5em;
+        color: ${secondaryColor};
+    }
+
+    table {
+        width: 75%;
+        margin: 1.25em auto;
+
+        caption {
+            color: ${bigFontColor};
+            font-size: 1.5em;
+            font-weight: 600;
+            font-style: italic;
+            padding: 0.625em;
+            text-align: left;
+        }
+
+        td {
+            padding: 0.5rem 0.323em;
+            font-size: 1em;
+            text-align: left;
+            border-right: 0.06em solid ${bigFontColor};
+            vertical-align: middle;
+
+            a {
+                text-decoration: none;
+                color: ${secondaryColor};
+                cursor: pointer;
+            }
+
+            span {
+                display: flex;
+                align-items: center;
+                width: fit-content;
+                cursor: pointer;
+            }
+
+            .table-flag {
+                width: 2em;
+                height: 2em;
+                padding-right: 0.5em;
+            }
+
+            .icon {
+                padding-left: 0.5em;
+                width: 0.9em;
+            }
+        }
+
+        th {
+            background-color: #9dc3d1;
+            border-right: 0.06em solid ${bigFontColor};
+            font-size: 1em;
+            font-weight: 600;
+            padding: 0.9em;
+            text-align: left;
+        }
+    }
+`;

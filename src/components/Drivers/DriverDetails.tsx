@@ -10,7 +10,11 @@ import { fetchData } from '../utils/fetchData';
 import flagHandler from '../utils/flagHandler';
 import tableColor from '../utils/tableColor';
 
-import { WrapperDetails } from '../../styles/GeneralStyles';
+import {
+    WrapperDetails,
+    Header,
+    ContentWrapperRight,
+} from '../../styles/GeneralStyles';
 
 import {
     IApiResponse,
@@ -81,10 +85,10 @@ const DriverDetails: React.FC = () => {
     return (
         <div className='content-wrapper'>
             <SideBar />
-            <div className='content-wrapper-right'>
-                <div className='header'>
+            <ContentWrapperRight>
+                <Header>
                     <Breadcrumbs data={breadcrumbs} />
-                </div>
+                </Header>
                 <WrapperDetails>
                     {driverDetails && (
                         <Card
@@ -165,7 +169,7 @@ const DriverDetails: React.FC = () => {
                         </tbody>
                     </table>
                 </WrapperDetails>
-            </div>
+            </ContentWrapperRight>
         </div>
     );
 };

@@ -10,7 +10,11 @@ import { fetchData } from '../utils/fetchData';
 import flagHandler from '../utils/flagHandler';
 import tableColor from '../utils/tableColor';
 
-import { WrapperDetails } from '../../styles/GeneralStyles';
+import {
+    WrapperDetails,
+    Header,
+    ContentWrapperRight,
+} from '../../styles/GeneralStyles';
 
 import {
     ITeamRace,
@@ -82,10 +86,10 @@ const TeamDetails: () => JSX.Element = () => {
     return (
         <div className='content-wrapper'>
             <SideBar />
-            <div className='content-wrapper-right'>
-                <div className='header'>
+            <ContentWrapperRight>
+                <Header>
                     <Breadcrumbs data={breadcrumbs} />
-                </div>
+                </Header>
                 <WrapperDetails>
                     {teamDetails && (
                         <Card
@@ -181,7 +185,7 @@ const TeamDetails: () => JSX.Element = () => {
                         </tbody>
                     </table>
                 </WrapperDetails>
-            </div>
+            </ContentWrapperRight>
         </div>
     );
 };

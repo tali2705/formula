@@ -9,6 +9,8 @@ import { fetchData } from '../utils/fetchData';
 import { filterItems, onSearchChange } from '../utils/searchHandlers';
 import SideBar from '../SideBar/SideBar';
 
+import { Header, ContentWrapperRight } from '../../styles/GeneralStyles';
+
 import {
     IApiResponseTeamStanding,
     ICrumb,
@@ -60,14 +62,14 @@ const Teams: React.FC = () => {
     return (
         <div className='content-wrapper'>
             <SideBar />
-            <div className='content-wrapper-right'>
-                <div className='header'>
+            <ContentWrapperRight>
+                <Header>
                     <Breadcrumbs data={breadcrumbs} />
                     <Search
                         onChangeHandler={onSearchChange(setSearchField)}
                         className='search-box'
                     />
-                </div>
+                </Header>
                 <div className='main-content'>
                     <h2 className='title'>CONSTRUCTORS CHAMPIONSHIP</h2>
                     <table className='main-table'>
@@ -97,7 +99,7 @@ const Teams: React.FC = () => {
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </ContentWrapperRight>
         </div>
     );
 };
